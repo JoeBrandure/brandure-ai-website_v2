@@ -5,18 +5,12 @@ import * as THREE from 'three';
 
 export default function WebGLBackground() {
   const mountRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const frameRef = useRef<number>(0);
 
   useEffect(() => {
     if (!mountRef.current) return;
 
     // Scene setup
     const scene = new THREE.Scene();
-    sceneRef.current = scene;
-
-    // Camera setup
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -28,43 +22,41 @@ export default function WebGLBackground() {
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       alpha: true, 
-      antialias: true,
-      powerPreference: 'high-performance'
+      antialias: true 
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    rendererRef.current = renderer;
     mountRef.current.appendChild(renderer.domElement);
 
-    // Create triangular prisms (pyramids)
-    const pyramidGeometry = new THREE.ConeGeometry(0.5, 1, 3);
+    // Create triangular prisms
+    const geometry = new THREE.ConeGeometry(0.3, 0.6, 3);
     const material = new THREE.MeshBasicMaterial({ 
       color: 0x00D9FF,
       wireframe: true,
-      opacity: 0.3,
+      opacity: 0.15,
       transparent: true
     });
 
-    const pyramids: THREE.Mesh[] = [];
-    for (let i = 0; i < 15; i++) {
-      const pyramid = new THREE.Mesh(pyramidGeometry, material.clone());
-      pyramid.position.x = (Math.random() - 0.5) * 10;
-      pyramid.position.y = (Math.random() - 0.5) * 10;
-      pyramid.position.z = (Math.random() - 0.5) * 10;
-      pyramid.rotation.x = Math.random() * Math.PI;
-      pyramid.rotation.y = Math.random() * Math.PI;
-      scene.add(pyramid);
-      pyramids.push(pyramid);
+    const prisms: THREE.Mesh[] = [];
+    for (let i = 0; i < 8; i++) {
+      const prism = new THREE.Mesh(geometry, material.clone());
+      prism.position.x = (Math.random() - 0.5) * 8;
+      prism.position.y = (Math.random() - 0.5) * 8;
+      prism.position.z = (Math.random() - 0.5) * 5;
+      prism.rotation.x = Math.random() * Math.PI;
+      prism.rotation.y = Math.random() * Math.PI;
+      scene.add(prism);
+      prisms.push(prism);
     }
 
     // Animation
     const animate = () => {
-      frameRef.current = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
 
-      pyramids.forEach((pyramid, index) => {
-        pyramid.rotation.x += 0.001 * (index % 2 === 0 ? 1 : -1);
-        pyramid.rotation.y += 0.002 * (index % 2 === 0 ? -1 : 1);
-        pyramid.position.y += Math.sin(Date.now() * 0.001 + index) * 0.001;
+      prisms.forEach((prism, index) => {
+        prism.rotation.x += 0.001 * (index % 2 === 0 ? 1 : -1);
+        prism.rotation.y += 0.001 * (index % 2 === 0 ? -1 : 1);
+        prism.position.y += Math.sin(Date.now() * 0.0005 + index) * 0.0005;
       });
 
       renderer.render(scene, camera);
@@ -83,9 +75,6 @@ export default function WebGLBackground() {
 
     // Cleanup
     return () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
       window.removeEventListener('resize', handleResize);
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
@@ -97,8 +86,15 @@ export default function WebGLBackground() {
   return (
     <div 
       ref={mountRef} 
-      className="fixed inset-0 -z-10 opacity-50"
-      style={{ pointerEvents: 'none' }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+        pointerEvents: 'none',
+      }}
     />
   );
 }

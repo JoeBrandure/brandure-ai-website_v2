@@ -1,116 +1,226 @@
-@import './animations.css';
-
-:root{
-  --color-bg-dark:#0a0a0a;
-  --color-bg-darker:#000000;
-  --color-primary:#00D9FF;
-  --color-secondary:#004D66;
-  --color-accent:#4ade80;
-  --color-accent-green:#22c55e;
-  --color-gray:#6b7280;
-  --color-gray-light:#9ca3af;
-  --color-white:#ffffff;
-  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-snap-type:y mandatory;}
-body{
-  background:var(--color-bg-dark);
-  color:var(--color-white);
-  font-family:var(--font-sans);
-  overflow-x:hidden;
-}
-
-/* one full-screen section per snap */
-.section-snap{scroll-snap-align:start;min-height:100vh;position:relative;display:flex;align-items:center;}
-
-/* Gradient text animation for subtle "breathing" */
-.gradient-text{
-  background:linear-gradient(90deg,#00D9FF,#22c55e,#00D9FF);
-  background-size:200% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:gradient 3s ease-in-out infinite;
-}
-@keyframes gradient{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .gradient-text{animation:none;}
-}
-
-/* Ensure dark theme throughout */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
+html, body {
+  font-family: 'DM Sans', sans-serif;
   background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
   color: #ffffff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Main scroll container */
+.main-container {
+  height: 100vh;
+  overflow-y: auto;
   overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Typography clamp sizes */
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+/* Each section takes full viewport */
+.section-snap {
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Center all content */
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+/* Hide scrollbar but keep functionality */
+.main-container::-webkit-scrollbar {
+  display: none;
+}
+.main-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Typography scales */
+.hero-text-large {
+  font-size: clamp(3rem, 6vw, 5rem);
   line-height: 1.1;
+  font-weight: 500;
 }
 
-h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+.hero-text-medium {
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.2;
-}
-
-h3 {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  line-height: 1.3;
-}
-
-p {
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  line-height: 1.6;
-}
-
-/* Primary accent color */
-.text-primary {
-  color: #00D9FF;
-}
-
-.bg-primary {
-  background-color: #00D9FF;
-}
-
-.border-primary {
-  border-color: #00D9FF;
-}
-
-/* Muted text */
-.text-muted {
+  font-weight: 400;
   color: #C0C0C0;
 }
 
-/* Ensure snap scrolling works properly */
-@supports (scroll-snap-type: y mandatory) {
-  .snap-container {
-    scroll-snap-type: y mandatory;
-  }
-  
-  .snap-section {
-    scroll-snap-align: start;
-  }
+.section-heading {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 500;
 }
 
-/* Gradient text utility */
-.gradient-text {
-  background: linear-gradient(90deg, #00D9FF 0%, #0080C0 50%, #00D9FF 100%);
+.body-text {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: #C0C0C0;
+}
+
+/* Animated gradient text */
+.gradient-animated {
+  background: linear-gradient(90deg, #00D9FF 0%, #0099CC 25%, #00D9FF 50%, #0099CC 75%, #00D9FF 100%);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-flow 3s ease infinite;
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Fixed navigation */
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Hide side navigation dots */
+.side-navigation {
+  display: none !important;
+}
+
+/* Contact drawer from right */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  background: #1a1a1a;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  z-index: 201;
+  overflow-y: auto;
+  padding: 40px;
+}
+
+.drawer-panel.open {
+  transform: translateX(0);
+}
+
+/* Triangular animations */
+.triangle-prism {
+  stroke: #00D9FF;
+  fill: none;
+  stroke-width: 2;
+  opacity: 0.8;
+}
+
+.triangle-prism.hollow {
+  fill: none;
+  opacity: 1;
+}
+
+.triangle-prism.semi-transparent {
+  opacity: 0.6;
+}
+
+.triangle-prism.mostly-transparent {
+  opacity: 0.3;
+}
+
+/* Counter animation */
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.counter {
+  animation: counter 2s ease-out forwards;
+  counter-reset: num var(--num);
+}
+
+.counter::after {
+  content: counter(num) "+";
+}
+
+/* Results underline */
+.results-underline {
+  width: 100%;
+  height: 2px;
+  background: #00D9FF;
+  margin: 20px 0;
+}
+
+/* Button styles */
+.cta-button {
+  padding: 16px 48px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cta-button:hover {
+  background: white;
+  color: black;
+}
+
+.cta-button svg {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover svg {
+  transform: rotate(45deg) translateX(4px) translateY(-4px);
 }

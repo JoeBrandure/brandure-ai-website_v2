@@ -3,25 +3,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { AnimatedText } from './AnimatedText';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    number: '01',
     title: 'Identify',
-    description: 'We help you identify high-impact AI opportunities and build a step-by-step AI Transformation strategy to bring them to life.',
+    description: 'We identify high-impact AI opportunities and map the transformation strategy to bring them to life.',
+    prisms: 1,
   },
   {
-    number: '02',
     title: 'Develop',
-    description: 'We leverage our extensive experience and network to develop custom AI systems that are proven to move the needle inside your business.',
+    description: 'We design and build bespoke AI systems and automations proven to move the needle',
+    prisms: 2,
   },
   {
-    number: '03',
     title: 'Scale',
-    description: 'We implement scalable AI infrastructure and processes that grow with your business, ensuring sustainable competitive advantage.',
+    description: 'We monitor, optimize and scale adoption across teams to compound ROI',
+    prisms: 3,
   },
 ];
 
@@ -33,27 +32,26 @@ export default function JourneySection() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const timeline = gsap.timeline({
+    // Prevent normal scroll snap for this section
+    section.style.scrollSnapAlign = 'none';
+
+    gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
         end: 'bottom top',
         pin: true,
         scrub: 1,
+        snap: {
+          snapTo: 1 / (steps.length - 1),
+          duration: 0.5,
+        },
         onUpdate: (self) => {
           const progress = self.progress;
-          const stepIndex = Math.min(Math.floor(progress * 3), 2);
+          const stepIndex = Math.min(Math.floor(progress * steps.length), steps.length - 1);
           setActiveStep(stepIndex);
         },
       },
-    });
-
-    // Animate triangular shapes
-    timeline.to('.triangle-shape', {
-      rotation: 360,
-      scale: 1.2,
-      stagger: 0.1,
-      duration: 1,
     });
 
     return () => {
@@ -62,70 +60,91 @@ export default function JourneySection() {
   }, []);
 
   return (
-    <section id="how-we-work" ref={sectionRef} className="snap-section bg-black relative overflow-hidden">
-      <div className="absolute inset-0 flex items-center justify-center">
-        {/* Animated triangular shapes */}
-        <svg className="absolute w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
-          {[0, 1, 2].map((i) => (
-            <polygon
-              key={i}
-              className="triangle-shape triangle-morph"
-              points="50,20 80,80 20,80"
-              fill="none"
-              stroke="#00D9FF"
-              strokeWidth="0.2"
-              opacity={0.3 - i * 0.1}
-              transform={`scale(${1 + i * 0.3}) rotate(${i * 120} 50 50)`}
-            />
-          ))}
-        </svg>
-      </div>
-
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-8 lg:px-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-4">
-            <AnimatedText>We spend our days guiding companies</AnimatedText>
+    <div ref={sectionRef} style={{ height: '300vh' }}>
+      <div className="section-snap" style={{ position: 'sticky', top: 0 }}>
+        <div className="content-wrapper">
+          <h2 className="section-heading" style={{ marginBottom: '60px' }}>
+            We spend our days guiding companies<br />
+            through our 3-step <span className="gradient-animated">AI-Transformation</span> process
           </h2>
-          <p className="text-4xl md:text-5xl lg:text-6xl font-light">
-            <AnimatedText>through our</AnimatedText>{' '}
-            <span className="gradient-text-animated font-bold">3-step AI Transformation Journey</span>
-          </p>
-        </div>
 
-        <div className="w-full max-w-4xl">
-          <div className="relative h-[400px] flex items-center justify-center">
+          <div style={{ position: 'relative', minHeight: '400px' }}>
+            {/* Triangular Prisms */}
+            <svg
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '400px',
+                height: '400px',
+                zIndex: 0,
+              }}
+              viewBox="0 0 400 400"
+            >
+              {/* First prism - always visible when active */}
+              <polygon
+                className="triangle-prism hollow"
+                points="200,100 150,200 250,200"
+                style={{
+                  opacity: activeStep >= 0 ? 1 : 0,
+                  transition: 'opacity 0.5s ease',
+                  transform: `rotate(${activeStep * 120}deg)`,
+                  transformOrigin: 'center',
+                }}
+              />
+              
+              {/* Second prism - visible for step 2 and 3 */}
+              <polygon
+                className="triangle-prism semi-transparent"
+                points="200,120 160,210 240,210"
+                style={{
+                  opacity: activeStep >= 1 ? 0.6 : 0,
+                  transition: 'opacity 0.5s ease',
+                  transform: `rotate(${activeStep * 120 + 60}deg)`,
+                  transformOrigin: 'center',
+                }}
+              />
+              
+              {/* Third prism - visible for step 3 */}
+              <polygon
+                className="triangle-prism mostly-transparent"
+                points="200,140 170,220 230,220"
+                style={{
+                  opacity: activeStep >= 2 ? 0.3 : 0,
+                  transition: 'opacity 0.5s ease',
+                  transform: `rotate(${activeStep * 120 + 120}deg)`,
+                  transformOrigin: 'center',
+                }}
+              />
+            </svg>
+
+            {/* Step Content */}
             {steps.map((step, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 ${
-                  index === activeStep ? 'opacity-100 transform scale-100' : 'opacity-0 transform scale-95 pointer-events-none'
-                }`}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  opacity: index === activeStep ? 1 : 0,
+                  transition: 'opacity 0.5s ease',
+                  pointerEvents: index === activeStep ? 'auto' : 'none',
+                  zIndex: 1,
+                }}
               >
-                <div className="text-8xl font-bold gradient-text-animated mb-4">
-                  {step.number}
-                </div>
-                <h3 className="text-4xl font-bold mb-4 text-white">
+                <h3 style={{ fontSize: '3rem', marginBottom: '20px', color: 'white' }}>
                   {step.title}
                 </h3>
-                <p className="text-xl text-[#C0C0C0] max-w-2xl text-center">
+                <p className="body-text" style={{ maxWidth: '600px', margin: '0 auto' }}>
                   {step.description}
                 </p>
               </div>
             ))}
           </div>
-
-          <div className="flex justify-center gap-3 mt-8">
-            {steps.map((_, index) => (
-              <div
-                key={index}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === activeStep ? 'w-12 bg-[#00D9FF]' : 'w-2 bg-gray-600'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

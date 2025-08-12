@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import { AnimatedText, RotatingTextAnimation } from '../components/AnimatedText';
-import SideNavigation from '../components/SideNavigation';
+import RotatingText from '../components/RotatingText';
 import JourneySection from '../components/JourneySection';
+import LogoCarousel from '../components/LogoCarousel';
 import ContactDrawer from '../components/ContactDrawer';
-import CounterAnimation from '../components/CounterAnimation';
 
 // Dynamic import for WebGL to avoid SSR issues
 const WebGLBackground = dynamic(() => import('../components/WebGLBackground'), {
@@ -19,220 +18,204 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    // Initialize smooth scroll
-    if (typeof window !== 'undefined') {
-      import('lenis').then(({ default: Lenis }) => {
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-        });
-
-        function raf(time: number) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-      });
-    }
+    // Ensure page starts at top
+    window.scrollTo(0, 0);
   }, []);
 
-  const rotatingTexts = [
-    'AI Partner',
-    'Innovation',
-    'Transformation',
-    'Excellence',
-  ];
+  if (!mounted) return null;
 
   return (
     <>
       <Head>
         <title>Brandure AI — Leading AI Agency & AI Automation Agency in UAE & UK</title>
         <meta name="description" content="Brandure.ai is your trusted AI Agency and AI Automation Agency, empowering small businesses with bespoke AI Solutions in the UAE & UK." />
-        {/* Keep all existing meta tags */}
       </Head>
 
       {mounted && <WebGLBackground />}
-      <SideNavigation />
 
-      <div className="snap-container no-scrollbar">
-        {/* Navigation - Fixed */}
-        <nav className="fixed top-0 left-0 right-0 z-40 bg-black/20 backdrop-blur-md">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12 py-4 flex justify-between items-center">
-            <Image
-              src="/logos/brandure-ai-white-2.png"
-              alt="Brandure AI"
-              width={150}
-              height={40}
-              priority
-            />
-            <button
-              onClick={() => setIsDrawerOpen(true)}
-              className="px-6 py-2 border border-white rounded-full text-white hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Get In Touch →
-            </button>
-          </div>
-        </nav>
+      {/* Fixed Navigation */}
+      <nav className="nav-fixed">
+        <Image
+          src="/logos/brandure-ai-white-2.png"
+          alt="Brandure AI"
+          width={150}
+          height={40}
+          priority
+        />
+        <button
+          onClick={() => setIsDrawerOpen(true)}
+          className="cta-button"
+          style={{ padding: '10px 24px', fontSize: '1rem' }}
+        >
+          Let&apos;s Partner Up
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg>
+        </button>
+      </nav>
 
+      {/* Main scroll container */}
+      <div className="main-container">
+        
         {/* Hero Section */}
-        <section id="hero" className="snap-section flex items-center justify-center">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12 text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light mb-8">
-              <AnimatedText>We&apos;re Your</AnimatedText>
-              <div className="h-[1.2em] my-4">
-                <RotatingTextAnimation texts={rotatingTexts} />
-              </div>
-              <AnimatedText delay={0.3}>—Not Just a Provider</AnimatedText>
+        <section id="hero" className="section-snap">
+          <div className="content-wrapper">
+            <h1 className="hero-text-large">
+              We&apos;re not just your AI
             </h1>
-            <p className="text-xl md:text-2xl text-[#C0C0C0] max-w-3xl mx-auto">
-              <AnimatedText delay={0.5}>
-                Your trusted partner in becoming an AI-first business—from insight to execution
-              </AnimatedText>
-            </p>
+            <div style={{ margin: '20px 0' }}>
+              <RotatingText />
+            </div>
+            <h2 className="hero-text-medium">
+              We&apos;re your AI Partner
+            </h2>
           </div>
         </section>
 
         {/* Pitch Section */}
-        <section id="pitch" className="snap-section flex items-center justify-center bg-gradient-to-b from-black to-[#0a0a0a]">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12 text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light">
-              <AnimatedText>From insight to execution,</AnimatedText>
-              <br />
-              <AnimatedText delay={0.2}>we harness the</AnimatedText>{' '}
-              <span className="gradient-text-animated font-bold">power of AI</span>
-              <br />
-              <AnimatedText delay={0.4}>to transform your business</AnimatedText>
+        <section id="pitch" className="section-snap">
+          <div className="content-wrapper">
+            <h2 className="section-heading">
+              From Insight to Execution to Scaling
             </h2>
-          </div>
-        </section>
-
-        {/* Journey Statement */}
-        <section id="journey" className="snap-section flex items-center justify-center bg-[#0a0a0a]">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12 text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light max-w-5xl mx-auto">
-              <AnimatedText>We equip businesses with the bespoke AI tools</AnimatedText>{' '}
-              <AnimatedText delay={0.3} gradient>they need to compete and scale</AnimatedText>
-              <br />
-              <AnimatedText delay={0.5}>—your trusted partner in every step of the journey.</AnimatedText>
+            <h2 className="section-heading" style={{ margin: '20px 0' }}>
+              We help <span className="gradient-animated">you</span> understand the{' '}
+              <span className="gradient-animated">Power of AI</span>
             </h2>
-          </div>
-        </section>
-
-        {/* How We Work - 3 Steps */}
-        <JourneySection />
-
-        {/* Results Section */}
-        <section id="results" className="snap-section flex items-center justify-center bg-black">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-4">
-                <AnimatedText>We don&apos;t sell AI.</AnimatedText>
-              </h2>
-              <p className="text-4xl md:text-5xl lg:text-6xl font-light">
-                <AnimatedText delay={0.2}>We sell</AnimatedText>{' '}
-                <span className="gradient-text-animated font-bold italic">Results.</span>
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="text-center">
-                <div className="text-6xl md:text-7xl font-bold text-[#00D9FF] mb-4">
-                  <CounterAnimation end={48} />
-                </div>
-                <p className="text-lg text-[#C0C0C0]">Bespoke AI Solutions Delivered</p>
-              </div>
-              <div className="text-center">
-                <div className="text-6xl md:text-7xl font-bold text-[#00D9FF] mb-4">
-                  <CounterAnimation end={220} />
-                </div>
-                <p className="text-lg text-[#C0C0C0]">AI Opportunities Identified</p>
-              </div>
-              <div className="text-center">
-                <div className="text-6xl md:text-7xl font-bold text-[#00D9FF] mb-4">
-                  <CounterAnimation end={10000} />
-                </div>
-                <p className="text-lg text-[#C0C0C0]">Hours Saved Through Automation</p>
-              </div>
-            </div>
-
-            {/* Client Logos Carousel Placeholder */}
-            <div className="mt-16 overflow-hidden">
-              <div className="flex items-center justify-center gap-8 opacity-30">
-                {[...Array(5)].map((_, i) => (
-                  <Image
-                    key={i}
-                    src="/logos/brandure-ai-white-2.png"
-                    alt="Client Logo"
-                    width={120}
-                    height={40}
-                    className="grayscale"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Partnership CTA Section */}
-        <section id="partnership" className="snap-section flex items-center justify-center bg-gradient-to-b from-black to-[#0a0a0a]">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12 text-center">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light mb-8">
-              <AnimatedText>The best AI systems</AnimatedText>
-              <br />
-              <AnimatedText delay={0.2}>are built</AnimatedText>{' '}
-              <span className="gradient-text-animated font-bold">side by side.</span>
-            </h2>
-            <button
-              onClick={() => setIsDrawerOpen(true)}
-              className="mt-8 px-10 py-4 text-2xl border-2 border-white rounded-full text-white hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Let&apos;s Partner Up →
-            </button>
-            <p className="mt-8 text-xl text-[#C0C0C0]">
-              <AnimatedText delay={0.5}>Accelerate your AI adoption journey.</AnimatedText>
+            <p className="hero-text-medium">
+              Your trusted partner in becoming an AI-powered business
             </p>
           </div>
         </section>
 
-        {/* Footer/Contact Section */}
-        <section id="contact" className="snap-section bg-black">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12 py-16">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              <div>
-                <h3 className="text-sm font-medium text-[#C0C0C0] uppercase mb-4">Contact</h3>
-                <p className="text-white mb-2">info@brandureai.com</p>
-                <div className="flex gap-4 mt-4">
-                  <a href="https://wa.me/971585081399" className="text-[#C0C0C0] hover:text-white transition-colors">
-                    UAE 🇦🇪 +971 585 081 399
-                  </a>
-                  <a href="https://wa.me/447969446013" className="text-[#C0C0C0] hover:text-white transition-colors">
-                    UK 🇬🇧 +44 7969 446 013
-                  </a>
+        {/* Journey Section */}
+        <section id="journey" className="section-snap">
+          <JourneySection />
+        </section>
+
+        {/* Results Section */}
+        <section id="results" className="section-snap">
+          <div className="content-wrapper">
+            <h2 className="section-heading" style={{ marginBottom: '60px' }}>
+              We don&apos;t sell AI, we sell <span className="gradient-animated">results</span>
+            </h2>
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '40px', flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: '200px' }}>
+                <div className="hero-text-large" style={{ color: 'white' }}>
+                  48+
                 </div>
+                <div className="results-underline" />
+                <p className="body-text">Bespoke AI Solutions Delivered</p>
               </div>
               
-              <div>
-                <h3 className="text-sm font-medium text-[#C0C0C0] uppercase mb-4">Follow</h3>
-                <div className="space-y-2">
-                  <a href="#" className="block text-[#C0C0C0] hover:text-white transition-colors">LinkedIn</a>
-                  <a href="#" className="block text-[#C0C0C0] hover:text-white transition-colors">YouTube</a>
+              <div style={{ flex: 1, minWidth: '200px' }}>
+                <div className="hero-text-large" style={{ color: 'white' }}>
+                  220+
                 </div>
+                <div className="results-underline" />
+                <p className="body-text">AI Opportunities Identified</p>
               </div>
-
-              <div>
-                <h3 className="text-sm font-medium text-[#C0C0C0] uppercase mb-4">Legal</h3>
-                <div className="space-y-2">
-                  <a href="/privacy-policy" className="block text-[#C0C0C0] hover:text-white transition-colors">Privacy Policy</a>
-                  <a href="/terms-and-conditions" className="block text-[#C0C0C0] hover:text-white transition-colors">Terms & Conditions</a>
-                  <a href="/sitemap.xml" className="block text-[#C0C0C0] hover:text-white transition-colors">Sitemap</a>
+              
+              <div style={{ flex: 1, minWidth: '200px' }}>
+                <div className="hero-text-large" style={{ color: 'white' }}>
+                  10,000+
                 </div>
+                <div className="results-underline" />
+                <p className="body-text">Hours Saved through AI Automation</p>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="mt-12 pt-8 border-t border-gray-800 text-center text-[#C0C0C0]">
-              <p>© 2025 Brandure AI. All rights reserved.</p>
+        {/* Partnership Section */}
+        <section id="partnership" className="section-snap">
+          <div className="content-wrapper">
+            <LogoCarousel />
+            
+            <h2 className="section-heading" style={{ margin: '40px 0' }}>
+              The best AI systems are built <span className="gradient-animated">side-by-side</span>
+            </h2>
+            
+            <button
+              onClick={() => setIsDrawerOpen(true)}
+              className="cta-button"
+              style={{ fontSize: '1.5rem', padding: '20px 60px', marginTop: '40px' }}
+            >
+              Let&apos;s Partner Up
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </button>
+          </div>
+        </section>
+
+        {/* Contact/Footer Section */}
+        <section id="contact" className="section-snap">
+          <div className="content-wrapper">
+            {/* Top section with heading and logo */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '80px' }}>
+              <h2 className="section-heading" style={{ textAlign: 'left', flex: 1 }}>
+                Accelerate your <span className="gradient-animated">AI Adoption</span> Journey
+              </h2>
+              <Image
+                src="/logos/brandure-ai-white-2.png"
+                alt="Brandure AI"
+                width={150}
+                height={40}
+              />
+            </div>
+
+            {/* Footer section */}
+            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '40px', marginTop: 'auto' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '40px' }}>
+                
+                {/* Left side - Contact */}
+                <div style={{ textAlign: 'left' }}>
+                  <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '20px', color: '#C0C0C0' }}>CONTACT</h3>
+                  <p style={{ color: 'white', marginBottom: '10px' }}>info@brandureai.com</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <a href="https://wa.me/971585081399" style={{ color: 'white', textDecoration: 'none' }}>
+                      UAE 🇦🇪 +971 585 081 399
+                    </a>
+                    <a href="https://wa.me/447969446013" style={{ color: 'white', textDecoration: 'none' }}>
+                      UK 🇬🇧 +44 7969 446 013
+                    </a>
+                  </div>
+                </div>
+
+                {/* Center - Legal */}
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ display: 'flex', gap: '30px' }}>
+                    <a href="/terms-and-conditions" style={{ color: 'white', textDecoration: 'none' }}>
+                      Terms & Conditions
+                    </a>
+                    <a href="/privacy-policy" style={{ color: 'white', textDecoration: 'none' }}>
+                      Privacy Policy
+                    </a>
+                  </div>
+                </div>
+
+                {/* Right side - Follow */}
+                <div style={{ textAlign: 'right' }}>
+                  <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '20px', color: '#C0C0C0' }}>FOLLOW US</h3>
+                  <a 
+                    href="https://linkedin.com/company/brandureai" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ color: 'white', textDecoration: 'none' }}
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+
+              {/* Copyright */}
+              <div style={{ textAlign: 'center', marginTop: '60px', paddingBottom: '40px', color: '#C0C0C0', fontSize: '14px' }}>
+                © 2025 Brandure AI. All rights reserved.
+              </div>
             </div>
           </div>
         </section>
