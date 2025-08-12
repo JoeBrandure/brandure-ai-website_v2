@@ -1,0 +1,194 @@
+/* Text reveal animations */
+.word-reveal {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.word-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.6s ease;
+}
+
+.word-reveal.animated span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Staggered delays for words */
+.word-reveal span:nth-child(1) { transition-delay: 0s; }
+.word-reveal span:nth-child(2) { transition-delay: 0.05s; }
+.word-reveal span:nth-child(3) { transition-delay: 0.1s; }
+.word-reveal span:nth-child(4) { transition-delay: 0.15s; }
+.word-reveal span:nth-child(5) { transition-delay: 0.2s; }
+.word-reveal span:nth-child(6) { transition-delay: 0.25s; }
+.word-reveal span:nth-child(7) { transition-delay: 0.3s; }
+.word-reveal span:nth-child(8) { transition-delay: 0.35s; }
+
+/* Gradient text animation */
+.gradient-text-animated {
+  background: linear-gradient(90deg, #00D9FF 0%, #0080C0 25%, #00D9FF 50%, #0080C0 75%, #00D9FF 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Triangle morph animation */
+.triangle-morph {
+  animation: trianglePulse 4s ease-in-out infinite;
+}
+
+@keyframes trianglePulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 1; }
+}
+
+/* Smooth scroll snapping */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Drawer animation */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  background: #1a1a1a;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.drawer-panel.open {
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .drawer-panel {
+    max-width: 100%;
+  }
+}
+
+/* Side navigation dots */
+.side-nav {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.side-nav button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.side-nav button.active {
+  background: #00D9FF;
+  transform: scale(1.5);
+}
+
+.side-nav button:hover {
+  background: rgba(0, 217, 255, 0.6);
+}
+
+.side-nav .section-label {
+  position: absolute;
+  left: 30px;
+  white-space: nowrap;
+  color: #C0C0C0;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.side-nav button:hover .section-label,
+.side-nav button.active .section-label {
+  opacity: 1;
+}
+
+/* Counting animation */
+.counter-animate {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .word-reveal span {
+    transition: none;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .gradient-text-animated {
+    animation: none;
+  }
+  
+  .triangle-morph {
+    animation: none;
+  }
+  
+  .drawer-panel {
+    transition: none;
+  }
+}
