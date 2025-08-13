@@ -14,7 +14,7 @@ export default function LogoCarousel() {
     let scrollPos = 0;
 
     const animate = () => {
-      scrollPos += 1;
+      scrollPos += 0.5; // Slower scroll
       if (scrollPos >= scroll.scrollWidth / 2) {
         scrollPos = 0;
       }
@@ -27,7 +27,6 @@ export default function LogoCarousel() {
     return () => cancelAnimationFrame(animationId);
   }, []);
 
-  // Using brandure logo as placeholder - repeat for carousel effect
   const logos = Array(10).fill('/logos/brandure-ai-white-2.png');
 
   return (
@@ -37,11 +36,12 @@ export default function LogoCarousel() {
         display: 'flex',
         overflow: 'hidden',
         width: '100%',
-        gap: '60px',
+        gap: '80px',
+        marginTop: '60px', // Space from nav
         marginBottom: '40px',
+        alignItems: 'center',
       }}
     >
-      {/* Duplicate logos for seamless loop */}
       {[...logos, ...logos].map((logo, index) => (
         <Image
           key={index}
@@ -49,7 +49,13 @@ export default function LogoCarousel() {
           alt="Client Logo"
           width={120}
           height={40}
-          style={{ opacity: 0.5, filter: 'grayscale(100%)' }}
+          style={{ 
+            opacity: 0.5, 
+            filter: 'grayscale(100%)',
+            width: 'auto',
+            height: '40px',
+            objectFit: 'contain'
+          }}
         />
       ))}
     </div>

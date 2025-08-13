@@ -15,11 +15,16 @@ export default function RotatingText() {
   }, []);
 
   return (
-    <div className="rotating-text-container" style={{ height: '1.2em', position: 'relative' }}>
+    <div style={{ 
+      height: '1.2em', 
+      position: 'relative',
+      display: 'inline-block',
+      fontSize: 'inherit' // Inherit parent font size
+    }}>
       {words.map((word, index) => (
         <span
           key={word}
-          className={`gradient-animated ${index === currentIndex ? 'active' : ''}`}
+          className="gradient-animated"
           style={{
             position: 'absolute',
             left: '50%',
@@ -27,6 +32,8 @@ export default function RotatingText() {
             opacity: index === currentIndex ? 1 : 0,
             transition: 'opacity 0.5s ease',
             fontStyle: 'italic',
+            fontSize: 'inherit',
+            whiteSpace: 'nowrap'
           }}
         >
           {word}
