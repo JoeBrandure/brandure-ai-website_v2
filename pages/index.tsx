@@ -46,7 +46,7 @@ export default function Home() {
             alignItems: 'center',
           }}>
             <Image
-              src="/logos/brandure-ai-white-2.png"
+              src="/logos/brandure-ai-white.png"
               alt="Brandure AI"
               width={150}
               height={40}
@@ -122,12 +122,14 @@ export default function Home() {
             </section>
 
             {/* Journey Section */}
-            <section id="journey" className="section-snap" style={{ position: 'relative' }}>
+            <section id="journey" className="section-snap" style={{ position: 'relative', overflow: 'visible' }}>
               <div className="content-wrapper">
                 <h2 className="section-heading-medium" style={{ lineHeight: 1.3 }}>
                   We spend our days guiding companies<br />
                   through our 3-step <span className="gradient-animated">AI-Transformation</span> process
                 </h2>
+                
+                {/* Large transition triangle at bottom of Journey section */}
                 <JourneyTriangle />
               </div>
             </section>
@@ -194,8 +196,12 @@ export default function Home() {
 
             {/* Partnership Section */}
             <section id="partnership" className="section-snap">
-              <div className="content-wrapper">
-                <LogoCarousel />
+              <div className="content-wrapper" style={{ paddingTop: '80px' }}>  {/* Add padding to account for fixed nav */}
+                
+                {/* Logo Carousel - Positioned higher */}
+                <div style={{ marginTop: '20px', marginBottom: '60px' }}>  {/* Reduced top margin */}
+                  <LogoCarousel />
+                </div>
                 
                 <h2 className="section-heading" style={{ margin: '40px 0' }}>
                   The best AI systems are built<br />
@@ -251,7 +257,7 @@ export default function Home() {
                   left: 0,
                   right: 0,
                   borderTop: '1px solid rgba(255, 255, 255, 0.1)', 
-                  padding: '40px'
+                  padding: '24px 40px 20px 40px'
                 }}>
                   <div style={{ 
                     display: 'flex', 
@@ -355,17 +361,19 @@ export default function Home() {
           {/* Contact Drawer */}
           <ContactDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
 
-          {/* Sticky Relevance AI Chat Widget */}
-          <div className="chat-widget-container">
-            <script
-              defer
-              data-relevanceai-share-id="d7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5"
-              src="https://app.relevanceai.com/embed/chat-bubble.js"
-              data-share-styles="starting_message_prompts=Hey%21+Is+there+anything+I+can+help+you+with%3F+&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true"
-            />
-          </div>
-        </>
-      )}
-    </>
-  );
+                   {/* Sticky Relevance AI Chat Widget - Place right before final </> */}
+         {showContent && (
+           <>
+             <script
+               defer
+               data-relevanceai-share-id="d7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5"
+               src="https://app.relevanceai.com/embed/chat-bubble.js"
+               data-share-styles="starting_message_prompts=Hey%21+Is+there+anything+I+can+help+you+with%3F+&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true"
+             />
+           </>
+         )}
+       </>
+     )}
+   </>
+ );
 }

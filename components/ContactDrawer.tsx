@@ -21,10 +21,57 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    
+    // Send email to sales@brandureai.com
+    try {
+      // If you have an API route for sending emails
+      const response = await fetch('/api/send-inquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 'sales@brandureai.com',
+          ...formData
+        }),
+      });
+
+      if (response.ok) {
+        alert('Thank you for your inquiry! We will get back to you soon.');
+        onClose();
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          role: '',
+          companyName: '',
+          companyWebsite: '',
+          companySize: '',
+          annualRevenue: '',
+          projectBudget: '',
+          serviceInterested: '',
+          message: '',
+        });
+      }
+    } catch {
+      // Fallback: Open email client
+      const subject = encodeURIComponent('New Inquiry from Brandure AI Website');
+      const body = encodeURIComponent(`
+        Name: ${formData.name}
+        Email: ${formData.email}
+        Role: ${formData.role}
+        Company: ${formData.companyName}
+        Website: ${formData.companyWebsite}
+        Company Size: ${formData.companySize}
+        Annual Revenue: ${formData.annualRevenue}
+        Project Budget: ${formData.projectBudget}
+        Service Interested: ${formData.serviceInterested}
+        Message: ${formData.message}
+      `);
+      window.location.href = `mailto:sales@brandureai.com?subject=${subject}&body=${body}`;
+    }
   };
 
   return (

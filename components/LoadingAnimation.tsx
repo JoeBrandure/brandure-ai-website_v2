@@ -37,7 +37,7 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         }}
       >
         <Image
-          src="/logos/brandure-ai-white-2.png"
+          src="/logos/brandure-ai-white.png"
           alt="Brandure AI"
           width={300}
           height={80}

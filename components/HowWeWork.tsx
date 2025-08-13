@@ -10,17 +10,14 @@ const steps = [
   {
     title: 'Identify',
     description: 'We identify high-impact AI opportunities and map the transformation strategy to bring them to life.',
-    prisms: 1,
   },
   {
     title: 'Develop',
     description: 'We design and build bespoke AI systems and automations proven to move the needle',
-    prisms: 2,
   },
   {
     title: 'Scale',
     description: 'We monitor, optimize and scale adoption across teams to compound ROI',
-    prisms: 3,
   },
 ];
 
@@ -32,21 +29,28 @@ export default function HowWeWork() {
     const section = sectionRef.current;
     if (!section) return;
 
+    // Create scroll-triggered animation
     gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: 'bottom top',
+        end: '+=200%',  // Scroll through 3 steps
         pin: true,
         scrub: 1,
         snap: {
-          snapTo: 1 / (steps.length - 1),
+          snapTo: [0, 0.5, 1],  // Snap to each step
           duration: 0.5,
+          ease: "power2.inOut"
         },
         onUpdate: (self) => {
           const progress = self.progress;
-          const stepIndex = Math.min(Math.floor(progress * steps.length), steps.length - 1);
-          setActiveStep(stepIndex);
+          if (progress < 0.33) {
+            setActiveStep(0);
+          } else if (progress < 0.66) {
+            setActiveStep(1);
+          } else {
+            setActiveStep(2);
+          }
         },
       },
     });
@@ -57,17 +61,24 @@ export default function HowWeWork() {
   }, []);
 
   return (
-    <div ref={sectionRef} style={{ height: '300vh' }}>
-      <div className="section-snap" style={{ position: 'sticky', top: 0 }}>
+    <section ref={sectionRef} id="how-we-work" style={{ height: '100vh', position: 'relative' }}>
+      <div style={{ 
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative'
+      }}>
         {/* Side Navigation */}
         <div style={{
           position: 'absolute',
-          left: '2rem',
+          left: '3rem',
           top: '50%',
           transform: 'translateY(-50%)',
           display: 'flex',
           flexDirection: 'column',
-          gap: '1rem',
+          gap: '1.5rem',
+          zIndex: 10,
         }}>
           {steps.map((step, index) => (
             <div
@@ -75,84 +86,105 @@ export default function HowWeWork() {
               style={{
                 color: index === activeStep ? '#00D9FF' : '#666',
                 fontSize: '0.875rem',
+                fontWeight: index === activeStep ? 600 : 400,
                 cursor: 'pointer',
-                transition: 'color 0.3s ease',
+                transition: 'all 0.3s ease',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em'
               }}
+              // Click functionality removed due to ScrollTrigger type issues
             >
               {step.title}
             </div>
           ))}
         </div>
 
-        <div className="content-wrapper">
-          <div style={{ position: 'relative', minHeight: '500px' }}>
-            {/* Triangular Prisms */}
-            <svg
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '400px',
-                height: '400px',
-                zIndex: 0,
-              }}
-              viewBox="0 0 400 400"
-            >
-              <defs>
-                <linearGradient id="prismGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00D9FF" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="#0099CC" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#00D9FF" stopOpacity="0.8" />
-                </linearGradient>
-              </defs>
+        <div style={{ 
+          position: 'relative', 
+          width: '100%', 
+          maxWidth: '800px',
+          height: '600px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          {/* Animated Triangular Prisms */}
+          <svg
+            style={{
+              position: 'absolute',
+              top: '20%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '300px',
+              height: '300px',
+              zIndex: 0,
+            }}
+            viewBox="0 0 300 300"
+          >
+            <defs>
+              <linearGradient id="prismGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00D9FF" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#0099CC" stopOpacity="1" />
+                <stop offset="100%" stopColor="#00D9FF" stopOpacity="0.8" />
+              </linearGradient>
+            </defs>
 
-              {/* First prism - hollow, always visible when active */}
+            {/* First prism - always visible, hollow */}
+            <polygon
+              points="150,50 100,150 200,150"
+              fill="none"
+              stroke="url(#prismGradient)"
+              strokeWidth="2"
+              style={{
+                opacity: activeStep >= 0 ? 1 : 0,
+                transition: 'all 0.5s ease',
+                transform: `rotate(${activeStep * 30}deg)`,
+                transformOrigin: 'center',
+              }}
+            />
+            
+            {/* Second prism - visible for Develop and Scale */}
+            {activeStep >= 1 && (
               <polygon
-                points="200,100 150,200 250,200"
-                fill="none"
-                stroke="url(#prismGradient)"
-                strokeWidth="2"
-                style={{
-                  opacity: activeStep >= 0 ? 1 : 0,
-                  transition: 'opacity 0.5s ease',
-                  transform: `rotate(${activeStep * 120}deg)`,
-                  transformOrigin: 'center',
-                }}
-              />
-              
-              {/* Second prism - slightly transparent */}
-              <polygon
-                points="200,120 160,210 240,210"
+                points="150,70 110,160 190,160"
                 fill="url(#prismGradient)"
                 fillOpacity="0.2"
                 stroke="url(#prismGradient)"
-                strokeWidth="1"
+                strokeWidth="1.5"
                 style={{
-                  opacity: activeStep >= 1 ? 0.6 : 0,
-                  transition: 'opacity 0.5s ease',
-                  transform: `rotate(${activeStep * 120 + 60}deg)`,
+                  opacity: 0.6,
+                  animation: 'fadeIn 0.5s ease',
+                  transform: `rotate(${activeStep * 30 + 120}deg)`,
                   transformOrigin: 'center',
                 }}
               />
-              
-              {/* Third prism - mostly transparent */}
+            )}
+            
+            {/* Third prism - visible only for Scale */}
+            {activeStep >= 2 && (
               <polygon
-                points="200,140 170,220 230,220"
+                points="150,90 120,170 180,170"
                 fill="url(#prismGradient)"
                 fillOpacity="0.1"
                 stroke="url(#prismGradient)"
-                strokeWidth="0.5"
+                strokeWidth="1"
                 style={{
-                  opacity: activeStep >= 2 ? 0.3 : 0,
-                  transition: 'opacity 0.5s ease',
-                  transform: `rotate(${activeStep * 120 + 120}deg)`,
+                  opacity: 0.3,
+                  animation: 'fadeIn 0.5s ease',
+                  transform: `rotate(${activeStep * 30 + 240}deg)`,
                   transformOrigin: 'center',
                 }}
               />
-            </svg>
+            )}
+          </svg>
 
-            {/* Step Content */}
+          {/* Step Content */}
+          <div style={{
+            position: 'relative',
+            zIndex: 1,
+            textAlign: 'center',
+            padding: '0 40px',
+          }}>
             {steps.map((step, index) => (
               <div
                 key={index}
@@ -162,23 +194,26 @@ export default function HowWeWork() {
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
                   opacity: index === activeStep ? 1 : 0,
-                  transition: 'opacity 0.5s ease',
                   pointerEvents: index === activeStep ? 'auto' : 'none',
-                  zIndex: 1,
+                  transition: 'opacity 0.5s ease',
+                  width: '100%',
                 }}
               >
                 <h3 style={{ 
-                  fontSize: '3rem', 
-                  marginBottom: '20px', 
+                  fontSize: '52px',  // Increased from 48px
+                  marginBottom: '24px', 
                   color: 'white',
-                  fontWeight: 600 
+                  fontWeight: 600,
+                  letterSpacing: '-0.02em'
                 }}>
                   {step.title}
                 </h3>
-                <p className="body-text" style={{ 
+                <p style={{ 
                   maxWidth: '600px', 
                   margin: '0 auto',
-                  fontSize: '1.125rem'
+                  fontSize: '1.125rem',
+                  lineHeight: 1.6,
+                  color: '#C0C0C0'
                 }}>
                   {step.description}
                 </p>
@@ -187,6 +222,19 @@ export default function HowWeWork() {
           </div>
         </div>
       </div>
-    </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
+    </section>
   );
 }

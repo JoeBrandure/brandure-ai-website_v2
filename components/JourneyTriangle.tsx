@@ -4,24 +4,25 @@ export default function JourneyTriangle() {
   return (
     <div style={{
       position: 'absolute',
-      bottom: '-50%',
+      bottom: '-200px',  // Half above, half below
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '300px',
-      height: '300px',
+      width: '400px',
+      height: '400px',
+      zIndex: 10,
     }}>
       <svg
-        viewBox="0 0 300 300"
+        viewBox="0 0 400 400"
         style={{ width: '100%', height: '100%' }}
       >
         <defs>
           <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00D9FF" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#0099CC" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#00D9FF" stopOpacity="0.2" />
+            <stop offset="0%" stopColor="#00D9FF" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#0099CC" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#00D9FF" stopOpacity="0.4" />
           </linearGradient>
           <filter id="glow">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -29,9 +30,9 @@ export default function JourneyTriangle() {
           </filter>
         </defs>
         
-        {/* Outer triangle - filled with gradient */}
+        {/* Large outer triangle - filled with gradient, semi-transparent */}
         <polygon
-          points="150,50 250,200 50,200"
+          points="200,50 350,350 50,350"
           fill="url(#triangleGradient)"
           stroke="#00D9FF"
           strokeWidth="1"
@@ -39,21 +40,21 @@ export default function JourneyTriangle() {
           filter="url(#glow)"
         />
         
-        {/* Inner triangle - hollow */}
+        {/* Inner triangle - hollow with thicker stroke */}
         <polygon
-          points="150,80 220,180 80,180"
+          points="200,100 300,300 100,300"
           fill="none"
           stroke="#00D9FF"
-          strokeWidth="2"
+          strokeWidth="3"
           opacity="0.8"
         />
         
-        {/* Innermost small triangle */}
+        {/* Innermost triangle - thin stroke */}
         <polygon
-          points="150,110 190,160 110,160"
+          points="200,150 250,250 150,250"
           fill="none"
           stroke="#00D9FF"
-          strokeWidth="1"
+          strokeWidth="1.5"
           opacity="0.5"
         />
       </svg>

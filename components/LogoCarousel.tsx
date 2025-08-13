@@ -14,7 +14,7 @@ export default function LogoCarousel() {
     let scrollPos = 0;
 
     const animate = () => {
-      scrollPos += 0.5; // Slower scroll
+      scrollPos += 0.5;
       if (scrollPos >= scroll.scrollWidth / 2) {
         scrollPos = 0;
       }
@@ -27,7 +27,8 @@ export default function LogoCarousel() {
     return () => cancelAnimationFrame(animationId);
   }, []);
 
-  const logos = Array(10).fill('/logos/brandure-ai-white-2.png');
+  // Use brandure-ai-white.png instead of brandure-ai-white-2.png
+  const logos = Array(10).fill('/logos/brandure-ai-white.png');
 
   return (
     <div 
@@ -37,8 +38,6 @@ export default function LogoCarousel() {
         overflow: 'hidden',
         width: '100%',
         gap: '80px',
-        marginTop: '60px', // Space from nav
-        marginBottom: '40px',
         alignItems: 'center',
       }}
     >
@@ -52,9 +51,10 @@ export default function LogoCarousel() {
           style={{ 
             opacity: 0.5, 
             filter: 'grayscale(100%)',
-            width: 'auto',
-            height: '40px',
-            objectFit: 'contain'
+            width: '120px',
+            height: 'auto',
+            objectFit: 'contain',
+            flexShrink: 0
           }}
         />
       ))}
