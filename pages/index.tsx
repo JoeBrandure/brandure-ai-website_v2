@@ -9,7 +9,7 @@ import LogoCarousel from '../components/LogoCarousel';
 import ContactDrawer from '../components/ContactDrawer';
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
-import FloatingGradient from '../components/FloatingGradient';
+import SectionTriangleTransition from '../components/SectionTriangleTransition';
 
 export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -49,7 +49,6 @@ export default function Home() {
 
       {showContent && (
         <>
-          <FloatingGradient />
           {/* Fixed Navigation */}
           <nav className="nav-fixed" style={{
             position: 'fixed',
@@ -146,11 +145,11 @@ export default function Home() {
               position: 'relative', 
               overflow: 'visible',
               display: 'flex',
-              alignItems: 'flex-start',  // Align content to top
-              paddingTop: '100px'  // Move text up
+              alignItems: 'flex-start',
+              paddingTop: 'calc(18vh)'  // halfway between current and center
             }}>
               <div className="content-wrapper">
-                <h2 className="section-heading-medium" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
+                <h2 className="section-heading-medium animate-white-accent" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
                   We spend our days guiding companies<br />
                   through our 3-step <span className="gradient-animated">AI-Transformation</span> process
                 </h2>
@@ -159,6 +158,9 @@ export default function Home() {
                 <JourneyTriangle />
               </div>
             </section>
+
+            {/* Triangle Transition Between Sections */}
+            <SectionTriangleTransition />
 
             {/* How We Work Section */}
             <section id="how-we-work">
@@ -324,18 +326,21 @@ export default function Home() {
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <a 
                           href="mailto:info@brandureai.com" 
+                          className="animate-white-accent"
                           style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
                         >
                           info@brandureai.com
                         </a>
                         <a 
                           href="https://wa.me/971585081399" 
+                          className="animate-white-accent"
                           style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
                         >
                           UAE 🇦🇪 +971 585 081 399
                         </a>
                         <a 
                           href="https://wa.me/447969446013" 
+                          className="animate-white-accent"
                           style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
                         >
                           UK 🇬🇧 +44 7969 446 013

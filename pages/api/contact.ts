@@ -1,58 +1,53 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method not allowed' });
+
+  const { name, email, role, companyName, companyWebsite, companySize, annualRevenue, projectBudget, serviceInterested, message } = req.body || {};
 
   try {
-    const { name, email, role, companyName, companyWebsite, companySize, annualRevenue, projectBudget, serviceInterested, message } = req.body;
+    // If SMTP not configured in dev, log and return ok=true so UX proceeds
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.warn('[contact] SMTP not configured. Payload:', { name, email, role, companyName, companyWebsite, companySize, annualRevenue, projectBudget, serviceInterested, message });
+      return res.status(200).json({ ok: true, dev: true });
+    }
 
-    // Create email HTML
-    const emailHTML = `
-      <h2>New Inquiry from Brandure AI Website</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Role:</strong> ${role}</p>
-      <p><strong>Company:</strong> ${companyName}</p>
-      <p><strong>Website:</strong> ${companyWebsite}</p>
-      <p><strong>Company Size:</strong> ${companySize}</p>
-      <p><strong>Annual Revenue:</strong> ${annualRevenue}</p>
-      <p><strong>Project Budget:</strong> ${projectBudget}</p>
-      <p><strong>Service Interested:</strong> ${serviceInterested}</p>
-      <p><strong>Message:</strong> ${message}</p>
-    `;
-
-    // For development, just log the email
-    console.log('Email would be sent to: sales@brandureai.com');
-    console.log('Email content:', emailHTML);
-
-    // For production, set up actual email service
-    // Example with Gmail SMTP:
-    /*
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail',
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT || 587),
+      secure: Boolean(process.env.SMTP_SECURE === 'true'),
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: 'sales@brandureai.com',
-      subject: 'New Inquiry from Website',
-      html: emailHTML,
-    });
-    */
+    const to = process.env.CONTACT_TO || 'sales@brandureai.com';
 
-    res.status(200).json({ success: true, message: 'Inquiry sent successfully' });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ success: false, message: 'Failed to send inquiry' });
+    await transporter.sendMail({
+      from: `Brandure.AI Website <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+      to,
+      subject: `New inquiry from ${name || 'Website'}`,
+      replyTo: email || undefined,
+      text: `Name: ${name}\nEmail: ${email}\nRole: ${role}\nCompany: ${companyName}\nWebsite: ${companyWebsite}\nCompany Size: ${companySize}\nAnnual Revenue: ${annualRevenue}\nProject Budget: ${projectBudget}\nService Interested: ${serviceInterested}\n\nMessage:\n${message}`,
+      html: `
+        <strong>Name:</strong> ${name}<br/>
+        <strong>Email:</strong> ${email}<br/>
+        <strong>Role:</strong> ${role}<br/>
+        <strong>Company:</strong> ${companyName}<br/>
+        <strong>Website:</strong> ${companyWebsite}<br/>
+        <strong>Company Size:</strong> ${companySize}<br/>
+        <strong>Annual Revenue:</strong> ${annualRevenue}<br/>
+        <strong>Project Budget:</strong> ${projectBudget}<br/>
+        <strong>Service Interested:</strong> ${serviceInterested}<br/><br/>
+        <strong>Message:</strong><br/>${(message || '').replace(/\n/g, '<br/>')}
+      `,
+    });
+
+    return res.status(200).json({ ok: true });
+  } catch (err: unknown) {
+    console.error('[contact] send error:', err);
+    return res.status(500).json({ ok: false, error: 'Failed to send' });
   }
 }

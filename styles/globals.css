@@ -173,29 +173,25 @@ html, body {
   z-index: 1000;
 }
 
-/* Breathing animation for white text */
-@keyframes breathe {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.95;
-    transform: scale(1.01);
-  }
+/* Reuse identical cadence as accent animation (3s ease-in-out infinite) */
+@keyframes brandure-accent-cadence {
+  0% { opacity: 0.92; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-0.5px); }
+  100% { opacity: 0.92; transform: translateY(0); }
 }
 
-.breathe-text {
-  animation: breathe 4s ease-in-out infinite;
-  color: white;
+/* Accent (keep existing visual); ensure it uses the cadence above if not already */
+.gradient-text, .gradient-animated {
+  animation: brandure-accent-cadence 3s ease-in-out infinite;
 }
 
-/* Apply to all white text elements */
-h1:not(.gradient-animated), 
-h2:not(.gradient-animated), 
-h3:not(.gradient-animated), 
-p:not(.gradient-animated) {
-  animation: breathe 4s ease-in-out infinite;
+/* New: white variant with same cadence & feel, but stays white */
+.animate-white-accent {
+  color: #ffffff !important;
+  animation: brandure-accent-cadence 3s ease-in-out infinite;
+  text-shadow: 0 0 0px rgba(255,255,255,0.0),
+               0 0 10px rgba(255,255,255,0.06),
+               0 0 20px rgba(255,255,255,0.04);
 }
 
 /* Fixed navigation */

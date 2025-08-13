@@ -48,7 +48,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (data.ok) {
         alert('Thank you for your inquiry! We will get back to you soon.');
         onClose();
         setFormData({
@@ -64,7 +64,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           message: '',
         });
       } else {
-        throw new Error(data.message);
+        throw new Error(data.error || 'Failed to send');
       }
     } catch (error) {
       console.error('Error:', error);
