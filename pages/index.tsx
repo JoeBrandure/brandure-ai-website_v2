@@ -110,13 +110,13 @@ export default function Home() {
             </button>
           </nav>
 
-          {/* Main scroll container */}
-          <div className="main-container" style={{ paddingTop: '60px' }}>
+                           {/* Main scroll container */}
+                 <div className="main-container snap-y snap-mandatory overflow-y-scroll h-screen" style={{ paddingTop: '60px' }}>
             
-            {/* Hero Section */}
-            <section id="hero" className="section-snap">
+                               {/* Hero Section */}
+                   <section id="hero" className="section-snap snap-start">
               <div className="content-wrapper">
-                <h1 className="hero-text-large animate-text-white" style={{ marginBottom: '20px' }}>
+                <h1 className="hero-text-large animate-text" style={{ marginBottom: '20px' }}>
                   We&apos;re not just your AI
                 </h1>
                 <div className="hero-text-large" style={{ marginBottom: '20px' }}>
@@ -128,12 +128,12 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Pitch Section */}
-            <section id="pitch" className="section-snap">
+                               {/* Pitch Section */}
+                   <section id="pitch" className="section-snap snap-start">
               <div className="content-wrapper">
-                <h2 className="section-heading animate-text-white" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+                <h2 className="section-heading animate-text" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
                   We help <span className="animate-text-blue">you</span> understand<br />
-                  the <span className="animate-text-blue">Power of AI</span>
+                  the <span className="animate-text-blue">Power of AI.</span>
                 </h2>
                 <p className="section-subheading text-grey-white">
                   Your trusted partner in becoming an AI-powered business
@@ -141,21 +141,25 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Journey Section */}
-            <Journey />
+                               {/* Journey Section */}
+                   <section className="snap-start">
+                     <Journey />
+                   </section>
 
-            {/* Triangle Transition Between Sections */}
-            <SectionTriangleTransition />
+                               {/* Triangle Transition Between Sections */}
+                   <section className="snap-start">
+                     <SectionTriangleTransition />
+                   </section>
 
-            {/* How We Work Section */}
-            <section id="how-we-work">
-              <HowWeWork />
-            </section>
+                              {/* How We Work Section */}
+                  <section id="how-we-work" className="snap-start">
+                    <HowWeWork />
+                  </section>
 
-            {/* Results Section */}
-            <section id="results" className="section-snap">
+                               {/* Results Section */}
+                   <section id="results" className="section-snap snap-start">
               <div className="content-wrapper">
-                <h2 className="section-heading animate-text-white" style={{ marginBottom: '60px' }}>
+                <h2 className="section-heading animate-text" style={{ marginBottom: '60px' }}>
                   We don&apos;t sell AI, we sell <span className="animate-text-blue">results</span>
                 </h2>
                 
@@ -207,8 +211,8 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Partnership Section */}
-            <section id="partnership" className="section-snap">
+                               {/* Partnership Section */}
+                   <section id="partnership" className="section-snap snap-start">
               <div className="content-wrapper" style={{ 
                 paddingTop: '70px',  // Account for fixed nav
                 display: 'flex',
@@ -229,7 +233,7 @@ export default function Home() {
                 
                 {/* Center content */}
                 <div style={{ marginTop: '60px' }}>
-                  <h2 className="section-heading animate-text-white" style={{ margin: '40px 0' }}>
+                  <h2 className="section-heading animate-text" style={{ margin: '40px 0' }}>
                     The best AI systems are built<br />
                     <span className="animate-text-blue">side by side</span>
                   </h2>
@@ -269,8 +273,10 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Contact/Footer Section */}
-            <Footer />
+                               {/* Contact/Footer Section */}
+                   <section className="snap-start">
+                     <Footer />
+                   </section>
 
           </div>
 

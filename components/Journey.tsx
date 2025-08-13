@@ -10,8 +10,8 @@ export default function Journey() {
       paddingTop: 'calc(18vh)'  // halfway between current and center
     }}>
       <div className="content-wrapper">
-        <div className="absolute" style={{ top: 'calc(50% - 10vh)' }}>
-          <h2 className="section-heading-medium animate-text-white" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
+        <div className="absolute left-1/2 -translate-x-1/2" style={{ top: '35%' }}>
+          <h2 className="section-heading-medium animate-text" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
             We spend our days guiding companies<br />
             through our 3-step <span className="animate-text-blue">AI-Transformation</span> process
           </h2>

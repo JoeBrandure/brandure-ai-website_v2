@@ -1,41 +1,43 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, email, message } = req.body;
+  const { name, email, role, company_name, message } = req.body;
 
-  // Create transporter with your SMTP settings
+  // Create transporter
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: Number(process.env.SMTP_PORT) || 587,
-    secure: false,
+    service: 'gmail',
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD, // Use App Password, not regular password
     },
   });
 
-  try {
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || 'noreply@brandureai.com',
-      to: 'sales@brandureai.com',
-      subject: `New inquiry from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    });
+  const mailOptions = {
+    from: process.env.GMAIL_USER,
+    to: 'sales@brandureai.com',
+    subject: `New Contact Form Submission from ${name}`,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Role:</strong> ${role || 'Not provided'}</p>
+      <p><strong>Company:</strong> ${company_name || 'Not provided'}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message}</p>
+    `,
+  };
 
-    res.status(200).json({ success: true });
-  } catch (error) {
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true, message: 'Email sent successfully' });
+  } catch (error: unknown) {
     console.error('Email error:', error);
-    res.status(500).json({ error: 'Failed to send email' });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ error: 'Failed to send email', details: errorMessage });
   }
 }

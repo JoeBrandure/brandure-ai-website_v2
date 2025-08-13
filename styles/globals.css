@@ -173,51 +173,53 @@ html, body {
   z-index: 1000;
 }
 
-/* Restore the breathing animation for all text */
+/* Breathing animation for all text - subtle movement */
 @keyframes textBreathe {
   0%, 100% { 
-    opacity: 0.9;
-    transform: translateY(0);
+    opacity: 0.95;
+    transform: translateY(0) scale(1);
   }
   50% { 
     opacity: 1;
-    transform: translateY(-2px);
+    transform: translateY(-1px) scale(1.01);
   }
 }
 
-/* Apply to all text elements that need animation */
-.animate-text-white {
-  animation: textBreathe 4s ease-in-out infinite;
-  color: #ffffff;
+/* Apply to white text elements */
+.animate-text {
+  animation: textBreathe 3s ease-in-out infinite;
 }
 
+/* Apply to blue accent text */
 .animate-text-blue {
-  animation: textBreathe 4s ease-in-out infinite;
-  color: #00D9FF;
+  animation: textBreathe 3s ease-in-out infinite;
+  color: #00D9FF !important;
 }
 
+/* Grey-white for subtitles */
 .text-grey-white {
   color: rgba(255, 255, 255, 0.7);
+  animation: textBreathe 3s ease-in-out infinite;
 }
 
 /* Legacy support - keep existing classes working */
 .gradient-text, .gradient-animated {
-  animation: textBreathe 4s ease-in-out infinite;
+  animation: textBreathe 3s ease-in-out infinite;
   color: #00D9FF;
 }
 
 .brandure-animate-blue {
-  animation: textBreathe 4s ease-in-out infinite;
+  animation: textBreathe 3s ease-in-out infinite;
   color: #00D9FF;
 }
 
 .brandure-animate-white {
-  animation: textBreathe 4s ease-in-out infinite;
+  animation: textBreathe 3s ease-in-out infinite;
   color: #ffffff;
 }
 
 .animate-white-accent {
-  animation: textBreathe 4s ease-in-out infinite;
+  animation: textBreathe 3s ease-in-out infinite;
   color: #ffffff;
 }
 
