@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const words = ['Consulting', 'Development', 'Specialist', 'Provider'];
+const words = ['Consultant', 'Agent', 'Developer', 'Partner'];
 
 export default function RotatingText() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,39 +15,23 @@ export default function RotatingText() {
   }, []);
 
   return (
-    <span style={{ 
-      position: 'relative', 
-      display: 'inline-block',
-      verticalAlign: 'middle'
-    }}>
-      <span
-        style={{
-          display: 'inline-block',
-          willChange: 'transform, opacity',
-          transformOrigin: '50% 50%',
-          height: '1.2em',
-          position: 'relative'
-        }}
-      >
-        {words.map((word, index) => (
-          <span
-            key={word}
-            className="brandure-animate-blue"
-            style={{
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              opacity: index === currentIndex ? 1 : 0,
-              transition: 'opacity 0.5s ease',
-              fontStyle: 'italic',
-              fontSize: 'inherit',
-              whiteSpace: 'nowrap'
-            }}
-          >
-            {word}
-          </span>
-        ))}
-      </span>
-    </span>
+    <div className="relative inline-flex items-center justify-center h-[1.2em]">
+      {words.map((word, index) => (
+        <span 
+          key={word}
+          className="absolute text-[#00D9FF] animate-text-blue"
+          style={{
+            transform: `translateY(${currentIndex === index ? 0 : 20}px)`,
+            opacity: currentIndex === index ? 1 : 0,
+            transition: 'all 0.5s ease-in-out',
+            fontStyle: 'italic',
+            fontSize: 'inherit',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          {word}
+        </span>
+      ))}
+    </div>
   );
 }

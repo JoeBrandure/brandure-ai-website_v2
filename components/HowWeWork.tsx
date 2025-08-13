@@ -1,32 +1,62 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STEPS = [
+const steps = [
   {
-    key: 'identify',
-    title: 'Identify',
-    blurb: 'We help you identify high-impact AI opportunities and build a step-by-step AI Transformation strategy to bring them to life.',
+    title: "Identify",
+    line1: "We identify high-impact AI opportunities and map the",
+    line2: "transformation strategy to bring them to life",
+    triangles: 1
   },
   {
-    key: 'develop',
-    title: 'Develop',
-    blurb: 'We leverage our experience and network to develop bespoke AI systems that are proven to move the needle inside your business.',
+    title: "Develop",
+    line1: "We design and build bespoke AI systems and",
+    line2: "automations proven to move the needle",
+    triangles: 2
   },
   {
-    key: 'scale',
-    title: 'Scale',
-    blurb: 'We scale and optimize your AI systems, enabling sustainable growth and continuous improvement.',
-  },
+    title: "Scale",
+    line1: "We monitor, optimize and scale adoption",
+    line2: "across teams to compound ROI",
+    triangles: 3
+  }
 ];
 
+// Triangle component with gradient
+function TriangleWithGradient() {
+  return (
+    <svg className="w-16 h-16 mx-2" viewBox="0 0 64 64" aria-hidden>
+      <defs>
+        <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="rgba(0,217,255,0.8)" />
+          <stop offset="100%" stopColor="rgba(0,153,204,0.4)" />
+        </linearGradient>
+      </defs>
+      <polygon
+        points="32,8 56,56 8,56"
+        fill="url(#triangleGradient)"
+        stroke="#00D9FF"
+        strokeWidth="1"
+        opacity="0.9"
+      />
+    </svg>
+  );
+}
+
 export default function HowWeWork() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+
+  const scrollToStep = (stepIndex: number) => {
+    const stepElement = document.getElementById(`step-${stepIndex}`);
+    if (stepElement) {
+      stepElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
   useEffect(() => {
     const steps = gsap.utils.toArray<HTMLElement>('.hww-step');
@@ -36,8 +66,8 @@ export default function HowWeWork() {
         trigger: step,
         start: 'top center',
         end: 'bottom center',
-        onEnter: () => setActive(i),
-        onEnterBack: () => setActive(i),
+        onEnter: () => setActiveStep(i),
+        onEnterBack: () => setActiveStep(i),
       });
     });
 
@@ -45,95 +75,40 @@ export default function HowWeWork() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="how-we-work"
-      className="section-snap"
-      style={{ 
-        minHeight: '300vh', // Full snap scroll height
-        position: 'relative'
-      }}
-    >
-      <div className="container mx-auto max-w-7xl px-6 grid grid-cols-12 gap-8" style={{ height: '100%' }}>
-        {/* Left mini nav - Fixed left rail */}
-        <aside className="col-span-12 md:col-span-3">
-          <div className="md:sticky md:top-28 space-y-4 text-sm tracking-widest">
-            {STEPS.map((s, i) => (
-              <button
-                key={s.key}
-                onClick={() =>
-                  document.getElementById(`hww-${s.key}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                }
-                className={`block text-left transition-colors duration-300 ${
-                  active === i ? 'text-[#00D9FF]' : 'text-gray-400 hover:text-gray-300'
-                }`}
-                style={{ letterSpacing: '0.12em' }}
-              >
-                {s.title.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </aside>
+    <section id="how-we-work" className="h-[300vh] relative">
+      {/* Fixed left navigation */}
+      <div className="fixed left-12 top-1/2 -translate-y-1/2 z-10">
+        {steps.map((step, i) => (
+          <button 
+            key={i}
+            className={`block text-left mb-4 transition-colors ${
+              activeStep === i ? 'text-[#00D9FF]' : 'text-gray-500'
+            }`}
+            onClick={() => scrollToStep(i)}
+            style={{ letterSpacing: '0.12em' }}
+          >
+            {step.title.toUpperCase()}
+          </button>
+        ))}
+      </div>
 
-        {/* Center content with enhanced triangle */}
-        <div className="col-span-12 md:col-span-6">
-          {STEPS.map((s) => (
-            <div 
-              id={`hww-${s.key}`} 
-              key={s.key} 
-              className="hww-step min-h-screen flex items-center justify-center"
-              style={{ scrollSnapAlign: 'center' }}
-            >
-              <div className="text-center">
-                <div className="flex items-center justify-center mb-8">
-                  <svg
-                    width={520}
-                    height={520}
-                    viewBox="0 0 560 560"
-                    style={{ 
-                      filter: 'drop-shadow(0 0 30px rgba(0,217,255,0.25)) drop-shadow(0 0 8px rgba(0,153,204,0.25))'
-                    }}
-                    aria-hidden
-                  >
-                    <defs>
-                      <linearGradient id="brandureTriangleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="rgba(0,217,255,0.32)" />
-                        <stop offset="100%" stopColor="rgba(0,153,204,0.08)" />
-                      </linearGradient>
-                    </defs>
-                    <polygon 
-                      points="280,40 520,520 40,520" 
-                      fill="url(#brandureTriangleGradient)" 
-                      stroke="#00D9FF" 
-                      strokeWidth="3" 
-                      opacity="0.9" 
-                    />
-                    <polygon 
-                      points="280,100 460,500 100,500" 
-                      fill="none" 
-                      stroke="#00A8CC" 
-                      strokeWidth="2" 
-                      opacity="0.7" 
-                    />
-                  </svg>
-                </div>
-
-                <div className="text-gray-400 text-xs tracking-widest mb-2">{s.title.toUpperCase()}</div>
-                <h3 className="text-white text-[56px] leading-tight font-semibold mb-4 brandure-animate-white">
-                  {s.title}
-                </h3>
-
-                {/* Two-line centered blurb */}
-                <p className="text-gray-300 text-[20px] leading-relaxed max-w-[48ch] mx-auto text-center">
-                  {s.blurb}
-                </p>
+      {/* Scrollable content with snap points */}
+      <div className="h-full snap-y snap-mandatory overflow-y-scroll">
+        {steps.map((step, i) => (
+          <div key={i} id={`step-${i}`} className="h-screen snap-center flex items-center justify-center">
+            {/* Centered triangle(s) with gradient */}
+            <div className="text-center">
+              <div className="flex justify-center mb-8">
+                {[...Array(step.triangles)].map((_, j) => (
+                  <TriangleWithGradient key={j} />
+                ))}
               </div>
+              <h3 className="text-[56px] text-[#00D9FF] mb-4 animate-text-blue">{step.title}</h3>
+              <p className="text-white text-lg animate-text-white">{step.line1}</p>
+              <p className="text-white text-lg animate-text-white">{step.line2}</p>
             </div>
-          ))}
-        </div>
-
-        {/* Right spacer */}
-        <div className="col-span-12 md:col-span-3" />
+          </div>
+        ))}
       </div>
     </section>
   );

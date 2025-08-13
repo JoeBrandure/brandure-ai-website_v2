@@ -173,32 +173,52 @@ html, body {
   z-index: 1000;
 }
 
-/* Unified cadence shared by accent + white text */
-@keyframes brandure-accent-cadence {
-  0%, 100% { transform: translateY(0); opacity: 0.96; text-shadow: 0 0 0 rgba(0,217,255,0); }
-  50%      { transform: translateY(-1px); opacity: 1; text-shadow: 0 0 12px rgba(0,217,255,0.25); }
+/* Restore the breathing animation for all text */
+@keyframes textBreathe {
+  0%, 100% { 
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+  50% { 
+    opacity: 1;
+    transform: translateY(-2px);
+  }
 }
 
-.brandure-animate-blue {
-  animation: brandure-accent-cadence 3s ease-in-out infinite;
-  /* color for blue text is controlled by existing markup; do not force color here */
+/* Apply to all text elements that need animation */
+.animate-text-white {
+  animation: textBreathe 4s ease-in-out infinite;
+  color: #ffffff;
 }
 
-.brandure-animate-white {
-  animation: brandure-accent-cadence 3s ease-in-out infinite;
-  color: #ffffff !important; /* ensure it stays white */
-  text-shadow: 0 0 6px rgba(0, 217, 255, 0.15);
+.animate-text-blue {
+  animation: textBreathe 4s ease-in-out infinite;
+  color: #00D9FF;
+}
+
+.text-grey-white {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Legacy support - keep existing classes working */
 .gradient-text, .gradient-animated {
-  animation: brandure-accent-cadence 3s ease-in-out infinite;
+  animation: textBreathe 4s ease-in-out infinite;
+  color: #00D9FF;
+}
+
+.brandure-animate-blue {
+  animation: textBreathe 4s ease-in-out infinite;
+  color: #00D9FF;
+}
+
+.brandure-animate-white {
+  animation: textBreathe 4s ease-in-out infinite;
+  color: #ffffff;
 }
 
 .animate-white-accent {
-  animation: brandure-accent-cadence 3s ease-in-out infinite;
-  color: #ffffff !important;
-  text-shadow: 0 0 6px rgba(0, 217, 255, 0.15);
+  animation: textBreathe 4s ease-in-out infinite;
+  color: #ffffff;
 }
 
 /* Fixed navigation */

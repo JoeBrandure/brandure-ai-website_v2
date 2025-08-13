@@ -116,13 +116,13 @@ export default function Home() {
             {/* Hero Section */}
             <section id="hero" className="section-snap">
               <div className="content-wrapper">
-                <h1 className="hero-text-large brandure-animate-white" style={{ marginBottom: '20px' }}>
+                <h1 className="hero-text-large animate-text-white" style={{ marginBottom: '20px' }}>
                   We&apos;re not just your AI
                 </h1>
                 <div className="hero-text-large" style={{ marginBottom: '20px' }}>
                   <RotatingText />
                 </div>
-                <h2 className="hero-text-medium brandure-animate-white">
+                <h2 className="hero-text-medium text-grey-white">
                   We&apos;re your AI Partner.
                 </h2>
               </div>
@@ -131,11 +131,11 @@ export default function Home() {
             {/* Pitch Section */}
             <section id="pitch" className="section-snap">
               <div className="content-wrapper">
-                <h2 className="section-heading brandure-animate-white" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
-                  We help <span className="brandure-animate-blue">you</span> understand<br />
-                  the <span className="brandure-animate-blue">Power of AI</span>
+                <h2 className="section-heading animate-text-white" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+                  We help <span className="animate-text-blue">you</span> understand<br />
+                  the <span className="animate-text-blue">Power of AI</span>
                 </h2>
-                <p className="section-subheading brandure-animate-white">
+                <p className="section-subheading text-grey-white">
                   Your trusted partner in becoming an AI-powered business
                 </p>
               </div>
@@ -155,8 +155,8 @@ export default function Home() {
             {/* Results Section */}
             <section id="results" className="section-snap">
               <div className="content-wrapper">
-                <h2 className="section-heading brandure-animate-white" style={{ marginBottom: '60px' }}>
-                  We don&apos;t sell AI, we sell <span className="brandure-animate-blue">results</span>
+                <h2 className="section-heading animate-text-white" style={{ marginBottom: '60px' }}>
+                  We don&apos;t sell AI, we sell <span className="animate-text-blue">results</span>
                 </h2>
                 
                 <div style={{ 
@@ -229,9 +229,9 @@ export default function Home() {
                 
                 {/* Center content */}
                 <div style={{ marginTop: '60px' }}>
-                  <h2 className="section-heading brandure-animate-white" style={{ margin: '40px 0' }}>
+                  <h2 className="section-heading animate-text-white" style={{ margin: '40px 0' }}>
                     The best AI systems are built<br />
-                    <span className="brandure-animate-blue">side-by-side</span>
+                    <span className="animate-text-blue">side by side</span>
                   </h2>
                   
                   <button
