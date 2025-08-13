@@ -4,15 +4,15 @@ export default function JourneyTriangle() {
   return (
     <div style={{
       position: 'absolute',
-      bottom: '-200px',  // Half above, half below
+      bottom: '-300px',  // Adjusted for larger size
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '400px',
-      height: '400px',
+      width: '600px',  // Increased from 400px
+      height: '600px',  // Increased from 400px
       zIndex: 10,
     }}>
       <svg
-        viewBox="0 0 400 400"
+        viewBox="0 0 600 600"  // Updated viewBox
         style={{ width: '100%', height: '100%' }}
       >
         <defs>
@@ -22,7 +22,7 @@ export default function JourneyTriangle() {
             <stop offset="100%" stopColor="#00D9FF" stopOpacity="0.4" />
           </linearGradient>
           <filter id="glow">
-            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -30,28 +30,28 @@ export default function JourneyTriangle() {
           </filter>
         </defs>
         
-        {/* Large outer triangle - filled with gradient, semi-transparent */}
+        {/* Large outer triangle */}
         <polygon
-          points="200,50 350,350 50,350"
+          points="300,75 525,525 75,525"
           fill="url(#triangleGradient)"
           stroke="#00D9FF"
-          strokeWidth="1"
+          strokeWidth="2"
           opacity="0.3"
           filter="url(#glow)"
         />
         
-        {/* Inner triangle - hollow with thicker stroke */}
+        {/* Inner triangle */}
         <polygon
-          points="200,100 300,300 100,300"
+          points="300,150 450,450 150,450"
           fill="none"
           stroke="#00D9FF"
           strokeWidth="3"
           opacity="0.8"
         />
         
-        {/* Innermost triangle - thin stroke */}
+        {/* Innermost triangle */}
         <polygon
-          points="200,150 250,250 150,250"
+          points="300,225 375,375 225,375"
           fill="none"
           stroke="#00D9FF"
           strokeWidth="1.5"

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import Image from 'next/image';
 import RotatingText from '../components/RotatingText';
 import HowWeWork from '../components/HowWeWork';
@@ -8,6 +9,7 @@ import LogoCarousel from '../components/LogoCarousel';
 import ContactDrawer from '../components/ContactDrawer';
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
+import FloatingGradient from '../components/FloatingGradient';
 
 export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -24,12 +26,30 @@ export default function Home() {
         <meta name="description" content="Brandure.ai is your trusted AI Agency and AI Automation Agency, empowering small businesses with bespoke AI Solutions in the UAE & UK." />
       </Head>
 
+      <Script
+        id="relevance-ai-chat"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              var script = document.createElement('script');
+              script.defer = true;
+              script.src = 'https://app.relevanceai.com/embed/chat-bubble.js';
+              script.setAttribute('data-relevanceai-share-id', 'd7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5');
+              script.setAttribute('data-share-styles', 'starting_message_prompts=Hey%21+Is+there+anything+I+can+help+you+with%3F+&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true');
+              document.body.appendChild(script);
+            })();
+          `
+        }}
+      />
+
       {!showContent && (
         <LoadingAnimation onComplete={() => setShowContent(true)} />
       )}
 
       {showContent && (
         <>
+          <FloatingGradient />
           {/* Fixed Navigation */}
           <nav className="nav-fixed" style={{
             position: 'fixed',
@@ -37,8 +57,8 @@ export default function Home() {
             left: 0,
             right: 0,
             zIndex: 100,
-            padding: '12px 40px',
-            paddingTop: 'max(env(safe-area-inset-top, 12px), 12px)',
+            padding: '8px 40px',  // CRITICAL: Reduced from 12px to 8px
+            height: '60px',  // Fixed height constraint
             background: 'rgba(0, 0, 0, 0.3)',
             backdropFilter: 'blur(10px)',
             display: 'flex',
@@ -91,7 +111,7 @@ export default function Home() {
           </nav>
 
           {/* Main scroll container */}
-          <div className="main-container">
+          <div className="main-container" style={{ paddingTop: '60px' }}>
             
             {/* Hero Section */}
             <section id="hero" className="section-snap">
@@ -111,9 +131,9 @@ export default function Home() {
             {/* Pitch Section */}
             <section id="pitch" className="section-snap">
               <div className="content-wrapper">
-                <h2 className="section-heading" style={{ marginBottom: '30px' }}>
-                  We help <span className="gradient-animated">you</span> understand the{' '}
-                  <span className="gradient-animated">Power of AI</span>
+                <h2 className="section-heading" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+                  We help <span className="gradient-animated">you</span> understand<br />
+                  the <span className="gradient-animated">Power of AI</span>
                 </h2>
                 <p className="section-subheading">
                   Your trusted partner in becoming an AI-powered business
@@ -122,14 +142,20 @@ export default function Home() {
             </section>
 
             {/* Journey Section */}
-            <section id="journey" className="section-snap" style={{ position: 'relative', overflow: 'visible' }}>
+            <section id="journey" className="section-snap" style={{ 
+              position: 'relative', 
+              overflow: 'visible',
+              display: 'flex',
+              alignItems: 'flex-start',  // Align content to top
+              paddingTop: '100px'  // Move text up
+            }}>
               <div className="content-wrapper">
-                <h2 className="section-heading-medium" style={{ lineHeight: 1.3 }}>
+                <h2 className="section-heading-medium" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
                   We spend our days guiding companies<br />
                   through our 3-step <span className="gradient-animated">AI-Transformation</span> process
                 </h2>
                 
-                {/* Large transition triangle at bottom of Journey section */}
+                {/* Large transition triangle at bottom */}
                 <JourneyTriangle />
               </div>
             </section>
@@ -196,49 +222,63 @@ export default function Home() {
 
             {/* Partnership Section */}
             <section id="partnership" className="section-snap">
-              <div className="content-wrapper" style={{ paddingTop: '80px' }}>  {/* Add padding to account for fixed nav */}
+              <div className="content-wrapper" style={{ 
+                paddingTop: '70px',  // Account for fixed nav
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh'
+              }}>
                 
-                {/* Logo Carousel - Positioned higher */}
-                <div style={{ marginTop: '20px', marginBottom: '60px' }}>  {/* Reduced top margin */}
+                {/* Logo Carousel - Positioned at top */}
+                <div style={{ 
+                  position: 'absolute',
+                  top: '80px',  // Just below header
+                  width: '100%'
+                }}>
                   <LogoCarousel />
                 </div>
                 
-                <h2 className="section-heading" style={{ margin: '40px 0' }}>
-                  The best AI systems are built<br />
-                  <span className="gradient-animated">side-by-side</span>
-                </h2>
-                
-                <button
-                  onClick={() => setIsDrawerOpen(true)}
-                  style={{ 
-                    fontSize: '1.5rem', 
-                    padding: '20px 60px', 
-                    marginTop: '40px',
-                    color: 'white',
-                    background: 'transparent',
-                    border: '2px solid white',
-                    borderRadius: '50px',
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'white';
-                    e.currentTarget.style.color = 'black';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = 'white';
-                  }}
-                >
-                  Let&apos;s Partner Up
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
-                </button>
+                {/* Center content */}
+                <div style={{ marginTop: '60px' }}>
+                  <h2 className="section-heading" style={{ margin: '40px 0' }}>
+                    The best AI systems are built<br />
+                    <span className="gradient-animated">side-by-side</span>
+                  </h2>
+                  
+                  <button
+                    onClick={() => setIsDrawerOpen(true)}
+                    style={{ 
+                      fontSize: '1.5rem', 
+                      padding: '20px 60px', 
+                      marginTop: '40px',
+                      color: 'white',
+                      background: 'transparent',
+                      border: '2px solid white',
+                      borderRadius: '50px',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'white';
+                      e.currentTarget.style.color = 'black';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.color = 'white';
+                    }}
+                  >
+                    Let&apos;s Partner Up
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </section>
 
@@ -257,7 +297,8 @@ export default function Home() {
                   left: 0,
                   right: 0,
                   borderTop: '1px solid rgba(255, 255, 255, 0.1)', 
-                  padding: '24px 40px 20px 40px'
+                  padding: '16px 40px 12px 40px',  // CRITICAL: Reduced from 24px/20px
+                  maxHeight: '120px',  // Constrain footer height
                 }}>
                   <div style={{ 
                     display: 'flex', 
@@ -360,20 +401,8 @@ export default function Home() {
 
           {/* Contact Drawer */}
           <ContactDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
-
-                   {/* Sticky Relevance AI Chat Widget - Place right before final </> */}
-         {showContent && (
-           <>
-             <script
-               defer
-               data-relevanceai-share-id="d7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5"
-               src="https://app.relevanceai.com/embed/chat-bubble.js"
-               data-share-styles="starting_message_prompts=Hey%21+Is+there+anything+I+can+help+you+with%3F+&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true"
-             />
-           </>
-         )}
-       </>
-     )}
-   </>
- );
+        </>
+      )}
+    </>
+  );
 }

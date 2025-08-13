@@ -24,24 +24,20 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Send email to sales@brandureai.com
     try {
-      // If you have an API route for sending emails
-      const response = await fetch('/api/send-inquiry', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          to: 'sales@brandureai.com',
-          ...formData
-        }),
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
         alert('Thank you for your inquiry! We will get back to you soon.');
         onClose();
-        // Reset form
         setFormData({
           name: '',
           email: '',
@@ -54,22 +50,14 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           serviceInterested: '',
           message: '',
         });
+      } else {
+        throw new Error(data.message);
       }
-    } catch {
-      // Fallback: Open email client
+    } catch (error) {
+      console.error('Error:', error);
+      // Fallback to mailto
       const subject = encodeURIComponent('New Inquiry from Brandure AI Website');
-      const body = encodeURIComponent(`
-        Name: ${formData.name}
-        Email: ${formData.email}
-        Role: ${formData.role}
-        Company: ${formData.companyName}
-        Website: ${formData.companyWebsite}
-        Company Size: ${formData.companySize}
-        Annual Revenue: ${formData.annualRevenue}
-        Project Budget: ${formData.projectBudget}
-        Service Interested: ${formData.serviceInterested}
-        Message: ${formData.message}
-      `);
+      const body = encodeURIComponent(Object.entries(formData).map(([key, value]) => `${key}: ${value}`).join('\n'));
       window.location.href = `mailto:sales@brandureai.com?subject=${subject}&body=${body}`;
     }
   };
