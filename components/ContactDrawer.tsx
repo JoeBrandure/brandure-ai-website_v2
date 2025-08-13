@@ -7,8 +7,21 @@ interface ContactDrawerProps {
   onClose: () => void;
 }
 
+interface FormData {
+  name: string;
+  email: string;
+  role: string;
+  companyName: string;
+  companyWebsite: string;
+  companySize: string;
+  annualRevenue: string;
+  projectBudget: string;
+  serviceInterested: string;
+  message: string;
+}
+
 export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     role: '',
@@ -178,14 +191,12 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 color: 'white',
                 fontSize: '16px',
               }}
-              required
             >
               <option value="">Select company size</option>
-              <option value="<20">Less than 20</option>
-              <option value="20-50">20-50</option>
-              <option value="50-200">50-200</option>
-              <option value="200-500">200-500</option>
-              <option value=">500">More than 500</option>
+              <option value="<20">Less than 20 employees</option>
+              <option value="20-100">20-100 employees</option>
+              <option value="100-500">100-500 employees</option>
+              <option value=">500">More than 500 employees</option>
             </select>
 
             <select
