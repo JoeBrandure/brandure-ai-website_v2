@@ -4,12 +4,13 @@ import Script from 'next/script';
 import Image from 'next/image';
 import RotatingText from '../components/RotatingText';
 import HowWeWork from '../components/HowWeWork';
-import JourneyTriangle from '../components/JourneyTriangle';
+import Journey from '../components/Journey';
 import LogoCarousel from '../components/LogoCarousel';
 import ContactDrawer from '../components/ContactDrawer';
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
 import SectionTriangleTransition from '../components/SectionTriangleTransition';
+import Footer from '../components/Footer';
 
 export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -115,13 +116,13 @@ export default function Home() {
             {/* Hero Section */}
             <section id="hero" className="section-snap">
               <div className="content-wrapper">
-                <h1 className="hero-text-large" style={{ marginBottom: '20px' }}>
+                <h1 className="hero-text-large brandure-animate-white" style={{ marginBottom: '20px' }}>
                   We&apos;re not just your AI
                 </h1>
                 <div className="hero-text-large" style={{ marginBottom: '20px' }}>
                   <RotatingText />
                 </div>
-                <h2 className="hero-text-medium">
+                <h2 className="hero-text-medium brandure-animate-white">
                   We&apos;re your AI Partner.
                 </h2>
               </div>
@@ -130,34 +131,18 @@ export default function Home() {
             {/* Pitch Section */}
             <section id="pitch" className="section-snap">
               <div className="content-wrapper">
-                <h2 className="section-heading" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
-                  We help <span className="gradient-animated">you</span> understand<br />
-                  the <span className="gradient-animated">Power of AI</span>
+                <h2 className="section-heading brandure-animate-white" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+                  We help <span className="brandure-animate-blue">you</span> understand<br />
+                  the <span className="brandure-animate-blue">Power of AI</span>
                 </h2>
-                <p className="section-subheading">
+                <p className="section-subheading brandure-animate-white">
                   Your trusted partner in becoming an AI-powered business
                 </p>
               </div>
             </section>
 
             {/* Journey Section */}
-            <section id="journey" className="section-snap" style={{ 
-              position: 'relative', 
-              overflow: 'visible',
-              display: 'flex',
-              alignItems: 'flex-start',
-              paddingTop: 'calc(18vh)'  // halfway between current and center
-            }}>
-              <div className="content-wrapper">
-                <h2 className="section-heading-medium animate-white-accent" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
-                  We spend our days guiding companies<br />
-                  through our 3-step <span className="gradient-animated">AI-Transformation</span> process
-                </h2>
-                
-                {/* Large transition triangle at bottom */}
-                <JourneyTriangle />
-              </div>
-            </section>
+            <Journey />
 
             {/* Triangle Transition Between Sections */}
             <SectionTriangleTransition />
@@ -170,8 +155,8 @@ export default function Home() {
             {/* Results Section */}
             <section id="results" className="section-snap">
               <div className="content-wrapper">
-                <h2 className="section-heading" style={{ marginBottom: '60px' }}>
-                  We don&apos;t sell AI, we sell <span className="gradient-animated">results</span>
+                <h2 className="section-heading brandure-animate-white" style={{ marginBottom: '60px' }}>
+                  We don&apos;t sell AI, we sell <span className="brandure-animate-blue">results</span>
                 </h2>
                 
                 <div style={{ 
@@ -244,9 +229,9 @@ export default function Home() {
                 
                 {/* Center content */}
                 <div style={{ marginTop: '60px' }}>
-                  <h2 className="section-heading" style={{ margin: '40px 0' }}>
+                  <h2 className="section-heading brandure-animate-white" style={{ margin: '40px 0' }}>
                     The best AI systems are built<br />
-                    <span className="gradient-animated">side-by-side</span>
+                    <span className="brandure-animate-blue">side-by-side</span>
                   </h2>
                   
                   <button
@@ -285,123 +270,8 @@ export default function Home() {
             </section>
 
             {/* Contact/Footer Section */}
-            <section id="contact" className="section-snap">
-              <div className="content-wrapper">
-                {/* Heading centered */}
-                <h2 className="section-heading" style={{ textAlign: 'center', marginBottom: '120px' }}>
-                  Accelerate your <span className="gradient-animated">AI Adoption</span> Journey
-                </h2>
+            <Footer />
 
-                {/* Footer at bottom */}
-                <div style={{ 
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  borderTop: '1px solid rgba(255, 255, 255, 0.1)', 
-                  padding: '16px 40px 12px 40px',  // CRITICAL: Reduced from 24px/20px
-                  maxHeight: '120px',  // Constrain footer height
-                }}>
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'flex-start',
-                    maxWidth: '1200px',
-                    margin: '0 auto',
-                    flexWrap: 'wrap', 
-                    gap: '40px' 
-                  }}>
-                    
-                    {/* Left - Contact */}
-                    <div style={{ textAlign: 'left' }}>
-                      <h3 style={{ 
-                        fontSize: '14px', 
-                        fontWeight: 600, 
-                        marginBottom: '20px', 
-                        color: '#C0C0C0',
-                        textTransform: 'uppercase'
-                      }}>
-                        Contact
-                      </h3>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                        <a 
-                          href="mailto:info@brandureai.com" 
-                          className="animate-white-accent"
-                          style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
-                        >
-                          info@brandureai.com
-                        </a>
-                        <a 
-                          href="https://wa.me/971585081399" 
-                          className="animate-white-accent"
-                          style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
-                        >
-                          UAE 🇦🇪 +971 585 081 399
-                        </a>
-                        <a 
-                          href="https://wa.me/447969446013" 
-                          className="animate-white-accent"
-                          style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
-                        >
-                          UK 🇬🇧 +44 7969 446 013
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Center - Legal */}
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{ display: 'flex', gap: '30px' }}>
-                        <a 
-                          href="/brandure-terms.pdf" 
-                          target="_blank"
-                          style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
-                        >
-                          Terms & Conditions
-                        </a>
-                        <a 
-                          href="/brandure-legal.pdf" 
-                          target="_blank"
-                          style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
-                        >
-                          Privacy Policy
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Right - Follow */}
-                    <div style={{ textAlign: 'right' }}>
-                      <h3 style={{ 
-                        fontSize: '14px', 
-                        fontWeight: 600, 
-                        marginBottom: '20px', 
-                        color: '#C0C0C0',
-                        textTransform: 'uppercase'
-                      }}>
-                        Follow Us
-                      </h3>
-                      <a 
-                        href="https://linkedin.com/company/brandureai" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{ color: 'white', textDecoration: 'none', fontSize: '14px' }}
-                      >
-                        LinkedIn
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Copyright */}
-                  <div style={{ 
-                    textAlign: 'center', 
-                    marginTop: '40px', 
-                    color: '#C0C0C0', 
-                    fontSize: '12px' 
-                  }}>
-                    © 2025 Brandure AI. All rights reserved.
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
 
           {/* Contact Drawer */}

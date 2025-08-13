@@ -173,25 +173,32 @@ html, body {
   z-index: 1000;
 }
 
-/* Reuse identical cadence as accent animation (3s ease-in-out infinite) */
+/* Unified cadence shared by accent + white text */
 @keyframes brandure-accent-cadence {
-  0% { opacity: 0.92; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-0.5px); }
-  100% { opacity: 0.92; transform: translateY(0); }
+  0%, 100% { transform: translateY(0); opacity: 0.96; text-shadow: 0 0 0 rgba(0,217,255,0); }
+  50%      { transform: translateY(-1px); opacity: 1; text-shadow: 0 0 12px rgba(0,217,255,0.25); }
 }
 
-/* Accent (keep existing visual); ensure it uses the cadence above if not already */
+.brandure-animate-blue {
+  animation: brandure-accent-cadence 3s ease-in-out infinite;
+  /* color for blue text is controlled by existing markup; do not force color here */
+}
+
+.brandure-animate-white {
+  animation: brandure-accent-cadence 3s ease-in-out infinite;
+  color: #ffffff !important; /* ensure it stays white */
+  text-shadow: 0 0 6px rgba(0, 217, 255, 0.15);
+}
+
+/* Legacy support - keep existing classes working */
 .gradient-text, .gradient-animated {
   animation: brandure-accent-cadence 3s ease-in-out infinite;
 }
 
-/* New: white variant with same cadence & feel, but stays white */
 .animate-white-accent {
-  color: #ffffff !important;
   animation: brandure-accent-cadence 3s ease-in-out infinite;
-  text-shadow: 0 0 0px rgba(255,255,255,0.0),
-               0 0 10px rgba(255,255,255,0.06),
-               0 0 20px rgba(255,255,255,0.04);
+  color: #ffffff !important;
+  text-shadow: 0 0 6px rgba(0, 217, 255, 0.15);
 }
 
 /* Fixed navigation */

@@ -1,38 +1,38 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SectionTriangleTransition() {
-  const wrapRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const triRef = useRef<SVGSVGElement>(null);
 
-  useEffect(() => {
-    const wrap = wrapRef.current!;
-    const tri = triRef.current!;
-
-    // rotate from 0deg (tip up) to 180deg (tip down)
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: wrap,
-        start: 'top bottom',   // when top of wrapper hits bottom of viewport
-        end: 'bottom top',     // when bottom of wrapper hits top of viewport
-        scrub: true
-      }
-    });
-
-    tl.fromTo(tri, { rotate: 0 }, { rotate: 180, ease: 'none' });
-
-    return () => {
-      tl.kill();
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    };
+  useLayoutEffect(() => {
+    if (!containerRef.current || !triRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(triRef.current,
+        { rotate: 0 },
+        {
+          rotate: 180,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+            pin: true,
+            anticipatePin: 1
+          }
+        }
+      );
+    }, containerRef);
+    return () => ctx.revert();
   }, []);
 
   return (
     <div
-      ref={wrapRef}
+      ref={containerRef}
       style={{
         position: 'relative',
         height: '140vh', // extended space for a nice transition

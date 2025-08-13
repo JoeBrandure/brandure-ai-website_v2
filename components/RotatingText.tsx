@@ -15,30 +15,39 @@ export default function RotatingText() {
   }, []);
 
   return (
-    <div style={{ 
-      height: '1.2em', 
-      position: 'relative',
+    <span style={{ 
+      position: 'relative', 
       display: 'inline-block',
-      fontSize: 'inherit' // Inherit parent font size
+      verticalAlign: 'middle'
     }}>
-      {words.map((word, index) => (
-        <span
-          key={word}
-          className="gradient-animated"
-          style={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            opacity: index === currentIndex ? 1 : 0,
-            transition: 'opacity 0.5s ease',
-            fontStyle: 'italic',
-            fontSize: 'inherit',
-            whiteSpace: 'nowrap'
-          }}
-        >
-          {word}
-        </span>
-      ))}
-    </div>
+      <span
+        style={{
+          display: 'inline-block',
+          willChange: 'transform, opacity',
+          transformOrigin: '50% 50%',
+          height: '1.2em',
+          position: 'relative'
+        }}
+      >
+        {words.map((word, index) => (
+          <span
+            key={word}
+            className="brandure-animate-blue"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              opacity: index === currentIndex ? 1 : 0,
+              transition: 'opacity 0.5s ease',
+              fontStyle: 'italic',
+              fontSize: 'inherit',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            {word}
+          </span>
+        ))}
+      </span>
+    </span>
   );
 }
