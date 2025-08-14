@@ -5,16 +5,14 @@ import Image from 'next/image';
 import RotatingWords from '../components/RotatingWords';
 import Journey from '../components/Journey';
 import LogoCarousel from '../components/LogoCarousel';
-import ContactDrawer from '../components/ContactDrawer';
+
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
 import Contact from '../components/Contact';
-import FooterCTA from '../components/FooterCTA';
 import Footer from '../components/Footer';
 import { AnimatedText } from '../components/AnimatedText';
 
 export default function Home() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
@@ -79,7 +77,7 @@ export default function Home() {
               }}
             />
             <button
-              onClick={() => setIsDrawerOpen(true)}
+              onClick={() => document.getElementById('contact-modal')?.classList.remove('hidden')}
               className="cta-button"
               style={{ 
                 padding: '10px 24px', 
@@ -243,7 +241,7 @@ export default function Home() {
                   </h2>
                   
                   <button
-                    onClick={() => setIsDrawerOpen(true)}
+                    onClick={() => document.getElementById('contact-modal')?.classList.remove('hidden')}
                     style={{ 
                       fontSize: '1.5rem', 
                       padding: '20px 60px', 
@@ -277,23 +275,15 @@ export default function Home() {
               </div>
             </section>
 
-                               {/* FooterCTA Section */}
-                   <section className="snap-start">
-                     <FooterCTA />
-                   </section>
-
                                {/* Contact Section */}
                    <section className="snap-start">
                      <Contact />
+                     <Footer variant="overlay" />
                    </section>
-
-                               {/* Footer Section */}
-                   <Footer />
 
           </div>
 
-          {/* Contact Drawer */}
-          <ContactDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+
         </>
       )}
     </>

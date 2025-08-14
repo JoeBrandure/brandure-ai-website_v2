@@ -1,10 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Footer() {
+export default function Footer({ variant = 'default' }: { variant?: 'default' | 'overlay' }) {
+  const rootClass =
+    variant === 'overlay'
+      ? 'absolute bottom-0 left-0 right-0 z-40'
+      : 'relative z-40';
+
   return (
-    <footer className="sticky bottom-0 z-40">
-      <div className="container mx-auto max-w-7xl px-8 py-6">
+    <footer className={rootClass}>
+      <div className="container mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {/* LEFT: Contact (aligned with header logo by container padding) */}
           <div>
