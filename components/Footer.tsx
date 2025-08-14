@@ -3,13 +3,13 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-neutral-800 bg-black text-white">
-      <div className="mx-auto max-w-7xl px-6 md:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start" style={{ paddingLeft: '40px', paddingRight: '40px' }}>
         {/* Left: Contact */}
         <div>
           <div className="text-xs uppercase tracking-wider text-neutral-400 mb-3">Contact</div>
           <div className="space-y-2">
             <a href="mailto:info@brandureai.com" className="hover:opacity-90 accent-animated">info@brandureai.com</a>
-            <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-neutral-300">
+            <div className="flex flex-col sm:flex-row sm:gap-6 gap-y-1 text-sm text-neutral-300">
               <span>UAE 🇦🇪 +971 585 081 399</span>
               <span>UK 🇬🇧 +44 7969 446 013</span>
             </div>
