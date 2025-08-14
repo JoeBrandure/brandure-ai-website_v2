@@ -9,7 +9,6 @@ import LogoCarousel from '../components/LogoCarousel';
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
 import Contact from '../components/Contact';
-import Footer from '../components/Footer';
 import { AnimatedText } from '../components/AnimatedText';
 
 export default function Home() {
@@ -278,7 +277,6 @@ export default function Home() {
                                {/* Contact Section */}
                    <section className="snap-start">
                      <Contact />
-                     <Footer variant="overlay" />
                    </section>
 
           </div>
