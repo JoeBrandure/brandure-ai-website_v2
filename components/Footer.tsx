@@ -1,37 +1,52 @@
-import Link from "next/link";
+
 
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-800 bg-black text-white">
-      <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start" style={{ paddingLeft: '40px', paddingRight: '40px' }}>
-        {/* Left: Contact */}
-        <div>
-          <div className="text-xs uppercase tracking-wider text-neutral-400 mb-3">Contact</div>
-          <div className="space-y-2">
-            <a href="mailto:info@brandureai.com" className="hover:opacity-90 accent-animated">info@brandureai.com</a>
-            <div className="flex flex-col sm:flex-row sm:gap-6 gap-y-1 text-sm text-neutral-300">
+    <footer
+      className="absolute inset-x-0 bottom-0 z-10"
+      aria-label="Site footer"
+    >
+      <div className="w-full border-t border-white/10 bg-transparent">
+        <div className="mx-auto w-full max-w-6xl px-10 md:px-[40px] py-6 md:py-8 flex items-start justify-between gap-6">
+          {/* Left: Contact block */}
+          <div className="min-w-0">
+            <div className="text-xs uppercase tracking-wider text-gray-400">Contact</div>
+            <a href="mailto:info@brandureai.com" className="block text-white hover:opacity-90 mt-2 animate-white-accent">
+              info@brandureai.com
+            </a>
+            <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-1 text-gray-300">
               <span>UAE 🇦🇪 +971 585 081 399</span>
               <span>UK 🇬🇧 +44 7969 446 013</span>
             </div>
           </div>
-        </div>
 
-        {/* Center: Legal */}
-        <div className="text-center">
-          <div className="inline-flex flex-col gap-2 text-sm">
-            <Link href="/brandure-terms.pdf" target="_blank" className="hover:opacity-90">Terms &amp; Conditions</Link>
-            <Link href="/brandure-legal.pdf" target="_blank" className="hover:opacity-90">Privacy Policy</Link>
+          {/* Center: Policies (always centered overall) */}
+          <div className="flex-1 hidden md:flex items-center justify-center text-gray-300">
+            <div className="flex items-center gap-6">
+              <a href="/terms-and-conditions" className="hover:opacity-90">Terms &amp; Conditions</a>
+              <a href="/privacy-policy" className="hover:opacity-90">Privacy Policy</a>
+            </div>
           </div>
-        </div>
 
-        {/* Right: Follow */}
-        <div className="md:text-right">
-          <div className="text-xs uppercase tracking-wider text-neutral-400 mb-3">Follow</div>
-          <div>
-            <a href="https://www.linkedin.com/company/brandure-ai/" target="_blank" rel="noopener noreferrer" className="hover:opacity-90">
+          {/* Right: Follow */}
+          <div className="min-w-0 text-right">
+            <div className="text-xs uppercase tracking-wider text-gray-400">Follow us</div>
+            <a
+              href="https://www.linkedin.com/company/brandure/"
+              target="_blank" rel="noopener noreferrer"
+              className="block text-white hover:opacity-90 mt-2"
+            >
               LinkedIn
             </a>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile layout: show policies centered below when <md */}
+      <div className="md:hidden mx-auto w-full max-w-6xl px-10 py-4 flex items-center justify-center text-gray-300">
+        <div className="flex items-center gap-6">
+          <a href="/terms-and-conditions" className="hover:opacity-90">Terms &amp; Conditions</a>
+          <a href="/privacy-policy" className="hover:opacity-90">Privacy Policy</a>
         </div>
       </div>
     </footer>

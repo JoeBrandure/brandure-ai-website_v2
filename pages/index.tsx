@@ -8,6 +8,7 @@ import LogoCarousel from '../components/LogoCarousel';
 import ContactDrawer from '../components/ContactDrawer';
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import { AnimatedText } from '../components/AnimatedText';
 
@@ -275,49 +276,10 @@ export default function Home() {
               </div>
             </section>
 
-                               {/* Contact/Footer Section */}
+                               {/* Contact Section */}
                    <section className="snap-start">
-                     <div className="min-h-screen flex flex-col">
-                       <div className="flex-1 flex items-center justify-center">
-                         <div className="text-center">
-                           <h2 className="section-heading mb-8">
-                             <AnimatedText text="Ready to transform your business?" className="text-white" />
-                           </h2>
-                           <p className="section-subheading text-grey-white mb-8">
-                             <AnimatedText text="Let's discuss how AI can drive your growth" className="text-white" delay={0.3} />
-                           </p>
-                           <button
-                             onClick={() => setIsDrawerOpen(true)}
-                             style={{ 
-                               fontSize: '1.5rem', 
-                               padding: '20px 60px', 
-                               color: 'white',
-                               background: 'transparent',
-                               border: '2px solid white',
-                               borderRadius: '50px',
-                               cursor: 'pointer',
-                               display: 'inline-flex',
-                               alignItems: 'center',
-                               gap: '12px',
-                               transition: 'all 0.3s ease'
-                             }}
-                             onMouseEnter={(e) => {
-                               e.currentTarget.style.background = 'white';
-                               e.currentTarget.style.color = 'black';
-                             }}
-                             onMouseLeave={(e) => {
-                               e.currentTarget.style.background = 'transparent';
-                               e.currentTarget.style.color = 'white';
-                             }}
-                           >
-                             Get Started
-                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                               <line x1="7" y1="17" x2="17" y2="7" />
-                               <polyline points="7 7 17 7 17 17" />
-                             </svg>
-                           </button>
-                         </div>
-                       </div>
+                     <div className="relative">
+                       <Contact onOpenContact={() => setIsDrawerOpen(true)} />
                        <Footer />
                      </div>
                    </section>
