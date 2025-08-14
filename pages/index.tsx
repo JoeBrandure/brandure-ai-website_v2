@@ -9,7 +9,6 @@ import ContactDrawer from '../components/ContactDrawer';
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
 import Contact from '../components/Contact';
-import Footer from '../components/Footer';
 import { AnimatedText } from '../components/AnimatedText';
 
 export default function Home() {
@@ -278,10 +277,7 @@ export default function Home() {
 
                                {/* Contact Section */}
                    <section className="snap-start">
-                     <div className="relative">
-                       <Contact onOpenContact={() => setIsDrawerOpen(true)} />
-                       <Footer />
-                     </div>
+                     <Contact onOpenContact={() => setIsDrawerOpen(true)} />
                    </section>
 
           </div>
