@@ -9,6 +9,8 @@ import ContactDrawer from '../components/ContactDrawer';
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
 import Contact from '../components/Contact';
+import FooterCTA from '../components/FooterCTA';
+import Footer from '../components/Footer';
 import { AnimatedText } from '../components/AnimatedText';
 
 export default function Home() {
@@ -275,10 +277,18 @@ export default function Home() {
               </div>
             </section>
 
+                               {/* FooterCTA Section */}
+                   <section className="snap-start">
+                     <FooterCTA />
+                   </section>
+
                                {/* Contact Section */}
                    <section className="snap-start">
-                     <Contact onOpenContact={() => setIsDrawerOpen(true)} />
+                     <Contact />
                    </section>
+
+                               {/* Footer Section */}
+                   <Footer />
 
           </div>
 
