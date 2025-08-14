@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import Image from 'next/image';
-import RotatingText from '../components/RotatingText';
+import RotatingWords from '../components/RotatingWords';
 import HowWeWork from '../components/HowWeWork';
 import Journey from '../components/Journey';
 import LogoCarousel from '../components/LogoCarousel';
@@ -120,7 +120,12 @@ export default function Home() {
                   We&apos;re not just your AI
                 </h1>
                 <div className="hero-text-large" style={{ marginBottom: '20px' }}>
-                  <RotatingText />
+                  <RotatingWords
+                    words={['Consultant', 'Agent', 'Developer', 'Partner']}
+                    intervalMs={2200}
+                    className="font-semibold"
+                    accentClassName="accent-blue accent-animated"
+                  />
                 </div>
                 <h2 className="hero-text-medium text-grey-white">
                   We&apos;re your AI Partner.
@@ -132,8 +137,8 @@ export default function Home() {
                    <section id="pitch" className="section-snap snap-start">
               <div className="content-wrapper">
                 <h2 className="section-heading animate-text" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
-                  We help <span className="animate-text-blue">you</span> understand<br />
-                  the <span className="animate-text-blue">Power of AI.</span>
+                  We help <span className="accent-blue accent-animated">you</span> understand<br />
+                  the <span className="accent-blue accent-animated">Power of AI.</span>
                 </h2>
                 <p className="section-subheading text-grey-white">
                   Your trusted partner in becoming an AI-powered business
@@ -160,7 +165,7 @@ export default function Home() {
                    <section id="results" className="section-snap snap-start">
               <div className="content-wrapper">
                 <h2 className="section-heading animate-text" style={{ marginBottom: '60px' }}>
-                  We don&apos;t sell AI, we sell <span className="animate-text-blue">results</span>
+                  We don&apos;t sell AI, we sell <span className="accent-blue accent-animated">results</span>
                 </h2>
                 
                 <div style={{ 
@@ -235,7 +240,7 @@ export default function Home() {
                 <div style={{ marginTop: '60px' }}>
                   <h2 className="section-heading animate-text" style={{ margin: '40px 0' }}>
                     The best AI systems are built<br />
-                    <span className="animate-text-blue">side by side</span>
+                    <span className="accent-blue accent-animated">side by side</span>
                   </h2>
                   
                   <button

@@ -13,7 +13,7 @@ export default function Journey() {
         <div className="absolute left-1/2 -translate-x-1/2" style={{ top: '35%' }}>
           <h2 className="section-heading-medium animate-text" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
             We spend our days guiding companies<br />
-            through our 3-step <span className="animate-text-blue">AI-Transformation</span> process
+            through our 3-step <span className="accent-blue accent-animated">AI-Transformation</span> process
           </h2>
         </div>
         
