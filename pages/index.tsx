@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import Image from 'next/image';
 import RotatingWords from '../components/RotatingWords';
-import HowWeWork from '../components/HowWeWork';
+import { HowWeWork } from '../components/HowWeWork';
 import Journey from '../components/Journey';
 import LogoCarousel from '../components/LogoCarousel';
 import ContactDrawer from '../components/ContactDrawer';
@@ -11,6 +11,7 @@ import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
 import SectionTriangleTransition from '../components/SectionTriangleTransition';
 import Footer from '../components/Footer';
+import { AnimatedText } from '../components/AnimatedText';
 
 export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -116,8 +117,8 @@ export default function Home() {
                                {/* Hero Section */}
                    <section id="hero" className="section-snap snap-start">
               <div className="content-wrapper">
-                <h1 className="hero-text-large animate-text" style={{ marginBottom: '20px' }}>
-                  We&apos;re not just your AI
+                <h1 className="hero-text-large" style={{ marginBottom: '20px' }}>
+                  <AnimatedText text="We're not just your AI" className="text-white" />
                 </h1>
                 <div className="hero-text-large" style={{ marginBottom: '20px' }}>
                   <RotatingWords
@@ -128,7 +129,7 @@ export default function Home() {
                   />
                 </div>
                 <h2 className="hero-text-medium text-grey-white">
-                  We&apos;re your AI Partner.
+                  <AnimatedText text="We're your AI Partner." className="text-white" delay={0.5} />
                 </h2>
               </div>
             </section>
@@ -136,12 +137,16 @@ export default function Home() {
                                {/* Pitch Section */}
                    <section id="pitch" className="section-snap snap-start">
               <div className="content-wrapper">
-                <h2 className="section-heading animate-text" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
-                  We help <span className="accent-blue accent-animated">you</span> understand<br />
-                  the <span className="accent-blue accent-animated">Power of AI.</span>
+                <h2 className="section-heading" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+                  <AnimatedText text="We help " className="text-white" />
+                  <AnimatedText text="you" className="accent-blue accent-animated" delay={0.3} />
+                  <AnimatedText text=" understand" className="text-white" delay={0.5} />
+                  <br />
+                  <AnimatedText text="the " className="text-white" delay={0.7} />
+                  <AnimatedText text="Power of AI." className="accent-blue accent-animated" delay={0.9} />
                 </h2>
                 <p className="section-subheading text-grey-white">
-                  Your trusted partner in becoming an AI-powered business
+                  <AnimatedText text="Your trusted partner in becoming an AI-powered business" className="text-white" delay={1.1} />
                 </p>
               </div>
             </section>
@@ -164,8 +169,9 @@ export default function Home() {
                                {/* Results Section */}
                    <section id="results" className="section-snap snap-start">
               <div className="content-wrapper">
-                <h2 className="section-heading animate-text" style={{ marginBottom: '60px' }}>
-                  We don&apos;t sell AI, we sell <span className="accent-blue accent-animated">results</span>
+                <h2 className="section-heading" style={{ marginBottom: '60px' }}>
+                  <AnimatedText text="We don't sell AI, we sell " className="text-white" />
+                  <AnimatedText text="results" className="accent-blue accent-animated" delay={0.3} />
                 </h2>
                 
                 <div style={{ 
@@ -238,9 +244,10 @@ export default function Home() {
                 
                 {/* Center content */}
                 <div style={{ marginTop: '60px' }}>
-                  <h2 className="section-heading animate-text" style={{ margin: '40px 0' }}>
-                    The best AI systems are built<br />
-                    <span className="accent-blue accent-animated">side by side</span>
+                  <h2 className="section-heading" style={{ margin: '40px 0' }}>
+                    <AnimatedText text="The best AI systems are built" className="text-white" />
+                    <br />
+                    <AnimatedText text="side by side" className="accent-blue accent-animated" delay={0.3} />
                   </h2>
                   
                   <button

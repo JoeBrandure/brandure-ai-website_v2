@@ -260,6 +260,18 @@ html, body {
   100% { transform: scaleX(.2); opacity: .35; }
 }
 
+/* Smooth Scroll Behavior */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
 /* Fixed navigation */
 .nav-fixed {
   position: fixed;
