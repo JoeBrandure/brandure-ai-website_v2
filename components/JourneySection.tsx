@@ -68,56 +68,7 @@ export default function JourneySection() {
             through our 3-step <span className="gradient-animated">AI-Transformation</span> process
           </h2>
 
-          <div style={{ position: 'relative', minHeight: '400px' }}>
-            {/* Triangular Prisms */}
-            <svg
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '400px',
-                height: '400px',
-                zIndex: 0,
-              }}
-              viewBox="0 0 400 400"
-            >
-              {/* First prism - always visible when active */}
-              <polygon
-                className="triangle-prism hollow"
-                points="200,100 150,200 250,200"
-                style={{
-                  opacity: activeStep >= 0 ? 1 : 0,
-                  transition: 'opacity 0.5s ease',
-                  transform: `rotate(${activeStep * 120}deg)`,
-                  transformOrigin: 'center',
-                }}
-              />
-              
-              {/* Second prism - visible for step 2 and 3 */}
-              <polygon
-                className="triangle-prism semi-transparent"
-                points="200,120 160,210 240,210"
-                style={{
-                  opacity: activeStep >= 1 ? 0.6 : 0,
-                  transition: 'opacity 0.5s ease',
-                  transform: `rotate(${activeStep * 120 + 60}deg)`,
-                  transformOrigin: 'center',
-                }}
-              />
-              
-              {/* Third prism - visible for step 3 */}
-              <polygon
-                className="triangle-prism mostly-transparent"
-                points="200,140 170,220 230,220"
-                style={{
-                  opacity: activeStep >= 2 ? 0.3 : 0,
-                  transition: 'opacity 0.5s ease',
-                  transform: `rotate(${activeStep * 120 + 120}deg)`,
-                  transformOrigin: 'center',
-                }}
-              />
-            </svg>
+          <div style={{ position: 'relative', minHeight: '400px' }} className="flex flex-col items-center justify-center text-center">
 
             {/* Step Content */}
             {steps.map((step, index) => (
