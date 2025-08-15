@@ -12,6 +12,8 @@ import LoadingAnimation from '../components/LoadingAnimation';
 import Contact from '../components/Contact';
 import { AnimatedText } from '../components/AnimatedText';
 import Partnership from '../components/Partnership';
+import Hero from '../components/Hero';
+import Results from '../components/Results';
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -129,24 +131,7 @@ export default function Home() {
                  <div className="main-container snap-y snap-mandatory overflow-y-scroll h-screen" style={{ paddingTop: '60px' }}>
             
                                {/* Hero Section */}
-                   <section id="hero" className="section-snap snap-start">
-              <div className="content-wrapper">
-                <h1 className="hero-text-large" style={{ marginBottom: '20px' }}>
-                  <AnimatedText text="We're not just your AI" className="text-white" />
-                </h1>
-                <div className="hero-text-large" style={{ marginBottom: '20px' }}>
-                  <RotatingWords
-                    words={['Consultant', 'Agent', 'Developer']}
-                    intervalMs={2200}
-                    className="font-semibold"
-                    accentClassName="accent-blue accent-animated"
-                  />
-                </div>
-                <h2 className="hero-text-medium text-grey-white">
-                  <AnimatedText text="We're your AI Partner." className="text-white" delay={0.5} />
-                </h2>
-              </div>
-            </section>
+                   <Hero />
 
                                {/* Pitch Section */}
                    <Pitch />
@@ -159,60 +144,7 @@ export default function Home() {
             
 
                                {/* Results Section */}
-                   <section id="results" className="section-snap snap-start">
-              <div className="content-wrapper">
-                <h2 className="section-heading" style={{ marginBottom: '60px' }}>
-                  <AnimatedText text="We don't sell AI, we sell " className="text-white" />
-                  <AnimatedText text="results" className="accent-blue accent-animated" delay={0.3} />
-                </h2>
-                
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  gap: '40px', 
-                  flexWrap: 'wrap' 
-                }}>
-                  <div style={{ flex: 1, minWidth: '200px' }}>
-                    <div className="hero-text-large" style={{ color: 'white' }}>
-                      <Counter end={48} />
-                    </div>
-                    <div style={{ 
-                      width: '100%', 
-                      height: '2px', 
-                      background: '#00D9FF', 
-                      margin: '20px 0' 
-                    }} />
-                    <p className="body-text">Bespoke AI Solutions Delivered</p>
-                  </div>
-                  
-                  <div style={{ flex: 1, minWidth: '200px' }}>
-                    <div className="hero-text-large" style={{ color: 'white' }}>
-                      <Counter end={220} />
-                    </div>
-                    <div style={{ 
-                      width: '100%', 
-                      height: '2px', 
-                      background: '#00D9FF', 
-                      margin: '20px 0' 
-                    }} />
-                    <p className="body-text">AI Opportunities Identified</p>
-                  </div>
-                  
-                  <div style={{ flex: 1, minWidth: '200px' }}>
-                    <div className="hero-text-large" style={{ color: 'white' }}>
-                      <Counter end={10000} />
-                    </div>
-                    <div style={{ 
-                      width: '100%', 
-                      height: '2px', 
-                      background: '#00D9FF', 
-                      margin: '20px 0' 
-                    }} />
-                    <p className="body-text">Hours Saved through AI Automation</p>
-                  </div>
-                </div>
-              </div>
-            </section>
+                   <Results />
 
                                                               {/* Partnership Section */}
                    <Partnership />

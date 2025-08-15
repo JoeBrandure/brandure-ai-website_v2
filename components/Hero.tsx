@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { AnimatedText } from './AnimatedText';
+import RotatingWords from './RotatingWords';
 
-const ROTATIONS = ['Consulting','Development','Specialist','Provider'];
-
-export default function Hero(){
-  const [idx,setIdx]=useState(0);
-  useEffect(()=>{
-    const t=setInterval(()=>setIdx(i=>(i+1)%ROTATIONS.length),2600);
-    return()=>clearInterval(t);
-  },[]);
+export default function Hero() {
   return (
-    <section className="section-snap bg-[linear-gradient(180deg,#000,rgba(10,10,10,1))]">
-      <div className="w-full max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pt-28 text-center">
-        {/* Three same-sized lines */}
-        <p className="text-[clamp(40px,7.5vw,112px)] leading-[0.98] tracking-[-0.04em] font-light">We&apos;re not just your AI</p>
-        <p className="text-[clamp(40px,7.5vw,112px)] leading-[0.98] tracking-[-0.04em] italic">
-          <span style={{color:'#00D9FF'}}>{ROTATIONS[idx]}</span>
-        </p>
-        <p className="text-[clamp(40px,7.5vw,112px)] leading-[0.98] tracking-[-0.04em] font-light">Company</p>
-
-        <p className="mt-6 text-[clamp(18px,2.2vw,28px)] text-[#C0C0C0]">We&apos;re your AI Partner</p>
+    <section id="hero" className="section-snap snap-start">
+      <div className="content-wrapper">
+        <h1 className="hero-text-large" style={{ marginBottom: '20px' }}>
+          <AnimatedText text="We're not just your AI" className="text-white" />
+        </h1>
+        <div className="hero-text-large" style={{ marginBottom: '20px' }}>
+          <RotatingWords
+            words={['Consultant', 'Agent', 'Developer']}
+            intervalMs={2200}
+            className="font-semibold"
+            accentClassName="accent-blue accent-animated"
+          />
+        </div>
+        <h2 className="hero-text-medium text-grey-white">
+          <AnimatedText text="We're your AI Partner." className="text-white" delay={0.5} />
+        </h2>
       </div>
     </section>
   );

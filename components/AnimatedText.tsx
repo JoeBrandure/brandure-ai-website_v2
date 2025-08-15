@@ -7,6 +7,7 @@ interface AnimatedTextProps {
   delay?: number;
   stagger?: number;
   animationType?: 'fade-up' | 'fade-in' | 'scale';
+  noItalic?: boolean;
 }
 
 export const AnimatedText: React.FC<AnimatedTextProps> = ({
@@ -14,7 +15,8 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   className = '',
   delay = 0,
   stagger = 0.03,
-  animationType = 'fade-up'
+  animationType = 'fade-up',
+  noItalic = false
 }) => {
   const containerRef = useRef<HTMLSpanElement>(null);
 
@@ -40,8 +42,12 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
     });
   }, [text, delay, stagger, animationType]);
 
+  const baseClasses = 'accent-blue accent-animated';
+  const italicClass = noItalic ? '' : 'italic';
+  const finalClasses = `${baseClasses} ${italicClass} ${className}`.trim();
+
   return (
-    <span ref={containerRef} className={className}>
+    <span ref={containerRef} className={finalClasses} style={{ animationDelay: `${delay ?? 0}s` }}>
       {text.split('').map((char, i) => (
         <span key={i} className="char inline-block">
           {char === ' ' ? '\u00A0' : char}
