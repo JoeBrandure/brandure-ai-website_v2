@@ -7,14 +7,40 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
   const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
-    // Animate for 2 seconds then call onComplete
-    const timer = setTimeout(() => {
+    console.log('LoadingAnimation: Starting animation');
+    
+    // Primary timer: complete after 2 seconds
+    const primaryTimer = setTimeout(() => {
+      console.log('LoadingAnimation: Primary timer complete');
       setIsAnimating(false);
-      setTimeout(onComplete, 500); // Fade out transition
     }, 2000);
 
-    return () => clearTimeout(timer);
+    // Secondary timer: call onComplete after fade out
+    const secondaryTimer = setTimeout(() => {
+      console.log('LoadingAnimation: Calling onComplete');
+      onComplete();
+    }, 2500);
+
+    // Fallback timer: force completion after 6 seconds total
+    const fallbackTimer = setTimeout(() => {
+      console.log('LoadingAnimation: Fallback timer triggered');
+      setIsAnimating(false);
+      onComplete();
+    }, 6000);
+
+    return () => {
+      clearTimeout(primaryTimer);
+      clearTimeout(secondaryTimer);
+      clearTimeout(fallbackTimer);
+    };
   }, [onComplete]);
+
+  // Manual skip handler
+  const handleSkip = () => {
+    console.log('LoadingAnimation: Manual skip triggered');
+    setIsAnimating(false);
+    setTimeout(onComplete, 100);
+  };
 
   return (
     <div
@@ -34,7 +60,11 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
       <div
         style={{
           animation: 'logoScale 2s ease-in-out',
+          cursor: 'pointer',
+          position: 'relative',
         }}
+        onClick={handleSkip}
+        title="Click to skip loading"
       >
         <Image
           src="/logos/brandure-ai-white.png"
@@ -48,8 +78,29 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
             maxWidth: '300px',
             objectFit: 'contain'
           }}
+          onError={() => {
+            console.error('LoadingAnimation: Image failed to load');
+            handleSkip();
+          }}
         />
+        
+        {/* Skip hint */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-40px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            color: 'rgba(255, 255, 255, 0.6)',
+            fontSize: '14px',
+            textAlign: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          Click to skip
+        </div>
       </div>
+      
       <style jsx>{`
         @keyframes logoScale {
           0% {

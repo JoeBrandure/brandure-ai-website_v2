@@ -18,7 +18,22 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    console.log('Home: Component mounted, showContent:', showContent);
+    
+    // Fallback: if loading animation doesn't complete within 10 seconds, show content anyway
+    const fallbackTimer = setTimeout(() => {
+      if (!showContent) {
+        console.log('Home: Fallback timer triggered, forcing showContent to true');
+        setShowContent(true);
+      }
+    }, 10000);
+    
+    return () => clearTimeout(fallbackTimer);
+  }, [showContent]);
+
+  useEffect(() => {
+    console.log('Home: showContent changed to:', showContent);
+  }, [showContent]);
 
   return (
     <>
