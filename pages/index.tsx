@@ -10,6 +10,7 @@ import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
 import Contact from '../components/Contact';
 import { AnimatedText } from '../components/AnimatedText';
+import Partnership from '../components/Partnership';
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -211,68 +212,8 @@ export default function Home() {
               </div>
             </section>
 
-                               {/* Partnership Section */}
-                   <section id="partnership" className="section-snap snap-start">
-              <div className="content-wrapper" style={{ 
-                paddingTop: '70px',  // Account for fixed nav
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh'
-              }}>
-                
-                {/* Logo Carousel - Positioned at top */}
-                <div style={{ 
-                  position: 'absolute',
-                  top: '80px',  // Just below header
-                  width: '100%'
-                }}>
-                  <LogoCarousel />
-                </div>
-                
-                {/* Center content */}
-                <div style={{ marginTop: '60px' }}>
-                  <h2 className="section-heading" style={{ margin: '40px 0' }}>
-                    <AnimatedText text="The best AI systems are built" className="text-white" />
-                    <br />
-                    <AnimatedText text="side by side" className="accent-blue accent-animated" delay={0.3} />
-                  </h2>
-                  
-                  <button
-                    onClick={() => document.getElementById('contact-modal')?.classList.remove('hidden')}
-                    style={{ 
-                      fontSize: '1.5rem', 
-                      padding: '20px 60px', 
-                      marginTop: '40px',
-                      color: 'white',
-                      background: 'transparent',
-                      border: '2px solid white',
-                      borderRadius: '50px',
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'white';
-                      e.currentTarget.style.color = 'black';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.color = 'white';
-                    }}
-                  >
-                    Let&apos;s Partner Up
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="7" y1="17" x2="17" y2="7" />
-                      <polyline points="7 7 17 7 17 17" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </section>
+                                                              {/* Partnership Section */}
+                   <Partnership />
 
                                {/* Contact Section */}
                    <section className="snap-start">

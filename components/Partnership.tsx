@@ -1,4 +1,4 @@
-export default function FooterCTA(){
+export default function Partnership(){
   return (
     <section className="section-snap bg-[linear-gradient(180deg,#0a0a0a,#000)]">
       <div className="w-full max-w-5xl mx-auto px-6 md:px-10 lg:px-12 text-center">
