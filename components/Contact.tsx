@@ -1,4 +1,5 @@
 import React from 'react';
+import { AnimatedText } from '../components/AnimatedText';
 
 export default function Contact() {
   return (
@@ -6,61 +7,79 @@ export default function Contact() {
       id="contact"
       className="section-snap relative min-h-screen flex items-center"
     >
-      <div className="container mx-auto max-w-7xl px-6 lg:px-12">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-12 pb-24">
         {/* Heading - matching Journey text size */}
-        <h1 className="text-8xl md:text-9xl font-light leading-tight">
+        <h1 className="text-center text-[clamp(36px,5.5vw,72px)] font-light">
           Ready to{' '}
-          <span className="accent-blue accent-animated font-semibold">
-            transform
-          </span>{' '}
+          <AnimatedText text="transform" className="accent-blue accent-animated" delay={0.3} />{' '}
           your business?
         </h1>
         
         {/* Subheading - matching Hero subtitle size */}
-        <p className="mt-8 text-2xl md:text-3xl text-gray-300">
+        <p className="mt-6 text-[clamp(18px,2.2vw,28px)] text-[#C0C0C0] text-center">
           Let&apos;s discuss how AI can drive your growth
         </p>
         
         {/* CTA Button */}
-        <div className="mt-12">
+        <div className="mt-8 flex justify-center">
           <button
-            type="button"
             onClick={() => document.getElementById('contact-modal')?.classList.remove('hidden')}
-            className="inline-flex items-center gap-3 px-12 py-5 text-lg font-medium border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300"
+            className="cta-button"
+            style={{ 
+              padding: '10px 24px', 
+              fontSize: '1rem',
+              color: 'white',
+              background: 'transparent',
+              border: '2px solid white',
+              borderRadius: '50px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'white';
+              e.currentTarget.style.color = 'black';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = 'white';
+            }}
           >
-            Get Started →
+            Let&apos;s Partner Up
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
           </button>
         </div>
       </div>
       
       {/* Footer Overlay - positioned at bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-40 bg-black/50 backdrop-blur-sm border-t border-white/10">
-        <div className="container mx-auto max-w-7xl px-6 lg:px-12 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-            
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+
             {/* Left: Contact */}
             <div className="text-left">
               <h3 className="font-semibold mb-2">Contact</h3>
-              <div className="flex flex-col md:flex-row md:gap-4 text-sm text-gray-300">
+              <div className="flex flex-row gap-4 text-sm text-gray-300">
                 <span>+971 52 451 9579</span>
                 <span className="hidden md:inline">|</span>
                 <span>+971 52 967 8310</span>
               </div>
             </div>
-            
+
             {/* Center: Legal */}
             <div className="text-center">
               <div className="flex justify-center gap-4 text-sm text-gray-300">
-                <a href="/terms" className="hover:text-white transition">
-                  Terms & Conditions
-                </a>
+                <a href="/terms" className="hover:text-white transition">Terms & Conditions</a>
                 <span>|</span>
-                <a href="/privacy" className="hover:text-white transition">
-                  Privacy Policy
-                </a>
+                <a href="/privacy" className="hover:text-white transition">Privacy Policy</a>
               </div>
             </div>
-            
+
             {/* Right: Follow Us */}
             <div className="text-right">
               <h3 className="font-semibold mb-2">Follow Us</h3>
@@ -76,7 +95,7 @@ export default function Contact() {
                 LinkedIn
               </a>
             </div>
-            
+
           </div>
         </div>
       </div>

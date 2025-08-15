@@ -5,6 +5,7 @@ import Image from 'next/image';
 import RotatingWords from '../components/RotatingWords';
 import Journey from '../components/Journey';
 import LogoCarousel from '../components/LogoCarousel';
+import Pitch from '../components/Pitch';
 
 import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
@@ -133,21 +134,7 @@ export default function Home() {
             </section>
 
                                {/* Pitch Section */}
-                   <section id="pitch" className="section-snap snap-start">
-              <div className="content-wrapper">
-                <h2 className="section-heading" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
-                  <AnimatedText text="We help " className="text-white" />
-                  <AnimatedText text="you" className="accent-blue accent-animated" delay={0.3} />
-                  <AnimatedText text=" understand" className="text-white" delay={0.5} />
-                  <br />
-                  <AnimatedText text="the " className="text-white" delay={0.7} />
-                  <AnimatedText text="Power of AI." className="accent-blue accent-animated" delay={0.9} />
-                </h2>
-                <p className="section-subheading text-grey-white">
-                  <AnimatedText text="Your trusted partner in becoming an AI-powered business" className="text-white" delay={1.1} />
-                </p>
-              </div>
-            </section>
+                   <Pitch />
 
                                {/* Journey Section */}
                    <section className="snap-start">

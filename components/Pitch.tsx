@@ -1,12 +1,20 @@
-export default function Pitch(){
+import React from 'react';
+import { AnimatedText } from '../components/AnimatedText';
+
+export default function Pitch() {
   return (
-    <section className="section-snap bg-[linear-gradient(180deg,#0a0a0a,#000)]">
-      <div className="w-full max-w-5xl mx-auto px-6 md:px-10 lg:px-12 text-center">
-        <p className="text-[clamp(28px,4.5vw,64px)] leading-tight">
-          From Insight to Execution, to Scaling.
-        </p>
-        <p className="mt-3 text-[clamp(22px,2.5vw,32px)] text-[#C0C0C0]">
-          We help <span className="gradient-text">you</span> understand the <span className="gradient-text">Power of AI</span>
+    <section id="pitch" className="section-snap snap-start">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+        <h2 className="section-heading" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+          <AnimatedText text="We help " className="text-white" />
+          <AnimatedText text="you" className="accent-blue accent-animated" delay={0.3} />
+          <AnimatedText text=" understand" className="text-white" delay={0.5} />
+          <br />
+          <AnimatedText text="the " className="text-white" delay={0.7} />
+          <AnimatedText text="Power of AI." className="accent-blue accent-animated" delay={0.9} />
+        </h2>
+        <p className="section-subheading text-grey-white">
+          <AnimatedText text="Your trusted partner in becoming an AI-powered business" className="text-white" delay={1.1} />
         </p>
       </div>
     </section>
