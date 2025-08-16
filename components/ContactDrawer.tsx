@@ -45,6 +45,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     <>
       <div className={`drawer-backdrop ${isOpen ? 'open' : ''}`} onClick={onClose} />
       <div className={`drawer-panel ${isOpen ? 'open' : ''}`}>
+        {/* Header */}
         <div className="px-4 md:px-6 pt-0 pb-[1.75rem]">
           <div className="flex justify-between items-center">
             <h2 className="text-3xl md:text-4xl font-medium text-black">Tell us where you&apos;re at</h2>
@@ -71,6 +72,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           </div>
         </div>
 
+        {/* Scrollable body */}
         <div className="overflow-y-auto px-4 py-1 md:px-6 md:py-2">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Row 1 (2 cols): Name / Email */}
