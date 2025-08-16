@@ -30,6 +30,12 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
+  useEffect(() => {
+    const onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    if (isOpen) window.addEventListener('keydown', onEsc);
+    return () => window.removeEventListener('keydown', onEsc);
+  }, [isOpen, onClose]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
@@ -39,12 +45,12 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     <>
       <div className={`drawer-backdrop ${isOpen ? 'open' : ''}`} onClick={onClose} />
       <div className={`drawer-panel ${isOpen ? 'open' : ''}`}>
-        <div className="p-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-light text-white">Tell us where you&apos;re at</h2>
+        <div className="px-4 md:px-6 pt-0 pb-[1.75rem]">
+          <div className="flex justify-between items-center">
+            <h2 className="text-3xl md:text-4xl font-medium text-black">Tell us where you&apos;re at</h2>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-800 rounded-full transition-colors"
+              className="p-2 hover:bg-gray-200 rounded-full transition-colors"
               aria-label="Close drawer"
             >
               <svg
@@ -56,78 +62,84 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-gray-400"
+                className="text-black"
               >
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
           </div>
+        </div>
 
+        <div className="overflow-y-auto px-4 py-1 md:px-6 md:py-2">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Row 1 (2 cols): Name / Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">What is your name?</label>
+                <label className="block text-sm font-medium text-black mb-2">What is your name?</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                  className="border w-full px-4 py-2 rounded-md"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">What is your email?</label>
+                <label className="block text-sm font-medium text-black mb-2">What is your email?</label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                  className="border w-full px-4 py-2 rounded-md"
                   required
                 />
               </div>
             </div>
 
+            {/* Row 2 (1 col): Role */}
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">What is your role in the company?</label>
+              <label className="block text-sm font-medium text-black mb-2">What is your role in the company?</label>
               <input
                 type="text"
                 value={formData.role}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                className="border w-full px-4 py-2 rounded-md"
                 required
               />
             </div>
 
+            {/* Row 3 (2 cols): Company Name / Company Website */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Company Name</label>
+                <label className="block text-sm font-medium text-black mb-2">Company Name</label>
                 <input
                   type="text"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                  className="border w-full px-4 py-2 rounded-md"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Company Website</label>
+                <label className="block text-sm font-medium text-black mb-2">Company Website</label>
                 <input
                   type="url"
                   value={formData.website}
                   onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                  className="border w-full px-4 py-2 rounded-md"
                 />
               </div>
             </div>
 
+            {/* Row 4 (2 cols): Company Size / Company's Annual Revenue */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Company Size</label>
+                <label className="block text-sm font-medium text-black mb-2">Company Size</label>
                 <select
                   value={formData.size}
                   onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                  className="border w-full px-4 py-2 rounded-md"
                   required
                 >
                   <option value="">Select company size</option>
@@ -139,11 +151,11 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Annual Revenue</label>
+                <label className="block text-sm font-medium text-black mb-2">Company&apos;s Annual Revenue</label>
                 <select
                   value={formData.revenue}
                   onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                  className="border w-full px-4 py-2 rounded-md"
                 >
                   <option value="">Select revenue range</option>
                   <option value="<100K">Less than $100K</option>
@@ -155,12 +167,13 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
               </div>
             </div>
 
+            {/* Row 5 (1 col): Project budget */}
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Project Budget</label>
+              <label className="block text-sm font-medium text-black mb-2">Project budget</label>
               <select
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                className="border w-full px-4 py-2 rounded-md"
               >
                 <option value="">Select budget range</option>
                 <option value="<5K">Less than $5K</option>
@@ -170,12 +183,13 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
               </select>
             </div>
 
+            {/* Row 6 (1 col): What services are you interested in? */}
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Service Interested In</label>
+              <label className="block text-sm font-medium text-black mb-2">What services are you interested in?</label>
               <select
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors"
+                className="border w-full px-4 py-2 rounded-md"
                 required
               >
                 <option value="">Select service</option>
@@ -185,19 +199,21 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
               </select>
             </div>
 
+            {/* Row 7 (1 col): Message */}
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Message</label>
+              <label className="block text-sm font-medium text-black mb-2">Message</label>
               <textarea
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] transition-colors h-32 resize-none"
+                className="border w-full px-4 py-2 rounded-md resize-none"
+                rows={7}
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 font-medium"
+              className="w-fit cursor-pointer rounded-full border border-black px-4 py-2 text-black"
             >
               Send Inquiry
             </button>

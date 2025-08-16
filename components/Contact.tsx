@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AnimatedText from './AnimatedText';
 import ContactDrawer from './ContactDrawer';
 
 export default function Contact() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setIsOpen(true);
+    window.addEventListener('open-contact-drawer', handler);
+    return () => window.removeEventListener('open-contact-drawer', handler);
+  }, []);
 
   return (
     <section id="contact" className="section-snap relative min-h-screen flex items-center">
@@ -19,15 +25,15 @@ export default function Contact() {
         </p>
 
         {/* CTA Button — perfectly centered under subhead */}
-        <div className="mt-12 text-center">
+        <div className="mt-14 text-center">
           <button
             onClick={() => setIsOpen(true)}
             className="cta-button"
           >
             Let&apos;s Partner Up
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="17" y1="7" x2="17" y2="17" />
-              <polyline points="7 17 17 17 17 7" />
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
             </svg>
           </button>
         </div>

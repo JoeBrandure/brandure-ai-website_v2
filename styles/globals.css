@@ -364,36 +364,28 @@ html, body {
   margin: 20px 0;
 }
 
-/* Scoped footer for Contact section */
+/* Contact footer (scoped to Contact.tsx usage) */
 .footer-wrapper {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-}
-.footer-grid {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px 24px; /* includes pb-24 */
+  /* full-width container; match header horizontal rails */
+  padding: 0 24px 24px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
 }
-@media (min-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+
+@media (min-width: 1024px) {
+  .footer-wrapper { padding: 0 48px 24px; }
 }
-.footer-title {
-  text-transform: uppercase;
-  color: #D9D9D9;
-  font-weight: 600;
-}
-.footer-link {
-  color: #D9D9D9;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.footer-link:hover { color: rgba(255,255,255,0.7); }
-.footer-text { color: #D9D9D9; } /* keep size via existing .footer-text definition */
+
+/* Rail alignment per column */
+.footer-left  { justify-self: start; text-align: left; }
+.footer-center{ justify-self: center; text-align: center; white-space: nowrap; }
+.footer-right { justify-self: end;   text-align: right; }
+
+/* Keep existing text styles (no color/size changes here) */
 
 /* ==== Contact footer (scoped by class usage in Contact.tsx) ==== */
 
@@ -501,7 +493,7 @@ html, body {
   width: 100%;
   max-width: 600px;
   height: 100vh;
-  background: #111;
+  background: #EDECE4;
   z-index: 10000;
   transition: right 0.3s ease;
   overflow-y: auto;
