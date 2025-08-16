@@ -5,13 +5,13 @@ export default function Pitch() {
   return (
     <section id="pitch" className="section-snap snap-start">
       <div className="content-wrapper">
-        <h2 className="section-heading text-center" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+        <h2 className="section-heading animate-text text-center" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
           We help <AnimatedText text="you" /> understand
           <br />
           the <AnimatedText text="Power of AI" />
         </h2>
 
-        <p className="section-subheading text-center">
+        <p className="section-subheading text-grey-white text-center">
           Your trusted partner in becoming an AI-powered business.
         </p>
       </div>

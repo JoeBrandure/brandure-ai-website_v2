@@ -6,29 +6,43 @@ export default function Results() {
   return (
     <section id="results" className="section-snap snap-start">
       <div className="content-wrapper">
-        <h2 className="section-heading" style={{ marginBottom: '60px' }}>
-          We don&apos;t sell AI, we sell <AnimatedText text="results" />
+        <h2 className="section-heading animate-text" style={{ marginBottom: '60px' }}>
+          We don&apos;t sell AI, we sell <AnimatedText text="results" delay={0.3} />
         </h2>
 
-        {/* KEEP the rest of your counter layout exactly as it is */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          <div className="text-center">
-            <div className="text-4xl md:text-6xl font-bold text-white">
-              <Counter end={95} suffix="%" />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            gap: '40px',
+            flexWrap: 'wrap'
+          }}
+        >
+          {/* 1 */}
+          <div style={{ flex: 1, minWidth: '200px', textAlign: 'center' }}>
+            <div className="hero-text-large" style={{ color: 'white' }}>
+              <Counter end={48} suffix="+" />
             </div>
-            <p className="mt-2 text-gray-300">Faster Implementation</p>
+            <div className="stat-divider" />
+            <p className="body-text">Bespoke AI Solutions Delivered</p>
           </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-6xl font-bold text-white">
-              <Counter end={3} suffix="x" />
+
+          {/* 2 */}
+          <div style={{ flex: 1, minWidth: '200px', textAlign: 'center' }}>
+            <div className="hero-text-large" style={{ color: 'white' }}>
+              <Counter end={220} suffix="+" />
             </div>
-            <p className="mt-2 text-gray-300">ROI Improvement</p>
+            <div className="stat-divider" />
+            <p className="body-text">AI Opportunities Identified</p>
           </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-6xl font-bold text-white">
-              <Counter end={100} suffix="%" />
+
+          {/* 3 */}
+          <div style={{ flex: 1, minWidth: '200px', textAlign: 'center' }}>
+            <div className="hero-text-large" style={{ color: 'white' }}>
+              <Counter end={10000} suffix="+" />
             </div>
-            <p className="mt-2 text-gray-300">Client Satisfaction</p>
+            <div className="stat-divider" />
+            <p className="body-text">Hours Saved through AI Automation</p>
           </div>
         </div>
       </div>

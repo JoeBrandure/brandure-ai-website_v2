@@ -46,9 +46,16 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   const finalClasses = `${baseClasses} ${italicClass} ${className}`.trim();
 
   return (
-    <span ref={containerRef} className={finalClasses} style={{ animationDelay: `${delay ?? 0}s` }}>
+    <span
+      ref={containerRef}
+      className={finalClasses} // includes 'italic' unless noItalic
+      style={{ animationDelay: `${delay ?? 0}s` }}
+    >
       {text.split('').map((char, i) => (
-        <span key={i} className="char inline-block">
+        <span
+          key={i}
+          className={`char inline-block${noItalic ? '' : ' italic'}`} // per-letter italic
+        >
           {char === ' ' ? '\u00A0' : char}
         </span>
       ))}

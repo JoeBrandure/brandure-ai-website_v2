@@ -9,7 +9,7 @@ interface RotatingWordsProps {
 
 const RotatingWords: React.FC<RotatingWordsProps> = ({
   words,
-  intervalMs = 2200,
+  intervalMs = 2600,
   className = '',
 }) => {
   const [idx, setIdx] = useState(0);
