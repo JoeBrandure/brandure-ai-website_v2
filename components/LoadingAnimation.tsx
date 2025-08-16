@@ -9,37 +9,26 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
   useEffect(() => {
     console.log('LoadingAnimation: Starting animation');
     
-    // Primary timer: complete after 2 seconds
-    const primaryTimer = setTimeout(() => {
-      console.log('LoadingAnimation: Primary timer complete');
+    // Simple timer: complete after 2 seconds
+    const timer = setTimeout(() => {
+      console.log('LoadingAnimation: Timer complete, calling onComplete');
       setIsAnimating(false);
+      // Small delay to ensure state update, then call onComplete
+      setTimeout(() => {
+        console.log('LoadingAnimation: Calling onComplete after state update');
+        onComplete();
+      }, 100);
     }, 2000);
 
-    // Secondary timer: call onComplete after fade out
-    const secondaryTimer = setTimeout(() => {
-      console.log('LoadingAnimation: Calling onComplete');
-      onComplete();
-    }, 2500);
-
-    // Fallback timer: force completion after 6 seconds total
-    const fallbackTimer = setTimeout(() => {
-      console.log('LoadingAnimation: Fallback timer triggered');
-      setIsAnimating(false);
-      onComplete();
-    }, 6000);
-
-    return () => {
-      clearTimeout(primaryTimer);
-      clearTimeout(secondaryTimer);
-      clearTimeout(fallbackTimer);
-    };
+    return () => clearTimeout(timer);
   }, [onComplete]);
 
   // Manual skip handler
   const handleSkip = () => {
     console.log('LoadingAnimation: Manual skip triggered');
     setIsAnimating(false);
-    setTimeout(onComplete, 100);
+    // Call onComplete immediately
+    onComplete();
   };
 
   return (

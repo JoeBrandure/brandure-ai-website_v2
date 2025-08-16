@@ -1,19 +1,13 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Script from 'next/script';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import RotatingWords from '../components/RotatingWords';
-import Journey from '../components/Journey';
-import LogoCarousel from '../components/LogoCarousel';
-import Pitch from '../components/Pitch';
-
-import Counter from '../components/Counter';
 import LoadingAnimation from '../components/LoadingAnimation';
-import Contact from '../components/Contact';
-import { AnimatedText } from '../components/AnimatedText';
-import Partnership from '../components/Partnership';
+import FloatingGradient from '../components/FloatingGradient';
 import Hero from '../components/Hero';
+import Pitch from '../components/Pitch';
+import Journey from '../components/Journey';
+import Partnership from '../components/Partnership';
 import Results from '../components/Results';
+import Contact from '../components/Contact';
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -22,47 +16,27 @@ export default function Home() {
     window.scrollTo(0, 0);
     console.log('Home: Component mounted, showContent:', showContent);
     
-    // Fallback: if loading animation doesn't complete within 10 seconds, show content anyway
+    // Fallback: if loading animation doesn't complete within 5 seconds, show content anyway
     const fallbackTimer = setTimeout(() => {
       if (!showContent) {
         console.log('Home: Fallback timer triggered, forcing showContent to true');
         setShowContent(true);
       }
-    }, 10000);
+    }, 5000);
     
     return () => clearTimeout(fallbackTimer);
   }, [showContent]);
 
-  useEffect(() => {
-    console.log('Home: showContent changed to:', showContent);
-  }, [showContent]);
-
   return (
     <>
-      <Head>
-        <title>Brandure AI — Leading AI Agency & AI Automation Agency in UAE & UK</title>
-        <meta name="description" content="Brandure.ai is your trusted AI Agency and AI Automation Agency, empowering small businesses with bespoke AI Solutions in the UAE & UK." />
-      </Head>
-
-      <Script
-        id="relevance-ai-chat"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              var script = document.createElement('script');
-              script.defer = true;
-              script.src = 'https://app.relevanceai.com/embed/chat-bubble.js';
-              script.setAttribute('data-relevanceai-share-id', 'd7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5');
-              script.setAttribute('data-share-styles', 'starting_message_prompts=Hey%21+Is+there+anything+I+can+help+you+with%3F+&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true');
-              document.body.appendChild(script);
-            })();
-          `
-        }}
-      />
+      {/* Background Elements */}
+      <FloatingGradient />
 
       {!showContent && (
-        <LoadingAnimation onComplete={() => setShowContent(true)} />
+        <LoadingAnimation onComplete={() => {
+          console.log('Home: LoadingAnimation onComplete called, setting showContent to true');
+          setShowContent(true);
+        }} />
       )}
 
       {showContent && (
@@ -127,36 +101,19 @@ export default function Home() {
             </button>
           </nav>
 
-                           {/* Main scroll container */}
-                 <div className="main-container snap-y snap-mandatory overflow-y-scroll h-screen" style={{ paddingTop: '60px' }}>
-            
-                               {/* Hero Section */}
-                   <Hero />
-
-                               {/* Pitch Section */}
-                   <Pitch />
-
-                               {/* Journey Section */}
-                   <section className="snap-start">
-                     <Journey />
-                   </section>
-
-            
-
-                               {/* Results Section */}
-                   <Results />
-
-                                                              {/* Partnership Section */}
-                   <Partnership />
-
-                               {/* Contact Section */}
-                   <section className="snap-start">
-                     <Contact />
-                   </section>
-
+          {/* Main scroll container */}
+          <div className="main-container snap-y snap-mandatory overflow-y-scroll h-screen" style={{ paddingTop: '60px' }}>
+            <Hero />
+            <Pitch />
+            <section className="snap-start">
+              <Journey />
+            </section>
+            <Results />
+            <Partnership />
+            <section className="snap-start">
+              <Contact />
+            </section>
           </div>
-
-
         </>
       )}
     </>

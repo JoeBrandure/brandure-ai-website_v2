@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 interface AnimatedTextProps {
@@ -7,7 +7,7 @@ interface AnimatedTextProps {
   delay?: number;
   stagger?: number;
   animationType?: 'fade-up' | 'fade-in' | 'scale';
-  noItalic?: boolean;
+  noItalic?: boolean; // default false — we want italics on by default
 }
 
 export const AnimatedText: React.FC<AnimatedTextProps> = ({
@@ -16,15 +16,14 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   delay = 0,
   stagger = 0.03,
   animationType = 'fade-up',
-  noItalic = false
+  noItalic = false,
 }) => {
   const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
-
     const chars = containerRef.current.querySelectorAll('.char');
-    
+
     gsap.set(chars, {
       opacity: 0,
       y: animationType === 'fade-up' ? 20 : 0,
@@ -36,9 +35,9 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
       y: 0,
       scale: 1,
       duration: 0.8,
-      stagger: stagger,
-      delay: delay,
-      ease: "power2.out"
+      stagger,
+      delay,
+      ease: 'power2.out',
     });
   }, [text, delay, stagger, animationType]);
 
@@ -56,3 +55,5 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
     </span>
   );
 };
+
+export default AnimatedText;

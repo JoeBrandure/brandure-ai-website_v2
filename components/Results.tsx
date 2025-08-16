@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatedText } from './AnimatedText';
+import AnimatedText from './AnimatedText';
 import Counter from './Counter';
 
 export default function Results() {
@@ -7,53 +7,28 @@ export default function Results() {
     <section id="results" className="section-snap snap-start">
       <div className="content-wrapper">
         <h2 className="section-heading" style={{ marginBottom: '60px' }}>
-          <AnimatedText text="We don't sell AI, we sell " className="text-white" />
-          <AnimatedText text="results" delay={0.3} />
+          We don&apos;t sell AI, we sell <AnimatedText text="results" />
         </h2>
-        
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          gap: '40px', 
-          flexWrap: 'wrap' 
-        }}>
-          <div style={{ flex: 1, minWidth: '200px' }}>
-            <div className="hero-text-large" style={{ color: 'white' }}>
-              <Counter end={48} />
+
+        {/* KEEP the rest of your counter layout exactly as it is */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          <div className="text-center">
+            <div className="text-4xl md:text-6xl font-bold text-white">
+              <Counter end={95} suffix="%" />
             </div>
-            <div style={{ 
-              width: '100%', 
-              height: '2px', 
-              background: '#00D9FF', 
-              margin: '20px 0' 
-            }} />
-            <p className="body-text">Bespoke AI Solutions Delivered</p>
+            <p className="mt-2 text-gray-300">Faster Implementation</p>
           </div>
-          
-          <div style={{ flex: 1, minWidth: '200px' }}>
-            <div className="hero-text-large" style={{ color: 'white' }}>
-              <Counter end={220} />
+          <div className="text-center">
+            <div className="text-4xl md:text-6xl font-bold text-white">
+              <Counter end={3} suffix="x" />
             </div>
-            <div style={{ 
-              width: '100%', 
-              height: '2px', 
-              background: '#00D9FF', 
-              margin: '20px 0' 
-            }} />
-            <p className="body-text">AI Opportunities Identified</p>
+            <p className="mt-2 text-gray-300">ROI Improvement</p>
           </div>
-          
-          <div style={{ flex: 1, minWidth: '200px' }}>
-            <div className="hero-text-large" style={{ color: 'white' }}>
-              <Counter end={10000} />
+          <div className="text-center">
+            <div className="text-4xl md:text-6xl font-bold text-white">
+              <Counter end={100} suffix="%" />
             </div>
-            <div style={{ 
-              width: '100%', 
-              height: '2px', 
-              background: '#00D9FF', 
-              margin: '20px 0' 
-            }} />
-            <p className="body-text">Hours Saved through AI Automation</p>
+            <p className="mt-2 text-gray-300">Client Satisfaction</p>
           </div>
         </div>
       </div>
