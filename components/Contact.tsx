@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AnimatedText from './AnimatedText';
+import ContactDrawer from './ContactDrawer';
 
 export default function Contact() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <section id="contact" className="section-snap relative min-h-screen flex items-center">
       <div className="content-wrapper pb-24">
@@ -16,9 +19,9 @@ export default function Contact() {
         </p>
 
         {/* CTA Button — perfectly centered under subhead */}
-        <div className="mt-6 text-center">
+        <div className="mt-12 text-center">
           <button
-            onClick={() => document.getElementById('contact-modal')?.classList.remove('hidden')}
+            onClick={() => setIsOpen(true)}
             className="cta-button"
           >
             Let&apos;s Partner Up
@@ -30,12 +33,12 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer — scoped to Contact page (bottom placement already correct) */}
+      {/* Footer — scoped to Contact page */}
       <div className="footer-wrapper">
         <div className="footer-grid">
           {/* Left: CONTACT */}
           <div className="footer-left">
-            <h3 className="footer-title">CONTACT</h3>
+            <h3 className="footer-title mb-2">CONTACT</h3>
             <p className="footer-text">
               <a href="mailto:info@brandureai.com" className="footer-link">info@brandureai.com</a>
             </p>
@@ -61,18 +64,16 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* Center: Legal (exactly centered on page) */}
+          {/* Center: Legal (must open same tab) */}
           <div className="footer-center">
-            <p className="footer-legal">
-              <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
-              {' '}|{' '}
-              <a href="/privacy" className="footer-link">Privacy Policy</a>
-            </p>
+            <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
+            <span className="footer-text">{' | '}</span>
+            <a href="/privacy" className="footer-link">Privacy Policy</a>
           </div>
 
           {/* Right: FOLLOW */}
           <div className="footer-right">
-            <h3 className="footer-title">FOLLOW</h3>
+            <h3 className="footer-title mb-2">FOLLOW</h3>
             <p className="footer-text">
               <a
                 href="https://www.linkedin.com/company/brandure-ai/"
@@ -86,6 +87,8 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
+      <ContactDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </section>
   );
 }
