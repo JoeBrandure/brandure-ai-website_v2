@@ -25,72 +25,56 @@ export default function Contact() {
         </p>
 
         {/* CTA Button — perfectly centered under subhead */}
-        <div className="mt-14 text-center">
+        <div className="mt-20 text-center">
           <button
             onClick={() => setIsOpen(true)}
             className="cta-button"
           >
             Let&apos;s Partner Up
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2">
+              <path d="M5 12h14" />
+              <path d="M13 5l7 7-7 7" />
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Footer — scoped to Contact page */}
+      {/* Footer — single-grid, three direct children */}
       <div className="footer-wrapper">
-        <div className="footer-grid">
-          {/* Left: CONTACT */}
-          <div className="footer-left">
-            <h3 className="footer-title mb-2">CONTACT</h3>
-            <p className="footer-text">
-              <a href="mailto:info@brandureai.com" className="footer-link">info@brandureai.com</a>
-            </p>
-            <p className="footer-text">
-              <a
-                href="https://wa.me/971585081399"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                UAE +971 58 508 1399
-              </a>
-            </p>
-            <p className="footer-text">
-              <a
-                href="https://wa.me/447969446013"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                UK +44 7969 446 013
-              </a>
-            </p>
-          </div>
+        {/* Left: CONTACT */}
+        <div className="footer-left">
+          <h3 className="footer-title mb-2">CONTACT</h3>
+          <p className="footer-text">
+            <a href="mailto:info@brandureai.com" className="footer-link">info@brandureai.com</a>
+          </p>
+          <p className="footer-text">
+            <a href="https://wa.me/971585081399" rel="noopener noreferrer" className="footer-link">UAE +971 58 508 1399</a>
+          </p>
+          <p className="footer-text">
+            <a href="https://wa.me/447969446013" rel="noopener noreferrer" className="footer-link">UK +44 7969 446 013</a>
+          </p>
+        </div>
 
-          {/* Center: Legal (must open same tab) */}
-          <div className="footer-center">
-            <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
-            <span className="footer-text">{' | '}</span>
-            <a href="/privacy" className="footer-link">Privacy Policy</a>
-          </div>
+        {/* Center: Legal (same tab) */}
+        <div className="footer-center">
+          <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
+          <span className="footer-text">{' | '}</span>
+          <a href="/privacy" className="footer-link">Privacy Policy</a>
+        </div>
 
-          {/* Right: FOLLOW */}
-          <div className="footer-right">
-            <h3 className="footer-title mb-2">FOLLOW</h3>
-            <p className="footer-text">
-              <a
-                href="https://www.linkedin.com/company/brandure-ai/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                LinkedIn
-              </a>
-            </p>
-          </div>
+        {/* Right: FOLLOW */}
+        <div className="footer-right">
+          <h3 className="footer-title mb-2">FOLLOW</h3>
+          <p className="footer-text">
+            <a
+              href="https://www.linkedin.com/company/brandure-ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              LinkedIn
+            </a>
+          </p>
         </div>
       </div>
 

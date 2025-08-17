@@ -19,8 +19,8 @@ export default function Navigation(){
         />
         <button
           onClick={(e) => {
-            // keep default anchor behaviour if present; just also open the drawer
-            window.dispatchEvent(new CustomEvent('open-contact-drawer'));
+            e.preventDefault();
+            window.dispatchEvent(new Event('open-contact-drawer'));
           }}
           className="inline-flex items-center gap-1 px-5 py-2 border border-white rounded-full text-white bg-transparent hover:bg-white hover:text-black transition"
         >

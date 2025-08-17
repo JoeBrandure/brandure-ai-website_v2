@@ -5,7 +5,7 @@ export default function Partnership() {
   return (
     <section id="partnership" className="section-snap snap-start">
       <div className="content-wrapper">
-        <p className="section-heading animate-text text-center mb-4">
+        <p className="section-heading animate-text text-center mb-8">
           The best AI systems are built
           <br />
           <AnimatedText text="side-by-side" />

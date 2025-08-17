@@ -389,28 +389,39 @@ html, body {
 
 /* ==== Contact footer (scoped by class usage in Contact.tsx) ==== */
 
+/* One grid container with 3 columns */
 .footer-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   width: 100%;
-  padding: 0 40px 24px; /* match header rails + keep bottom inset */
+  max-width: 1200px;
+  margin: 0 auto;
+
+  /* rails consistent with header (use same horizontal insets) */
+  padding: 0 24px 24px;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* left / center / right */
+  align-items: end;
+  gap: 16px;
+
   font-family: 'DM Sans', sans-serif;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* equal left/right, auto center for true page center */
-  align-items: end;
-  gap: 16px;
-}
+/* Direct children alignment per column */
+.footer-left   { justify-self: start; text-align: left; }
+.footer-center { justify-self: center; text-align: center; white-space: nowrap; }
+.footer-right  { justify-self: end; text-align: right; }
 
-.footer-left { text-align: left; }
-.footer-center { text-align: center; }
-.footer-right { text-align: right; }
-
+/* Typography */
 .footer-title {
   text-transform: uppercase;
-  font-weight: 400;         /* NOT bold */
+  font-weight: 400;            /* NOT bold */
   color: #C0C0C0;
-  font-size: 0.875rem;      /* align with footer text scale */
+  font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 8px;
 }
@@ -426,27 +437,18 @@ html, body {
   text-decoration: none;
   transition: color 0.2s ease;
 }
+.footer-link:hover { color: rgba(255,255,255,0.7); }
 
-.footer-link:hover {
-  color: rgba(255, 255, 255, 0.7); /* hover:text-white/70 */
-}
-
-.footer-legal {
-  color: #C0C0C0;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  white-space: nowrap;
-}
-
-/* Mobile: stack blocks and center align like morningside */
+/* Mobile: stack blocks, center align like desktop fallback */
 @media (max-width: 1024px) {
-  .footer-grid {
+  .footer-wrapper {
     grid-template-columns: 1fr;
-    gap: 12px;
+    text-align: center;
   }
   .footer-left,
   .footer-center,
   .footer-right {
+    justify-self: center;
     text-align: center;
   }
 }
