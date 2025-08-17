@@ -44,7 +44,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
   return (
     <>
       <div className={`drawer-backdrop ${isOpen ? 'open' : ''}`} onClick={onClose} />
-      <div className={`drawer-panel ${isOpen ? 'open' : ''} bg-black text-white`}>
+      <div className={`drawer-panel ${isOpen ? 'open' : ''} bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white`}>
         <div className="p-6 md:p-8">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-3xl md:text-4xl font-medium">Tell us where you&apos;re at</h2>
@@ -78,7 +78,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
+                    placeholder="Enter your name"
                     required
                   />
                 </div>
@@ -88,7 +89,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
+                    placeholder="Enter your email"
                     required
                   />
                 </div>
@@ -101,7 +103,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   type="text"
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
+                  placeholder="Enter your role"
                   required
                 />
               </div>
@@ -114,7 +117,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
+                    placeholder="Enter company name"
                     required
                   />
                 </div>
@@ -124,7 +128,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                     type="url"
                     value={formData.website}
                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
+                    placeholder="https://example.com"
                   />
                 </div>
               </div>
@@ -136,7 +141,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   <select
                     value={formData.size}
                     onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
                     required
                   >
                     <option value="">Select company size</option>
@@ -152,7 +157,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   <select
                     value={formData.revenue}
                     onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
-                    className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
                   >
                     <option value="">Select revenue range</option>
                     <option value="<100K">Less than $100K</option>
@@ -170,7 +175,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 <select
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
                 >
                   <option value="">Select budget range</option>
                   <option value="<5K">Less than $5K</option>
@@ -186,7 +191,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF]"
+                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
                   required
                 >
                   <option value="">Select service</option>
@@ -202,7 +207,8 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 <textarea
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-neutral-900 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-[#00D9FF] h-32 resize-none"
+                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500 resize-none"
+                  placeholder="Tell us about your project..."
                   rows={7}
                   required
                 />

@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ContactDrawerContext } from '../pages/_app';
 
 export default function Navigation(){
   const [scrolled,setScrolled]=useState(false);
+  const { openDrawer } = useContext(ContactDrawerContext);
+  
   useEffect(()=>{
     const onScroll=()=>setScrolled(window.scrollY>50);
     window.addEventListener('scroll',onScroll);
@@ -18,10 +21,7 @@ export default function Navigation(){
           className="h-10 md:h-12 lg:h-14 w-auto"
         />
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            window.dispatchEvent(new Event('open-contact-drawer'));
-          }}
+          onClick={openDrawer}
           className="inline-flex items-center gap-1 px-5 py-2 border border-white rounded-full text-white bg-transparent hover:bg-white hover:text-black transition"
         >
           Get In Touch →
