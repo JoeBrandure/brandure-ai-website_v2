@@ -34,39 +34,42 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer — simplified single grid layout */}
-      <div className="absolute bottom-0 left-0 right-0 w-full px-6 md:px-12 py-8">
-        <div className="grid grid-cols-3 items-center">
-          <div className="text-left">
-            <p className="text-sm text-gray-400 mb-2">CONTACT</p>
-            <a href="mailto:info@brandureai.com" className="text-white hover:text-[#00D9FF] block">
-              info@brandureai.com
-            </a>
-            <a href="https://wa.me/971585081399" rel="noopener noreferrer" className="text-white hover:text-[#00D9FF] block">
-              UAE +971 58 508 1399
-            </a>
-            <a href="https://wa.me/447969446013" rel="noopener noreferrer" className="text-white hover:text-[#00D9FF] block">
-              UK +44 7969 446 013
-            </a>
-          </div>
-          
-          <div className="text-center">
-            <a href="/terms" className="text-gray-400 hover:text-white">Terms &amp; Conditions</a>
-            <span className="mx-2 text-gray-600">|</span>
-            <a href="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</a>
-          </div>
-          
-          <div className="text-right">
-            <p className="text-sm text-gray-400 mb-2">FOLLOW</p>
+      {/* Footer — single-grid, three direct children */}
+      <div className="footer-wrapper">
+        {/* Left: CONTACT */}
+        <div className="footer-left">
+          <h3 className="footer-title mb-2">CONTACT</h3>
+          <p className="footer-text">
+            <a href="mailto:info@brandureai.com" className="footer-link">info@brandureai.com</a>
+          </p>
+          <p className="footer-text">
+            <a href="https://wa.me/971585081399" rel="noopener noreferrer" className="footer-link">UAE +971 58 508 1399</a>
+          </p>
+          <p className="footer-text">
+            <a href="https://wa.me/447969446013" rel="noopener noreferrer" className="footer-link">UK +44 7969 446 013</a>
+          </p>
+        </div>
+
+        {/* Center: Legal (same tab) */}
+        <div className="footer-center">
+          <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
+          <span className="footer-text">{' | '}</span>
+          <a href="/privacy" className="footer-link">Privacy Policy</a>
+        </div>
+
+        {/* Right: FOLLOW */}
+        <div className="footer-right">
+          <h3 className="footer-title mb-2">FOLLOW</h3>
+          <p className="footer-text">
             <a
               href="https://www.linkedin.com/company/brandure-ai/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-[#00D9FF]"
+              className="footer-link"
             >
               LinkedIn
             </a>
-          </div>
+          </p>
         </div>
       </div>
 
