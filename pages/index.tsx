@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Image from 'next/image';
-import LoadingAnimation from '../components/LoadingAnimation';
-import FloatingGradient from '../components/FloatingGradient';
 import Hero from '../components/Hero';
 import Pitch from '../components/Pitch';
 import Journey from '../components/Journey';
-import Partnership from '../components/Partnership';
 import Results from '../components/Results';
+import Partnership from '../components/Partnership';
 import Contact from '../components/Contact';
+import LoadingAnimation from '../components/LoadingAnimation';
+import FloatingGradient from '../components/FloatingGradient';
+import { ContactDrawerContext } from './_app';
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
+  const { openDrawer } = useContext(ContactDrawerContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log('Home: Component mounted, showContent:', showContent);
-    
-    // Fallback: if loading animation doesn't complete within 5 seconds, show content anyway
     const fallbackTimer = setTimeout(() => {
       if (!showContent) {
-        console.log('Home: Fallback timer triggered, forcing showContent to true');
+        console.log('Home: Fallback timer triggered, setting showContent to true');
         setShowContent(true);
       }
     }, 5000);
@@ -69,7 +68,7 @@ export default function Home() {
               }}
             />
             <button
-              onClick={() => document.getElementById('contact-modal')?.classList.remove('hidden')}
+              onClick={openDrawer}
               className="cta-button"
               style={{ 
                 padding: '10px 24px', 
