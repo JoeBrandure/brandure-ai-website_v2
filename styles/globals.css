@@ -362,9 +362,31 @@ html, body {
 }
 
 /* Direct children alignment per column */
-.footer-left   { justify-self: start; text-align: left; }
-.footer-center { justify-self: center; text-align: center; white-space: nowrap; }
-.footer-right  { justify-self: end; text-align: right; }
+.footer-left   { 
+  justify-self: start; 
+  text-align: left; 
+  padding-left: 24px;  /* Match Navigation padding */
+}
+.footer-center { 
+  justify-self: center; 
+  text-align: center; 
+  white-space: nowrap; 
+}
+.footer-right  { 
+  justify-self: end; 
+  text-align: right; 
+  padding-right: 24px;  /* Match Navigation padding */
+}
+
+/* Add desktop media query for larger padding: */
+@media (min-width: 768px) {
+  .footer-left {
+    padding-left: 48px;  /* Desktop: 48px like Navigation */
+  }
+  .footer-right {
+    padding-right: 48px;  /* Desktop: 48px like Navigation */
+  }
+}
 
 /* Typography */
 .footer-title {

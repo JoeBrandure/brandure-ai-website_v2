@@ -19,8 +19,6 @@ export default function Contact() {
           Let&apos;s discuss how AI can drive your growth
         </p>
 
-        <h2></h2> {/* Add this empty h2 as structural break - EXACTLY like Results page */}
-
         {/* CTA Button — perfectly centered under subhead */}
         <div className="text-center">
           <button
