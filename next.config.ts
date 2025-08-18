@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
         removeAvailableModules: false,
         removeEmptyChunks: false,
         splitChunks: false,
+        // Disable code splitting in development to prevent corruption
+        runtimeChunk: false,
       };
       
       // Ensure stable module resolution
@@ -24,8 +26,26 @@ const nextConfig: NextConfig = {
         fs: false,
         net: false,
         tls: false,
+        crypto: false,
+        stream: false,
+        url: false,
+        zlib: false,
+        http: false,
+        https: false,
+        assert: false,
+        os: false,
+        path: false,
       };
+      
+      // Disable aggressive caching in development
+      config.cache = false;
     }
+    
+    // Ensure stable module resolution for all environments
+    config.resolve.extensionAlias = {
+      '.js': ['.js', '.ts', '.tsx'],
+      '.jsx': ['.jsx', '.tsx'],
+    };
     
     return config;
   },
@@ -35,6 +55,16 @@ const nextConfig: NextConfig = {
   
   // Disable source maps in production to prevent corruption
   productionBrowserSourceMaps: false,
+  
+  // Force stable TypeScript compilation
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  
+  // Ensure stable ESLint configuration
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 };
 
 export default nextConfig;

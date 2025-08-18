@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "./scripts/clean-dev.sh",
+    "clean:dev": "rm -rf .next && rm -rf node_modules/.cache && pkill -f 'next dev' 2>/dev/null || true"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.6",
