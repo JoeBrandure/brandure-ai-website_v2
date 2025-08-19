@@ -576,7 +576,7 @@ section#contact .footer-wrapper,
 .footer-left   { 
   justify-self: start !important; 
   text-align: left !important; 
-  padding-left: 24px !important;  /* Match Navigation padding */
+  padding-left: 0 !important;  /* Remove padding to align with blue line */
   
   /* DEBUG: Show left edge alignment */
   border-left: 3px solid blue !important;
@@ -609,7 +609,7 @@ section#contact .footer-wrapper,
 .footer-right  { 
   justify-self: end !important; 
   text-align: right !important; 
-  padding-right: 24px !important;  /* Match Navigation padding */
+  padding-right: 0 !important;  /* Remove padding to align with orange line */
   
   /* DEBUG: Show right edge alignment */
   border-right: 3px solid orange !important;
@@ -668,6 +668,7 @@ section#contact .footer-wrapper,
     justify-self: start !important;
     text-align: left !important;
     grid-column: 1 !important;
+    grid-row: 1 !important; /* First row */
   }
   
   section#contact .footer-right,
@@ -675,13 +676,15 @@ section#contact .footer-wrapper,
     justify-self: end !important;
     text-align: right !important;
     grid-column: 2 !important;
+    grid-row: 1 !important; /* First row - same as CONTACT */
   }
   
   section#contact .footer-center,
   .footer-center {
     justify-self: center !important;
     text-align: center !important;
-    grid-column: 1 / -1 !important; /* Span both columns underneath */
+    grid-column: 1 / -1 !important; /* Span both columns */
+    grid-row: 2 !important; /* Second row - below CONTACT and FOLLOW */
     margin-top: 16px !important;
   }
 }
