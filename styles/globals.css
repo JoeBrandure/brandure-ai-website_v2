@@ -168,7 +168,7 @@ html, body {
 /* Sticky chat widget */
 .chat-widget-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 80px; /* Moved up to avoid blocking footer text */
   right: 20px;
   z-index: 1000;
 }
@@ -658,19 +658,26 @@ section#contact .footer-wrapper,
 @media (max-width: 767px) {
   section#contact .footer-wrapper,
   .footer-wrapper {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr 1fr !important; /* Two columns for CONTACT and FOLLOW */
     text-align: center !important;
     /* Ensure mobile padding is applied */
     padding: 0 24px 24px !important;
   }
   section#contact .footer-left,
-  .footer-left,
+  .footer-left {
+    justify-self: start !important;
+    text-align: left !important;
+  }
   section#contact .footer-center,
-  .footer-center,
-  section#contact .footer-right,
-  .footer-right {
+  .footer-center {
     justify-self: center !important;
     text-align: center !important;
+    grid-column: 1 / -1 !important; /* Span both columns underneath */
+  }
+  section#contact .footer-right,
+  .footer-right {
+    justify-self: end !important;
+    text-align: right !important;
   }
   
   /* Mobile: ensure footer columns have proper padding */
