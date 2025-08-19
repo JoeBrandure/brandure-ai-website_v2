@@ -588,7 +588,7 @@ section#contact .footer-wrapper,
 .footer-left::before {
   content: '' !important;
   position: absolute !important;
-  left: -24px !important; /* 24px to the left of the content */
+  left: 0 !important; /* Align with the blue line */
   top: 0 !important;
   bottom: 0 !important;
   width: 2px !important;
@@ -621,7 +621,7 @@ section#contact .footer-wrapper,
 .footer-right::after {
   content: '' !important;
   position: absolute !important;
-  right: -24px !important; /* 24px to the right of the content */
+  right: 0 !important; /* Align with the orange line */
   top: 0 !important;
   bottom: 0 !important;
   width: 2px !important;
@@ -662,22 +662,26 @@ section#contact .footer-wrapper,
     text-align: center !important;
     /* Ensure mobile padding is applied */
     padding: 0 24px 24px !important;
+    gap: 32px !important; /* Add gap between CONTACT and FOLLOW */
   }
   section#contact .footer-left,
   .footer-left {
     justify-self: start !important;
     text-align: left !important;
+    grid-column: 1 !important; /* Left column */
+  }
+  section#contact .footer-right,
+  .footer-right {
+    justify-self: end !important;
+    text-align: right !important;
+    grid-column: 2 !important; /* Right column */
   }
   section#contact .footer-center,
   .footer-center {
     justify-self: center !important;
     text-align: center !important;
     grid-column: 1 / -1 !important; /* Span both columns underneath */
-  }
-  section#contact .footer-right,
-  .footer-right {
-    justify-self: end !important;
-    text-align: right !important;
+    margin-top: 24px !important; /* Add space above Terms & Privacy */
   }
   
   /* Mobile: ensure footer columns have proper padding */
