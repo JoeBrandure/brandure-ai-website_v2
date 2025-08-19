@@ -533,42 +533,26 @@ section#contact .footer-wrapper,
   }
 }
 
-/* Responsive padding for footer columns to match Navigation */
+/* Responsive edge marker positioning to match Navigation padding */
 @media (min-width: 768px) {
-  section#contact .footer-left,
-  .footer-left {
-    padding-left: 40px !important; /* md:px-10 = 40px */
-  }
-  section#contact .footer-right,
-  .footer-right {
-    padding-right: 40px !important; /* md:px-10 = 40px */
-  }
   section#contact .footer-left::before,
   .footer-left::before {
-    left: -40px !important; /* Update edge marker position */
+    left: -40px !important; /* Update edge marker position to match md padding */
   }
   section#contact .footer-right::after,
   .footer-right::after {
-    right: -40px !important; /* Update edge marker position */
+    right: -40px !important; /* Update edge marker position to match md padding */
   }
 }
 
 @media (min-width: 1024px) {
-  section#contact .footer-left,
-  .footer-left {
-    padding-left: 48px !important; /* lg:px-12 = 48px */
-  }
-  section#contact .footer-right,
-  .footer-right {
-    padding-right: 48px !important; /* lg:px-12 = 48px */
-  }
   section#contact .footer-left::before,
   .footer-left::before {
-    left: -48px !important; /* Update edge marker position */
+    left: -48px !important; /* Update edge marker position to match lg padding */
   }
   section#contact .footer-right::after,
   .footer-right::after {
-    right: -48px !important; /* Update edge marker position */
+    right: -48px !important; /* Update edge marker position to match lg padding */
   }
 }
 
@@ -669,6 +653,7 @@ section#contact .footer-wrapper,
     text-align: left !important;
     grid-column: 1 !important;
     grid-row: 1 !important; /* First row */
+    align-self: start !important; /* Align to top of row */
   }
   
   section#contact .footer-right,
@@ -677,6 +662,7 @@ section#contact .footer-wrapper,
     text-align: right !important;
     grid-column: 2 !important;
     grid-row: 1 !important; /* First row - same as CONTACT */
+    align-self: start !important; /* Align to top of row - same height as CONTACT */
   }
   
   section#contact .footer-center,
