@@ -50,26 +50,26 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Center: Legal (same tab) */}
-        <div className="footer-center">
-          <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
-          <span className="footer-text">{' | '}</span>
-          <a href="/privacy" className="footer-link">Privacy Policy</a>
-        </div>
+                      {/* Center: Legal (new tab) */}
+              <div className="footer-center">
+                <a href="/brandure-terms.pdf" target="_blank" rel="noopener noreferrer" className="footer-link">Terms &amp; Conditions</a>
+                <span className="footer-text">{' | '}</span>
+                <a href="/brandure-legal.pdf" target="_blank" rel="noopener noreferrer" className="footer-link">Privacy Policy</a>
+              </div>
 
         {/* Right: FOLLOW */}
         <div className="footer-right">
           <h3 className="footer-title mb-2">FOLLOW</h3>
-          <p className="footer-text">
-            <a
-              href="https://www.linkedin.com/company/brandure-ai/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-link"
-            >
-              LinkedIn
-            </a>
-          </p>
+                            <p className="footer-text">
+                    <a
+                      href="https://www.linkedin.com/company/brandure-ai/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer-link"
+                    >
+                      LINKEDIN
+                    </a>
+                  </p>
         </div>
       </div>
 

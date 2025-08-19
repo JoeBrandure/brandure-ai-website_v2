@@ -513,9 +513,7 @@ section#contact .footer-wrapper,
   font-family: 'DM Sans', sans-serif !important;
   z-index: 50 !important;
   
-  /* DEBUG: Show footer container boundaries */
-  border: 3px solid red !important;
-  background: rgba(255, 0, 0, 0.1) !important;
+                /* Footer container - no debug styles */
 }
 
 /* Add responsive padding to match Navigation exactly */
@@ -533,84 +531,27 @@ section#contact .footer-wrapper,
   }
 }
 
-/* Responsive edge marker positioning to match Navigation padding */
-@media (min-width: 768px) {
-  section#contact .footer-left::before,
-  .footer-left::before {
-    left: -40px !important; /* Update edge marker position to match md padding */
-  }
-  section#contact .footer-right::after,
-  .footer-right::after {
-    right: -40px !important; /* Update edge marker position to match md padding */
-  }
-}
-
-@media (min-width: 1024px) {
-  section#contact .footer-left::before,
-  .footer-left::before {
-    left: -48px !important; /* Update edge marker position to match lg padding */
-  }
-  section#contact .footer-right::after,
-  .footer-right::after {
-    right: -48px !important; /* Update edge marker position to match lg padding */
-  }
-}
+/* Responsive footer positioning - no edge markers needed */
 
 /* Direct children alignment per column */
 .footer-left   { 
   justify-self: start !important; 
   text-align: left !important; 
-  padding-left: 0 !important;  /* Remove padding to align with blue line */
-  
-  /* DEBUG: Show left edge alignment */
-  border-left: 3px solid blue !important;
-  background: rgba(0, 0, 255, 0.1) !important;
-  
-  /* DEBUG: Add left edge marker */
+  padding-left: 0 !important;  /* Remove padding to align with edge */
   position: relative !important;
-}
-.footer-left::before {
-  content: '' !important;
-  position: absolute !important;
-  left: 0 !important; /* Align with the blue line */
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 2px !important;
-  background: yellow !important;
-  z-index: 100 !important;
 }
 
 .footer-center { 
   justify-self: center !important; 
   text-align: center !important; 
   white-space: nowrap !important; 
-  
-  /* DEBUG: Show center boundaries */
-  border: 2px solid green !important;
-  background: rgba(0, 255, 0, 0.1) !important;
 }
 
 .footer-right  { 
   justify-self: end !important; 
   text-align: right !important; 
-  padding-right: 0 !important;  /* Remove padding to align with orange line */
-  
-  /* DEBUG: Show right edge alignment */
-  border-right: 3px solid orange !important;
-  background: rgba(255, 165, 0, 0.1) !important;
-  
-  /* DEBUG: Add right edge marker */
+  padding-right: 0 !important;  /* Remove padding to align with edge */
   position: relative !important;
-}
-.footer-right::after {
-  content: '' !important;
-  position: absolute !important;
-  right: 0 !important; /* Align with the orange line */
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 2px !important;
-  background: yellow !important;
-  z-index: 100 !important;
 }
 
 
