@@ -516,25 +516,6 @@ section#contact .footer-wrapper,
   /* DEBUG: Show footer container boundaries */
   border: 3px solid red !important;
   background: rgba(255, 0, 0, 0.1) !important;
-  
-  /* DEBUG: Show left and right edge markers */
-  position: relative !important;
-}
-.footer-wrapper::before,
-.footer-wrapper::after {
-  content: '' !important;
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 2px !important;
-  background: yellow !important;
-  z-index: 100 !important;
-}
-.footer-wrapper::before {
-  left: 24px !important; /* Left edge marker */
-}
-.footer-wrapper::after {
-  right: 24px !important; /* Right edge marker */
 }
 
 /* Add desktop padding to match Navigation */
@@ -559,7 +540,21 @@ section#contact .footer-wrapper,
   /* DEBUG: Show left edge alignment */
   border-left: 3px solid blue !important;
   background: rgba(0, 0, 255, 0.1) !important;
+  
+  /* DEBUG: Add left edge marker */
+  position: relative !important;
 }
+.footer-left::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -24px !important; /* 24px to the left of the content */
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 2px !important;
+  background: yellow !important;
+  z-index: 100 !important;
+}
+
 .footer-center { 
   justify-self: center !important; 
   text-align: center !important; 
@@ -569,6 +564,7 @@ section#contact .footer-wrapper,
   border: 2px solid green !important;
   background: rgba(0, 255, 0, 0.1) !important;
 }
+
 .footer-right  { 
   justify-self: end !important; 
   text-align: right !important; 
@@ -577,6 +573,19 @@ section#contact .footer-wrapper,
   /* DEBUG: Show right edge alignment */
   border-right: 3px solid orange !important;
   background: rgba(255, 165, 0, 0.1) !important;
+  
+  /* DEBUG: Add right edge marker */
+  position: relative !important;
+}
+.footer-right::after {
+  content: '' !important;
+  position: absolute !important;
+  right: -24px !important; /* 24px to the right of the content */
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 2px !important;
+  background: yellow !important;
+  z-index: 100 !important;
 }
 
 
