@@ -489,7 +489,9 @@ html, body {
 
 /* === Contact footer (scoped by class usage in Contact.tsx) === */
 
-/* One grid container with 3 columns */
+/* One grid container with 3 columns - DEBUG VERSION */
+/* Ultra-high specificity to override any conflicts */
+section#contact .footer-wrapper,
 .footer-wrapper {
   position: absolute !important;
   left: 0 !important;
@@ -510,6 +512,7 @@ html, body {
 
   font-family: 'DM Sans', sans-serif !important;
   z-index: 50 !important;
+  border: 5px solid red !important; /* DEBUG: This should be very visible */
 }
 
 /* Add desktop padding to match Navigation */
@@ -527,19 +530,22 @@ html, body {
 
 /* Direct children alignment per column */
 .footer-left   { 
-  justify-self: start; 
-  text-align: left; 
-  padding-left: 24px;  /* Match Navigation padding */
+  justify-self: start !important; 
+  text-align: left !important; 
+  padding-left: 24px !important;  /* Match Navigation padding */
+  background: rgba(255, 0, 0, 0.2) !important; /* DEBUG: Red background */
 }
 .footer-center { 
-  justify-self: center; 
-  text-align: center; 
-  white-space: nowrap; 
+  justify-self: center !important; 
+  text-align: center !important; 
+  white-space: nowrap !important; 
+  background: rgba(0, 255, 0, 0.2) !important; /* DEBUG: Green background */
 }
 .footer-right  { 
-  justify-self: end; 
-  text-align: right; 
-  padding-right: 24px;  /* Match Navigation padding */
+  justify-self: end !important; 
+  text-align: right !important; 
+  padding-right: 24px !important;  /* Match Navigation padding */
+  background: rgba(0, 0, 255, 0.2) !important; /* DEBUG: Blue background */
 }
 
 
@@ -570,14 +576,14 @@ html, body {
 /* Mobile: stack blocks, center align like desktop fallback */
 @media (max-width: 1024px) {
   .footer-wrapper {
-    grid-template-columns: 1fr;
-    text-align: center;
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
   }
   .footer-left,
   .footer-center,
   .footer-right {
-    justify-self: center;
-    text-align: center;
+    justify-self: center !important;
+    text-align: center !important;
   }
 }
 
