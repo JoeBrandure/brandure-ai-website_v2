@@ -654,41 +654,34 @@ section#contact .footer-wrapper,
 }
 .footer-link:hover { color: rgba(255,255,255,0.7); }
 
-/* Mobile: stack blocks, center align like desktop fallback */
+/* Mobile: responsive layout for small screens */
 @media (max-width: 767px) {
   section#contact .footer-wrapper,
   .footer-wrapper {
-    display: flex !important;
-    flex-direction: column !important;
+    grid-template-columns: 1fr 1fr !important; /* Two columns for CONTACT and FOLLOW */
     gap: 16px !important;
     padding: 0 24px 24px !important;
   }
   
-  /* Mobile: CONTACT and FOLLOW side by side */
-  .footer-top-row {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    gap: 24px !important;
-  }
-  
   section#contact .footer-left,
   .footer-left {
-    flex: 1 !important;
+    justify-self: start !important;
     text-align: left !important;
-    padding-left: 0 !important;
+    grid-column: 1 !important;
   }
   
   section#contact .footer-right,
   .footer-right {
-    flex: 1 !important;
+    justify-self: end !important;
     text-align: right !important;
-    padding-right: 0 !important;
+    grid-column: 2 !important;
   }
   
   section#contact .footer-center,
   .footer-center {
+    justify-self: center !important;
     text-align: center !important;
+    grid-column: 1 / -1 !important; /* Span both columns underneath */
     margin-top: 16px !important;
   }
 }
