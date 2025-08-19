@@ -8,6 +8,7 @@ import Partnership from '../components/Partnership';
 import Contact from '../components/Contact';
 import LoadingAnimation from '../components/LoadingAnimation';
 import FloatingGradient from '../components/FloatingGradient';
+import ChatWidget from '../components/ChatWidget';
 import { ContactDrawerContext } from './_app';
 
 export default function Home() {
@@ -115,6 +116,9 @@ export default function Home() {
           </div>
         </>
       )}
+
+      {/* Chat Widget - Always visible */}
+      <ChatWidget />
     </>
   );
 }
