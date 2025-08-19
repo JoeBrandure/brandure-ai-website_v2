@@ -23,6 +23,9 @@ export default function Partnership() {
             Accelerate your AI adoption journey.
           </p>
           
+          {/* Spacing between subheading and icon cloud */}
+          <div className="mb-16"></div>
+          
           {/* Interactive Icon Cloud */}
           <InteractiveIconCloud />
         </div>

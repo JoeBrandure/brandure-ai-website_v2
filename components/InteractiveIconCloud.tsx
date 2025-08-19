@@ -41,7 +41,7 @@ export default function InteractiveIconCloud() {
       const phi = Math.acos(-1 + (2 * index) / logos.length); // Vertical angle
       const theta = Math.sqrt(logos.length * Math.PI) * phi; // Horizontal angle
       
-      const radius = 80; // Sphere radius
+      const radius = 120; // Larger sphere radius for bigger display
       const x = radius * Math.cos(theta) * Math.sin(phi);
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
