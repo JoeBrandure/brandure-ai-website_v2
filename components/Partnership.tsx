@@ -5,12 +5,12 @@ import LogoCarousel from './LogoCarousel';
 export default function Partnership() {
   return (
     <section id="partnership" className="section-snap snap-start">
-      {/* Logo Carousel positioned above heading, below navigation */}
-      <div className="pt-20 pb-8">
-        <LogoCarousel />
-      </div>
-      
       <div className="content-wrapper">
+        {/* Logo Carousel positioned above heading with proper spacing */}
+        <div className="mb-16">
+          <LogoCarousel />
+        </div>
+        
         <h2 className="section-heading animate-text text-center" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
           The best AI systems are built
           <br />
