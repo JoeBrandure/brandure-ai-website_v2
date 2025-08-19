@@ -1,5 +1,6 @@
 import React from 'react';
 import AnimatedText from './AnimatedText';
+import InteractiveIconCloud from './InteractiveIconCloud';
 
 export default function Partnership() {
   return (
@@ -21,6 +22,9 @@ export default function Partnership() {
           <p className="section-subheading text-grey-white text-center mb-8">
             Accelerate your AI adoption journey.
           </p>
+          
+          {/* Interactive Icon Cloud */}
+          <InteractiveIconCloud />
         </div>
       </div>
     </section>
