@@ -502,7 +502,7 @@ section#contact .footer-wrapper,
   max-width: 1280px !important;
   margin: 0 auto !important;
 
-  /* Match Navigation's exact container structure */
+  /* Match Navigation's responsive padding structure */
   padding: 0 24px 24px !important; /* Mobile: px-6 = 24px */
 
   display: grid !important;
@@ -518,7 +518,7 @@ section#contact .footer-wrapper,
   background: rgba(255, 0, 0, 0.1) !important;
 }
 
-/* Add desktop padding to match Navigation */
+/* Add responsive padding to match Navigation exactly */
 @media (min-width: 768px) {
   .footer-wrapper {
     padding: 0 40px 24px !important; /* md:px-10 = 40px to match Navigation */
@@ -528,6 +528,37 @@ section#contact .footer-wrapper,
 @media (min-width: 1024px) {
   .footer-wrapper {
     padding: 0 48px 24px !important; /* lg:px-12 = 48px to match Navigation */
+  }
+}
+
+/* Responsive padding for footer columns to match Navigation */
+@media (min-width: 768px) {
+  .footer-left {
+    padding-left: 40px !important; /* md:px-10 = 40px */
+  }
+  .footer-right {
+    padding-right: 40px !important; /* md:px-10 = 40px */
+  }
+  .footer-left::before {
+    left: -40px !important; /* Update edge marker position */
+  }
+  .footer-right::after {
+    right: -40px !important; /* Update edge marker position */
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-left {
+    padding-left: 48px !important; /* lg:px-12 = 48px */
+  }
+  .footer-right {
+    padding-right: 48px !important; /* lg:px-12 = 48px */
+  }
+  .footer-left::before {
+    left: -48px !important; /* Update edge marker position */
+  }
+  .footer-right::after {
+    right: -48px !important; /* Update edge marker position */
   }
 }
 
