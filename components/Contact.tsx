@@ -15,9 +15,9 @@ export default function Contact() {
         </h1>
 
         {/* Subheading */}
-        <h2 className="section-subheading text-center">
+        <p className="section-subheading text-grey-white text-center">
           Let&apos;s discuss how AI can drive your growth
-        </h2>
+        </p>
 
         {/* CTA Button — perfectly centered under subhead */}
         <div className="text-center" style={{ marginTop: '20px' }}>
