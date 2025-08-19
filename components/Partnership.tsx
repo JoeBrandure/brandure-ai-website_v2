@@ -6,10 +6,15 @@ export default function Partnership() {
     <section id="partnership" className="section-snap snap-start">
       <div className="content-wrapper flex flex-col items-center justify-center text-center">
         <div>
-          <h2 className="section-heading-medium animate-text" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
-            We spend our days guiding companies<br />
-            through our 3-step <AnimatedText text="AI-Transformation" /> process
+          <h2 className="section-heading animate-text text-center" style={{ marginBottom: '30px', lineHeight: 1.2 }}>
+            The best AI systems are built
+            <br />
+            <AnimatedText text="side-by-side" />
           </h2>
+
+          <p className="section-subheading text-grey-white text-center mb-8">
+            Accelerate your AI adoption journey.
+          </p>
         </div>
       </div>
     </section>
