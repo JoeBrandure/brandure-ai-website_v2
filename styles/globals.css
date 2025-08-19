@@ -497,7 +497,7 @@ html, body {
   bottom: 0;
 
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
 
   /* rails consistent with header (use same horizontal insets) */
@@ -514,7 +514,13 @@ html, body {
 /* Add desktop padding to match Navigation */
 @media (min-width: 768px) {
   .footer-wrapper {
-    padding: 0 48px 24px; /* Desktop: 48px horizontal like Navigation */
+    padding: 0 40px 24px; /* md:px-10 = 40px to match Navigation */
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-wrapper {
+    padding: 0 48px 24px; /* lg:px-12 = 48px to match Navigation */
   }
 }
 
@@ -535,15 +541,7 @@ html, body {
   padding-right: 24px;  /* Match Navigation padding */
 }
 
-/* Add desktop media query for larger padding: */
-@media (min-width: 768px) {
-  .footer-left {
-    padding-left: 48px;  /* Desktop: 48px like Navigation */
-  }
-  .footer-right {
-    padding-right: 48px;  /* Desktop: 48px like Navigation */
-  }
-}
+
 
 /* Typography */
 .footer-title {
