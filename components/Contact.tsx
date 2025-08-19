@@ -36,18 +36,36 @@ export default function Contact() {
 
       {/* Footer — single-grid, three direct children */}
       <div className="footer-wrapper">
-        {/* Left: CONTACT */}
-        <div className="footer-left">
-          <h3 className="footer-title mb-2">CONTACT</h3>
-          <p className="footer-text">
-            <a href="mailto:info@brandureai.com" className="footer-link">info@brandureai.com</a>
-          </p>
-          <p className="footer-text">
-            <a href="https://wa.me/971585081399" rel="noopener noreferrer" className="footer-link">UAE +971 58 508 1399</a>
-          </p>
-          <p className="footer-text">
-            <a href="https://wa.me/447969446013" rel="noopener noreferrer" className="footer-link">UK +44 7969 446 013</a>
-          </p>
+        {/* Mobile: CONTACT and FOLLOW side by side */}
+        <div className="footer-top-row">
+          {/* Left: CONTACT */}
+          <div className="footer-left">
+            <h3 className="footer-title mb-2">CONTACT</h3>
+            <p className="footer-text">
+              <a href="mailto:info@brandureai.com" className="footer-link">info@brandureai.com</a>
+            </p>
+            <p className="footer-text">
+              <a href="https://wa.me/971585081399" rel="noopener noreferrer" className="footer-link">UAE +971 58 508 1399</a>
+            </p>
+            <p className="footer-text">
+              <a href="https://wa.me/447969446013" rel="noopener noreferrer" className="footer-link">UK +44 7969 446 013</a>
+            </p>
+          </div>
+
+          {/* Right: FOLLOW */}
+          <div className="footer-right">
+            <h3 className="footer-title mb-2">FOLLOW</h3>
+            <p className="footer-text">
+              <a
+                href="https://www.linkedin.com/company/brandure-ai/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link"
+              >
+                LinkedIn
+              </a>
+            </p>
+          </div>
         </div>
 
         {/* Center: Legal (same tab) */}
@@ -55,21 +73,6 @@ export default function Contact() {
           <a href="/terms" className="footer-link">Terms &amp; Conditions</a>
           <span className="footer-text">{' | '}</span>
           <a href="/privacy" className="footer-link">Privacy Policy</a>
-        </div>
-
-        {/* Right: FOLLOW */}
-        <div className="footer-right">
-          <h3 className="footer-title mb-2">FOLLOW</h3>
-          <p className="footer-text">
-            <a
-              href="https://www.linkedin.com/company/brandure-ai/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-link"
-            >
-              LinkedIn
-            </a>
-          </p>
         </div>
       </div>
 

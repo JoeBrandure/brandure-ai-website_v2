@@ -658,40 +658,38 @@ section#contact .footer-wrapper,
 @media (max-width: 767px) {
   section#contact .footer-wrapper,
   .footer-wrapper {
-    grid-template-columns: 1fr 1fr !important; /* Two columns for CONTACT and FOLLOW */
-    text-align: center !important;
-    /* Ensure mobile padding is applied */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
     padding: 0 24px 24px !important;
-    gap: 32px !important; /* Add gap between CONTACT and FOLLOW */
-  }
-  section#contact .footer-left,
-  .footer-left {
-    justify-self: start !important;
-    text-align: left !important;
-    grid-column: 1 !important; /* Left column */
-  }
-  section#contact .footer-right,
-  .footer-right {
-    justify-self: end !important;
-    text-align: right !important;
-    grid-column: 2 !important; /* Right column */
-  }
-  section#contact .footer-center,
-  .footer-center {
-    justify-self: center !important;
-    text-align: center !important;
-    grid-column: 1 / -1 !important; /* Span both columns underneath */
-    margin-top: 24px !important; /* Add space above Terms & Privacy */
   }
   
-  /* Mobile: ensure footer columns have proper padding */
+  /* Mobile: CONTACT and FOLLOW side by side */
+  .footer-top-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+  }
+  
   section#contact .footer-left,
   .footer-left {
-    padding-left: 24px !important;
+    flex: 1 !important;
+    text-align: left !important;
+    padding-left: 0 !important;
   }
+  
   section#contact .footer-right,
   .footer-right {
-    padding-right: 24px !important;
+    flex: 1 !important;
+    text-align: right !important;
+    padding-right: 0 !important;
+  }
+  
+  section#contact .footer-center,
+  .footer-center {
+    text-align: center !important;
+    margin-top: 16px !important;
   }
 }
 
