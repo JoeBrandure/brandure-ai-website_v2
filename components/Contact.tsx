@@ -8,19 +8,19 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section-snap relative min-h-screen flex items-center">
-      <div className="content-wrapper pb-24" style={{ border: '3px solid purple', background: 'rgba(128, 0, 128, 0.1)' }}>
+      <div className="content-wrapper pb-24">
         {/* Heading */}
-        <h1 className="section-heading animate-text text-center" style={{ marginBottom: '24px', border: '3px solid green', background: 'rgba(0, 255, 0, 0.2)' }}>
+        <h1 className="section-heading animate-text text-center" style={{ marginBottom: '24px' }}>
           Ready to <AnimatedText text="transform" /> your business?
         </h1>
 
         {/* Subheading */}
-        <h2 className="section-subheading text-center" style={{ border: '3px solid yellow', background: 'rgba(255, 255, 0, 0.2)' }}>
+        <h2 className="section-subheading text-center">
           Let&apos;s discuss how AI can drive your growth
         </h2>
 
         {/* CTA Button — perfectly centered under subhead */}
-        <div className="text-center" style={{ border: '3px solid orange', background: 'rgba(255, 165, 0, 0.2)', marginTop: '20px' }}>
+        <div className="text-center" style={{ marginTop: '20px' }}>
           <button
             onClick={openDrawer}
             className="cta-button"
