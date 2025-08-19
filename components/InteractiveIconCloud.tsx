@@ -41,7 +41,7 @@ export default function InteractiveIconCloud() {
       const phi = Math.acos(-1 + (2 * index) / logos.length); // Vertical angle
       const theta = Math.sqrt(logos.length * Math.PI) * phi; // Horizontal angle
       
-      const radius = 120; // Larger sphere radius for bigger display
+      const radius = 160; // Larger sphere radius for bigger display
       const x = radius * Math.cos(theta) * Math.sin(phi);
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
@@ -73,9 +73,9 @@ export default function InteractiveIconCloud() {
             <Image
               src={logo}
               alt={`Partner logo ${index + 1}`}
-              width={32}
-              height={32}
-              className="w-6 h-6 md:w-8 md:h-8 object-contain opacity-90 hover:opacity-100 transition-all duration-300"
+              width={48}
+              height={48}
+              className="w-10 h-10 md:w-12 md:h-12 object-contain opacity-90 hover:opacity-100 transition-all duration-300"
               style={{ 
                 filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
                 mixBlendMode: 'multiply'
