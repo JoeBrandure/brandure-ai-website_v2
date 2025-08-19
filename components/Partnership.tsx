@@ -1,5 +1,6 @@
 import React from 'react';
 import AnimatedText from './AnimatedText';
+import LogoCarousel from './LogoCarousel';
 
 export default function Partnership() {
   return (

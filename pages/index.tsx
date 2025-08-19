@@ -9,7 +9,6 @@ import Contact from '../components/Contact';
 import LoadingAnimation from '../components/LoadingAnimation';
 import FloatingGradient from '../components/FloatingGradient';
 import ChatWidget from '../components/ChatWidget';
-import LogoCarousel from '../components/LogoCarousel';
 import { ContactDrawerContext } from './_app';
 
 export default function Home() {
@@ -110,11 +109,6 @@ export default function Home() {
               <Journey />
             </section>
             <Results />
-            <section className="snap-start">
-              <div className="py-16">
-                <LogoCarousel />
-              </div>
-            </section>
             <Partnership />
             <section className="snap-start">
               <Contact />
