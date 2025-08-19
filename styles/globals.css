@@ -499,7 +499,7 @@ section#contact .footer-wrapper,
   bottom: 0 !important;
 
   width: 100% !important;
-  max-width: 1280px !important;
+  /* Remove max-width constraint for full responsiveness */
   margin: 0 auto !important;
 
   /* Match Navigation's responsive padding structure */
@@ -656,15 +656,31 @@ section#contact .footer-wrapper,
 
 /* Mobile: stack blocks, center align like desktop fallback */
 @media (max-width: 767px) {
+  section#contact .footer-wrapper,
   .footer-wrapper {
     grid-template-columns: 1fr !important;
     text-align: center !important;
+    /* Ensure mobile padding is applied */
+    padding: 0 24px 24px !important;
   }
+  section#contact .footer-left,
   .footer-left,
+  section#contact .footer-center,
   .footer-center,
+  section#contact .footer-right,
   .footer-right {
     justify-self: center !important;
     text-align: center !important;
+  }
+  
+  /* Mobile: ensure footer columns have proper padding */
+  section#contact .footer-left,
+  .footer-left {
+    padding-left: 24px !important;
+  }
+  section#contact .footer-right,
+  .footer-right {
+    padding-right: 24px !important;
   }
 }
 
