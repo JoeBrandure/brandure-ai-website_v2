@@ -35,7 +35,7 @@ export default function ChatWidget() {
           
           <div className="chat-messages">
             <div className="chat-message bot">
-              <p>Hello! I'm your AI assistant. How can I help you today?</p>
+              <p>Hey! This is Joe from Brandure AI. Anything I can help with?</p>
             </div>
           </div>
           
