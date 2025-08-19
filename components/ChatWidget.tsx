@@ -20,7 +20,7 @@ export default function ChatWidget() {
       {isOpen && (
         <div className="chat-interface">
           <div className="chat-header">
-            <h3>Relevance AI Chat</h3>
+            <h3>Brandure AI Chat</h3>
             <button
               onClick={() => setIsOpen(false)}
               className="chat-close-button"
