@@ -664,28 +664,22 @@ section#contact .footer-wrapper,
 }
 
 /* === Interactive Icon Cloud Animations === */
-@keyframes float {
-  0%, 100% {
+@keyframes rotateCloud {
+  0% {
     transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(0deg);
   }
-  25% {
-    transform: translate(-50%, -50%) translate(calc(var(--x) + 10px), calc(var(--y) - 15px)) rotate(5deg);
-  }
-  50% {
-    transform: translate(-50%, -50%) translate(calc(var(--x) - 5px), calc(var(--y) + 10px)) rotate(-3deg);
-  }
-  75% {
-    transform: translate(-50%, -50%) translate(calc(var(--x) + 15px), calc(var(--y) + 5px)) rotate(2deg);
+  100% {
+    transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(360deg);
   }
 }
 
 .floating-icon {
-  animation: float var(--duration) ease-in-out infinite;
-  animation-delay: var(--delay);
+  animation: rotateCloud 30s linear infinite;
+  transform: translate(-50%, -50%) translate(var(--x), var(--y));
 }
 
 .floating-icon:hover {
   animation-play-state: paused;
-  transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(1.2);
+  transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(1.1);
   transition: transform 0.3s ease;
 }
