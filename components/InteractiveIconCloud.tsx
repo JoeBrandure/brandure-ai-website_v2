@@ -31,51 +31,56 @@ export default function InteractiveIconCloud() {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
-    const icons = container.querySelectorAll('.floating-icon');
+    const icons = container.querySelectorAll('.sphere-icon');
     
-    // Calculate positions in a circular formation
+    // Calculate positions in a 3D sphere formation
     icons.forEach((icon, index) => {
       const element = icon as HTMLElement;
       
-      // Create a tighter circular formation
-      const radius = 120; // Smaller radius for closer logos
-      const angle = (index / logos.length) * 2 * Math.PI;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
+      // Create a 3D sphere with multiple layers
+      const phi = Math.acos(-1 + (2 * index) / logos.length); // Vertical angle
+      const theta = Math.sqrt(logos.length * Math.PI) * phi; // Horizontal angle
+      
+      const radius = 80; // Sphere radius
+      const x = radius * Math.cos(theta) * Math.sin(phi);
+      const y = radius * Math.sin(theta) * Math.sin(phi);
+      const z = radius * Math.cos(phi);
       
       element.style.setProperty('--x', `${x}px`);
       element.style.setProperty('--y', `${y}px`);
+      element.style.setProperty('--z', `${z}px`);
+      element.style.setProperty('--index', `${index}`);
     });
   }, []);
 
   return (
-    <div className="relative w-full h-80 flex items-center justify-center overflow-hidden">
+    <div className="sphere-container">
       <div 
         ref={containerRef}
-        className="relative w-full h-full"
+        className="sphere-wrapper"
       >
         {logos.map((logo, index) => (
           <div
             key={index}
-            className="floating-icon absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="sphere-icon"
             style={{
               '--x': '0px',
               '--y': '0px',
+              '--z': '0px',
+              '--index': '0',
             } as React.CSSProperties}
           >
-            <div className="relative group cursor-pointer">
-              <Image
-                src={logo}
-                alt={`Partner logo ${index + 1}`}
-                width={40}
-                height={40}
-                className="w-8 h-8 md:w-10 md:h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                style={{ 
-                  filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
-                  mixBlendMode: 'multiply'
-                }}
-              />
-            </div>
+            <Image
+              src={logo}
+              alt={`Partner logo ${index + 1}`}
+              width={32}
+              height={32}
+              className="w-6 h-6 md:w-8 md:h-8 object-contain opacity-90 hover:opacity-100 transition-all duration-300"
+              style={{ 
+                filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
+                mixBlendMode: 'multiply'
+              }}
+            />
           </div>
         ))}
       </div>
