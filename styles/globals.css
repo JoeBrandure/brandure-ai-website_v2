@@ -663,40 +663,60 @@ section#contact .footer-wrapper,
   }
 }
 
-/* === Marquee Component Styles === */
-.marquee-container {
-  width: 100%;
+/* === Custom Logo Marquee Styles === */
+.logo-marquee-container {
+  width: 100vw; /* Full viewport width */
+  margin-left: calc(-50vw + 50%); /* Center it within the section */
+  margin-right: calc(-50vw + 50%);
   overflow: hidden;
   position: relative;
-  margin: 40px 0;
-  z-index: 1;
-  min-height: 100px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 80px; /* Fixed height container */
 }
 
-.marquee-track {
+.logo-marquee-track {
   display: flex;
-  animation: marquee 30s linear infinite;
-  position: relative;
-  z-index: 2;
+  animation: logoMarquee 30s linear infinite;
+  width: max-content;
+  height: 100%;
 }
 
-.marquee-content {
+.logo-marquee-content {
   display: flex;
   align-items: center;
-  gap: 80px;
+  gap: 80px; /* Good spacing between logos */
   flex-shrink: 0;
+  padding: 0 40px; /* Horizontal padding */
+  height: 100%;
 }
 
-.marquee-item {
+.logo-marquee-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 0;
   flex-shrink: 0;
-  padding: 0 10px;
+  height: 100%;
+  min-width: 60px; /* Minimum width for small logos */
+  max-width: 150px; /* Maximum width for wide logos */
 }
 
-@keyframes marquee {
+.logo-marquee-image {
+  max-height: 60px; /* Maximum height */
+  max-width: 100%; /* Allow natural width up to container max */
+  height: auto; /* Maintain aspect ratio */
+  width: auto; /* Maintain aspect ratio */
+  object-fit: contain;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  filter: brightness(0) invert(1); /* Make logos white */
+}
+
+.logo-marquee-image:hover {
+  opacity: 1;
+}
+
+@keyframes logoMarquee {
   0% {
     transform: translateX(0);
   }
@@ -705,7 +725,7 @@ section#contact .footer-wrapper,
   }
 }
 
-.marquee-track:hover {
+.logo-marquee-track:hover {
   animation-play-state: paused;
 }
 

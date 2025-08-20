@@ -1,6 +1,6 @@
 import React from 'react';
 import AnimatedText from './AnimatedText';
-import Marquee from './Marquee';
+import LogoMarquee from './LogoMarquee';
 
 export default function Partnership() {
   return (
@@ -16,9 +16,9 @@ export default function Partnership() {
           Accelerate your AI adoption journey.
         </p>
         
-        {/* Partner Logos Marquee */}
-        <div className="mt-16">
-          <Marquee />
+        {/* Partner Logos Marquee - Custom built */}
+        <div className="mt-32">
+          <LogoMarquee />
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 
 const logos = [
   '/logos/Carousel Logo/bottlebottle-carousel-transparent.png',
@@ -24,29 +23,20 @@ const logos = [
   '/logos/Carousel Logo/arcticedge-carousel-transparent.png',
 ];
 
-export default function Marquee() {
-  console.log('Marquee component rendering with', logos.length, 'logos');
+export default function LogoMarquee() {
+  console.log('LogoMarquee component rendering with', logos.length, 'logos');
   
   return (
-    <div className="marquee-container">
-      <div className="marquee-track">
+    <div className="logo-marquee-container">
+      <div className="logo-marquee-track">
         {/* First set of logos */}
-        <div className="marquee-content">
+        <div className="logo-marquee-content">
           {logos.map((logo, index) => (
-            <div key={`first-${index}`} className="marquee-item">
-              <Image
+            <div key={`first-${index}`} className="logo-marquee-item">
+              <img
                 src={logo}
                 alt={`Partner logo ${index + 1}`}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="h-auto w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                style={{ 
-                  filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
-                  mixBlendMode: 'multiply',
-                  maxHeight: '80px',
-                  maxWidth: '200px'
-                }}
+                className="logo-marquee-image"
                 onError={(e) => {
                   console.error(`Failed to load logo: ${logo}`);
                 }}
@@ -56,22 +46,13 @@ export default function Marquee() {
         </div>
         
         {/* Duplicate set for seamless loop */}
-        <div className="marquee-content">
+        <div className="logo-marquee-content">
           {logos.map((logo, index) => (
-            <div key={`second-${index}`} className="marquee-item">
-              <Image
+            <div key={`second-${index}`} className="logo-marquee-item">
+              <img
                 src={logo}
                 alt={`Partner logo ${index + 1}`}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="h-auto w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                style={{ 
-                  filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
-                  mixBlendMode: 'multiply',
-                  maxHeight: '80px',
-                  maxWidth: '200px'
-                }}
+                className="logo-marquee-image"
                 onError={(e) => {
                   console.error(`Failed to load logo: ${logo}`);
                 }}
