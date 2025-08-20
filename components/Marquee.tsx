@@ -37,10 +37,9 @@ export default function Marquee() {
               <Image
                 src={logo}
                 alt={`Partner logo ${index + 1}`}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="h-auto max-h-16 md:max-h-20 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                width={80}
+                height={80}
+                className="h-auto max-h-16 md:max-h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                 style={{ 
                   filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
                   mixBlendMode: 'multiply'
@@ -60,10 +59,9 @@ export default function Marquee() {
               <Image
                 src={logo}
                 alt={`Partner logo ${index + 1}`}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="h-auto max-h-16 md:max-h-20 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                width={80}
+                height={80}
+                className="h-auto max-h-16 md:max-h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                 style={{ 
                   filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
                   mixBlendMode: 'multiply'

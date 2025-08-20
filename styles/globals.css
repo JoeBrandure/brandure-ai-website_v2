@@ -683,7 +683,7 @@ section#contact .footer-wrapper,
 .marquee-content {
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 80px;
   flex-shrink: 0;
 }
 
