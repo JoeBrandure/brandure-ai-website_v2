@@ -669,11 +669,15 @@ section#contact .footer-wrapper,
   overflow: hidden;
   position: relative;
   margin: 40px 0;
+  z-index: 1;
+  min-height: 100px;
 }
 
 .marquee-track {
   display: flex;
   animation: marquee 30s linear infinite;
+  position: relative;
+  z-index: 2;
 }
 
 .marquee-content {

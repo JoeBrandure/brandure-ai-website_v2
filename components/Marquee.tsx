@@ -25,6 +25,8 @@ const logos = [
 ];
 
 export default function Marquee() {
+  console.log('Marquee component rendering with', logos.length, 'logos');
+  
   return (
     <div className="marquee-container">
       <div className="marquee-track">
@@ -42,6 +44,9 @@ export default function Marquee() {
                 style={{ 
                   filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
                   mixBlendMode: 'multiply'
+                }}
+                onError={(e) => {
+                  console.error(`Failed to load logo: ${logo}`);
                 }}
               />
             </div>
@@ -62,6 +67,9 @@ export default function Marquee() {
                 style={{ 
                   filter: 'brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.5)',
                   mixBlendMode: 'multiply'
+                }}
+                onError={(e) => {
+                  console.error(`Failed to load logo: ${logo}`);
                 }}
               />
             </div>

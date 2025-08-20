@@ -17,7 +17,9 @@ export default function Partnership() {
         </p>
         
         {/* Partner Logos Marquee */}
-        <Marquee />
+        <div className="mt-16">
+          <Marquee />
+        </div>
       </div>
     </section>
   );
