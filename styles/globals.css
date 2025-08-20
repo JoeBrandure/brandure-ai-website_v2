@@ -693,6 +693,7 @@ section#contact .footer-wrapper,
   justify-content: center;
   min-width: 0;
   flex-shrink: 0;
+  padding: 0 10px;
 }
 
 @keyframes marquee {
