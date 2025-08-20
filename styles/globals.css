@@ -679,7 +679,7 @@ section#contact .footer-wrapper,
 .marquee-content {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
   flex-shrink: 0;
 }
 
@@ -687,6 +687,8 @@ section#contact .footer-wrapper,
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 @keyframes marquee {
