@@ -16,8 +16,8 @@ export default function Partnership() {
           Accelerate your AI adoption journey.
         </p>
         
-        {/* Partner Logos Marquee - Custom built */}
-        <div className="mt-32">
+        {/* Partner Logos Marquee - Simple positioning underneath text */}
+        <div className="mt-16">
           <LogoMarquee />
         </div>
       </div>

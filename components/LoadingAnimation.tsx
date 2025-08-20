@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { SpiralAnimation } from './SpiralAnimation';
 
 export default function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
   const [isAnimating, setIsAnimating] = useState(true);
@@ -48,38 +48,23 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
     >
       <div
         style={{
-          animation: 'logoScale 2s ease-in-out',
           cursor: 'pointer',
           position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '20px',
         }}
         onClick={handleSkip}
         title="Click to skip loading"
       >
-        <Image
-          src="/logos/brandure-ai-white.png"
-          alt="Brandure AI"
-          width={300}
-          height={80}
-          priority
-          style={{ 
-            width: 'auto',
-            height: 'auto',
-            maxWidth: '300px',
-            objectFit: 'contain'
-          }}
-          onError={() => {
-            console.error('LoadingAnimation: Image failed to load');
-            handleSkip();
-          }}
-        />
+        <div style={{ border: '2px solid red', padding: '20px' }}>
+          <SpiralAnimation size="xl" />
+        </div>
         
         {/* Skip hint */}
         <div
           style={{
-            position: 'absolute',
-            bottom: '-40px',
-            left: '50%',
-            transform: 'translateX(-50%)',
             color: 'rgba(255, 255, 255, 0.6)',
             fontSize: '14px',
             textAlign: 'center',
@@ -90,22 +75,7 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         </div>
       </div>
       
-      <style jsx>{`
-        @keyframes logoScale {
-          0% {
-            transform: scale(0.8);
-            opacity: 0;
-          }
-          50% {
-            transform: scale(1.1);
-            opacity: 1;
-          }
-          100% {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-      `}</style>
+
     </div>
   );
 }

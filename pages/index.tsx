@@ -9,7 +9,7 @@ import Contact from '../components/Contact';
 import LoadingAnimation from '../components/LoadingAnimation';
 import FloatingGradient from '../components/FloatingGradient';
 import ChatWidget from '../components/ChatWidget';
-import LogoCarousel from '../components/LogoCarousel';
+
 import { ContactDrawerContext } from './_app';
 
 export default function Home() {
