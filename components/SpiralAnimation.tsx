@@ -53,12 +53,24 @@ const SpiralAnimation = forwardRef<
       className={className}
       {...props}
     >
+      {/* Test static div to verify positioning */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '50%',
+          border: '2px solid red',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)',
+        }}
+      />
+      
       <motion.div
         style={{
           position: 'absolute',
           inset: 0,
           borderRadius: '50%',
-          border: '2px solid rgba(255, 255, 255, 0.4)',
+          border: '2px solid rgba(255, 255, 255, 0.8)',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
         }}
         animate={{
           rotate: 360,
