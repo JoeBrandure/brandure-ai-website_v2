@@ -31,13 +31,13 @@ class AnimationController {
     private stars: Star[] = []
     
     // 常量
-    private readonly changeEventTime = 0.32
+    private readonly changeEventTime = 0.25 // Reduced from 0.32 to show more of the final effect
     private readonly cameraZ = -400
-    private readonly cameraTravelDistance = 3400
+    private readonly cameraTravelDistance = 4000 // Increased from 3400 for more complete travel
     private readonly startDotYOffset = 28
     private readonly viewZoom = 100
     private readonly numberOfStars = 5000
-    private readonly trailLength = 80
+    private readonly trailLength = 100 // Increased from 80 for longer trail
     
     constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, dpr: number, size: number) {
         this.canvas = canvas
@@ -80,7 +80,7 @@ class AnimationController {
         this.timeline
             .to(this, {
                 time: 1,
-                duration: 15,
+                duration: 30, // Increased from 15s to 30s for slower, more visible animation
                 repeat: -1,
                 ease: "none",
                 onUpdate: () => this.render()
