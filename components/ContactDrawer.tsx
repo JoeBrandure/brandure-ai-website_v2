@@ -80,32 +80,43 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
         Time: {new Date().toLocaleTimeString()}
       </div>
 
-      {/* Backdrop */}
+      {/* Backdrop - Force visible for debugging */}
       <div
-        className={`fixed inset-0 bg-[#1C1B1C]/80 backdrop-blur-[2px] transition-opacity z-[9998] ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        aria-hidden={!isOpen}
+        className="fixed inset-0 z-[9998]"
         onClick={() => { console.log('Backdrop clicked'); onClose(); }}
         style={{
-          border: isOpen ? '3px solid blue' : 'none', // Debug border for backdrop
-          background: isOpen ? 'rgba(0, 0, 255, 0.3)' : 'rgba(0, 0, 0, 0)', // Debug background
-          visibility: isOpen ? 'visible' : 'hidden' // Ensure backdrop visibility
+          border: '5px solid yellow', // Force visible border
+          background: isOpen ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 255, 0.3)', // Bright colors
+          visibility: 'visible', // Force visibility
+          pointerEvents: isOpen ? 'auto' : 'none'
         }}
-      />
+      >
+        {/* Debug text on backdrop */}
+        <div style={{
+          position: 'absolute',
+          top: '100px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'black',
+          color: 'white',
+          padding: '10px',
+          fontSize: '16px',
+          zIndex: 10001
+        }}>
+          BACKDROP: isOpen = {String(isOpen)}
+        </div>
+      </div>
 
-      {/* Panel container (slide in) */}
+      {/* Panel container - Force visible for debugging */}
       <div
-        className={`fixed right-0 top-0 h-[95vh] md:h-[100vh] w-full lg:w-[40vw] px-2 pb-4 flex items-center justify-center text-black transition-all duration-300 ease-in-out z-[9999] ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className="fixed right-0 top-0 h-[95vh] md:h-[100vh] w-full lg:w-[40vw] px-2 pb-4 flex items-center justify-center text-black z-[9999]"
         role="dialog"
         aria-modal="true"
         style={{
-          border: isOpen ? '3px solid red' : 'none', // Debug border
-          background: isOpen ? 'rgba(255, 0, 0, 0.1)' : 'transparent', // Debug background
-          transform: isOpen ? 'translateX(0)' : 'translateX(100%)', // Force transform
-          visibility: isOpen ? 'visible' : 'hidden' // Ensure visibility
+          border: '5px solid red', // Force visible border
+          background: isOpen ? 'rgba(255, 0, 0, 0.8)' : 'rgba(0, 255, 0, 0.8)', // Bright colors
+          visibility: 'visible', // Force visibility
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)', // Keep transform logic
         }}
       >
         {/* Panel */}
