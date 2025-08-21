@@ -1,7 +1,7 @@
 import React from 'react';
 import AnimatedText from './AnimatedText';
 
-export default function Contact({ onOpenDrawer }: { onOpenDrawer?: () => void }) {
+export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) {
   return (
     <section id="contact" className="section-snap relative min-h-screen flex items-center">
       <div className="content-wrapper pb-24">
@@ -18,7 +18,7 @@ export default function Contact({ onOpenDrawer }: { onOpenDrawer?: () => void })
         {/* CTA Button — perfectly centered under subhead */}
         <div className="text-center" style={{ marginTop: '20px' }}>
           <button
-            onClick={() => { console.log('Contact CTA clicked'); onOpenDrawer && onOpenDrawer(); }}
+            onClick={() => { console.log('Contact CTA clicked'); onOpenDrawer(); }}
             className="cta-button"
           >
             Let&apos;s Partner Up

@@ -21,6 +21,15 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     message: '',
   });
 
+  // Debug logging
+  useEffect(() => {
+    console.log('ContactDrawer: isOpen prop changed to:', isOpen);
+  }, [isOpen]);
+
+  useEffect(() => {
+    console.log('ContactDrawer: Component rendered with isOpen:', isOpen);
+  });
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };

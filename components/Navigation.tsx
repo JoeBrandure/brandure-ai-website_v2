@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
+import ContactDrawer from './ContactDrawer';
 
-interface NavigationProps {
-  onOpenDrawer: () => void;
-}
-
-export default function Navigation({ onOpenDrawer }: NavigationProps){
+export default function Navigation(){
   const [scrolled,setScrolled]=useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   
   useEffect(()=>{
     const onScroll=()=>setScrolled(window.scrollY>50);
@@ -23,13 +21,15 @@ export default function Navigation({ onOpenDrawer }: NavigationProps){
           className="h-10 md:h-12 lg:h-14 w-auto"
         />
         <button
-          onClick={() => { console.log('Navigation: Get In Touch clicked'); onOpenDrawer(); }}
+          onClick={() => setIsDrawerOpen(true)}
           className="inline-flex items-center gap-1 px-5 py-2 border border-white rounded-full text-white bg-transparent hover:bg-white hover:text-black transition"
           style={{ textDecoration: 'none' }}
         >
           Get In Touch →
         </button>
       </div>
+      {/* Drawer lives outside button and only opens when state is true */}
+      <ContactDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
     </nav>
   );
 }
