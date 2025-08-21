@@ -48,6 +48,20 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
   return (
     <>
+      {/* Debug element - remove after testing */}
+      <div style={{
+        position: 'fixed',
+        top: '10px',
+        right: '10px',
+        background: 'red',
+        color: 'white',
+        padding: '5px',
+        zIndex: 10000,
+        fontSize: '12px'
+      }}>
+        Drawer: {isOpen ? 'OPEN' : 'CLOSED'}
+      </div>
+
       {/* Backdrop */}
       <div
         className={`fixed inset-0 bg-[#1C1B1C]/80 backdrop-blur-[2px] transition-opacity z-[9998] ${
@@ -64,9 +78,18 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
         }`}
         role="dialog"
         aria-modal="true"
+        style={{
+          border: isOpen ? '3px solid red' : 'none', // Debug border
+          background: isOpen ? 'rgba(255, 0, 0, 0.1)' : 'transparent' // Debug background
+        }}
       >
         {/* Panel */}
         <div className="shadow-2xl rounded-xl w-[96%] md:w-[98%] lg:w-full h-[90%] bg-[#EDECE4] overflow-hidden">
+          {/* Debug header */}
+          <div style={{ background: 'red', color: 'white', padding: '5px', textAlign: 'center' }}>
+            DEBUG: Drawer is {isOpen ? 'OPEN' : 'CLOSED'} - Content should be visible
+          </div>
+          
           {/* Header */}
           <div className="flex flex-col px-4 md:px-6 py-2">
             <div className="flex flex-row justify-end">
@@ -76,7 +99,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 </svg>
               </button>
             </div>
-            <h2 className="text-3xl md:text-4xl font-medium pt-0 pb-[1.75rem] text-left">Tell us where you’re at</h2>
+            <h2 className="text-3xl md:text-4xl font-medium pt-0 pb-[1.75rem] text-left">Tell us where you're at</h2>
           </div>
 
           {/* Scrollable content */}
