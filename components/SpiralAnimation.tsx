@@ -64,16 +64,41 @@ const SpiralAnimation = forwardRef<
         }}
       />
       
+      {/* Large outer circle - slow rotation */}
       <motion.div
         style={{
           position: 'absolute',
-          inset: 0,
+          top: '-20px',
+          left: '-20px',
+          right: '-20px',
+          bottom: '-20px',
           borderRadius: '50%',
           border: '2px solid rgba(255, 255, 255, 0.8)',
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
         }}
         animate={{
           rotate: 360,
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+      
+      {/* Medium circle - medium rotation */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          top: '-10px',
+          left: '-10px',
+          right: '-10px',
+          bottom: '-10px',
+          borderRadius: '50%',
+          border: '2px solid rgba(255, 255, 255, 0.6)',
+        }}
+        animate={{
+          rotate: -360,
         }}
         transition={{
           duration: 2,
@@ -81,26 +106,15 @@ const SpiralAnimation = forwardRef<
           ease: "linear",
         }}
       />
+      
+      {/* Small circle - fast rotation */}
       <motion.div
         style={{
           position: 'absolute',
-          inset: 0,
-          borderRadius: '50%',
-          border: '2px solid rgba(255, 255, 255, 0.4)',
-        }}
-        animate={{
-          rotate: -360,
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
+          top: '0px',
+          left: '0px',
+          right: '0px',
+          bottom: '0px',
           borderRadius: '50%',
           border: '2px solid rgba(255, 255, 255, 0.4)',
         }}
@@ -113,12 +127,17 @@ const SpiralAnimation = forwardRef<
           ease: "linear",
         }}
       />
+      
+      {/* Inner circle - very fast rotation */}
       <motion.div
         style={{
           position: 'absolute',
-          inset: 0,
+          top: '10px',
+          left: '10px',
+          right: '10px',
+          bottom: '10px',
           borderRadius: '50%',
-          border: '2px solid rgba(255, 255, 255, 0.4)',
+          border: '2px solid rgba(255, 255, 255, 0.3)',
         }}
         animate={{
           rotate: -360,
@@ -129,12 +148,17 @@ const SpiralAnimation = forwardRef<
           ease: "linear",
         }}
       />
+      
+      {/* Center circle - fastest rotation */}
       <motion.div
         style={{
           position: 'absolute',
-          inset: 0,
+          top: '20px',
+          left: '20px',
+          right: '20px',
+          bottom: '20px',
           borderRadius: '50%',
-          border: '2px solid rgba(255, 255, 255, 0.4)',
+          border: '2px solid rgba(255, 255, 255, 0.2)',
         }}
         animate={{
           rotate: 360,
