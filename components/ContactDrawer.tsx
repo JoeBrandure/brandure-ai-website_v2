@@ -193,6 +193,18 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
             DEBUG: Drawer is {isOpen ? 'OPEN' : 'CLOSED'} - Content should be visible
           </div>
           
+          {/* Height Debug Info */}
+          <div style={{ 
+            background: 'blue !important', 
+            color: 'white !important', 
+            padding: '5px', 
+            textAlign: 'center',
+            fontSize: '12px',
+            borderTop: '1px solid white'
+          }}>
+            Panel: 90% of 100vh | Scrollable: calc(100% - 120px) | Form fields: 8
+          </div>
+          
           {/* Header */}
           <div style={{ 
             display: 'flex', 
@@ -232,7 +244,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* Scrollable content */}
           <div style={{ 
-            height: 'calc(100% - 80px)', 
+            height: 'calc(100% - 120px)', 
             overflowY: 'auto', 
             padding: '4px 24px 8px'
           }}>
@@ -575,16 +587,16 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   width: 'fit-content',
                   cursor: 'pointer', 
                   borderRadius: '25px', 
-                  border: '1px solid black', 
+                  border: '2px solid red !important', 
                   padding: '12px 24px', 
                   color: 'black',
-                  background: 'transparent',
+                  background: 'yellow !important',
                   fontSize: '16px',
                   marginTop: '16px',
                   alignSelf: 'center'
                 }}
               >
-                Send inquiry
+                Send inquiry (DEBUG: Button should be visible)
               </button>
             </form>
           </div>
