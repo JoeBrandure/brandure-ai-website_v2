@@ -6,7 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, email, role, company_name, message } = req.body;
+  const { name, email, role, company, website, size, revenue, budget, service, message, to, subject } = req.body;
 
   // Create transporter
   const transporter = nodemailer.createTransport({
@@ -19,14 +19,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const mailOptions = {
     from: process.env.GMAIL_USER,
-    to: 'sales@brandureai.com',
-    subject: `New Contact Form Submission from ${name}`,
+    to: to || 'sales@brandureai.com',
+    subject: subject || `New Contact Form Submission from ${name}`,
     html: `
       <h2>New Contact Form Submission</h2>
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Role:</strong> ${role || 'Not provided'}</p>
-      <p><strong>Company:</strong> ${company_name || 'Not provided'}</p>
+      <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+      <p><strong>Website:</strong> ${website || 'Not provided'}</p>
+      <p><strong>Company Size:</strong> ${size || 'Not provided'}</p>
+      <p><strong>Annual Revenue:</strong> ${revenue || 'Not provided'}</p>
+      <p><strong>Project Budget:</strong> ${budget || 'Not provided'}</p>
+      <p><strong>Services Interested In:</strong> ${service || 'Not provided'}</p>
       <p><strong>Message:</strong></p>
       <p>${message}</p>
     `,
