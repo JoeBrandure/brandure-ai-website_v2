@@ -62,7 +62,7 @@ export default function Home() {
               }}
             />
             <button
-              onClick={() => setIsDrawerOpen(true)}
+              onClick={() => { console.log('Nav CTA clicked'); setIsDrawerOpen(true); }}
               className="cta-button"
               style={{ 
                 padding: '10px 24px', 

@@ -45,7 +45,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         aria-hidden={!isOpen}
-        onClick={onClose}
+        onClick={() => { console.log('Backdrop clicked'); onClose(); }}
       />
 
       {/* Panel container (slide in) */}

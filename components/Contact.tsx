@@ -18,7 +18,7 @@ export default function Contact({ onOpenDrawer }: { onOpenDrawer?: () => void })
         {/* CTA Button — perfectly centered under subhead */}
         <div className="text-center" style={{ marginTop: '20px' }}>
           <button
-            onClick={onOpenDrawer}
+            onClick={() => { console.log('Contact CTA clicked'); onOpenDrawer && onOpenDrawer(); }}
             className="cta-button"
           >
             Let&apos;s Partner Up
