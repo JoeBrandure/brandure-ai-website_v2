@@ -232,17 +232,16 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* Scrollable content */}
           <div style={{ 
-            height: 'calc(100% - 120px)', 
+            height: 'calc(100% - 80px)', 
             overflowY: 'auto', 
-            padding: '4px 24px 8px',
-            paddingBottom: '80px' // Add extra bottom padding to ensure button is visible
+            padding: '4px 24px 8px'
           }}>
-            <form style={{ 
+            <form onSubmit={handleSubmit} style={{ 
               display: 'flex', 
               flexDirection: 'column', 
               gap: '16px',
-              height: '100%',
-              width: '100%'
+              width: '100%',
+              paddingBottom: '20px'
             }}>
               {/* Name and Email */}
               <div style={{ 
@@ -569,47 +568,28 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 />
               </div>
 
+              {/* Send Inquiry Button - at the end of the form */}
+              <button 
+                type="submit" 
+                style={{ 
+                  width: 'fit-content',
+                  cursor: 'pointer', 
+                  borderRadius: '25px', 
+                  border: '1px solid black', 
+                  padding: '12px 24px', 
+                  color: 'black',
+                  background: 'transparent',
+                  fontSize: '16px',
+                  marginTop: '16px',
+                  alignSelf: 'center'
+                }}
+              >
+                Send inquiry
+              </button>
             </form>
           </div>
           
-          {/* Button area - always visible at bottom */}
-          <div style={{
-            position: 'absolute',
-            bottom: '0',
-            left: '0',
-            right: '0',
-            background: '#EDECE4',
-            padding: '16px 24px',
-            borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-            display: 'flex',
-            justifyContent: 'center'
-          }}>
-            <button 
-              type="submit" 
-              onClick={handleSubmit}
-              style={{ 
-                width: 'fit-content',
-                cursor: 'pointer', 
-                borderRadius: '25px', 
-                border: '1px solid black', 
-                padding: '12px 24px', 
-                color: 'black',
-                background: 'transparent',
-                fontSize: '16px',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'black';
-                e.currentTarget.style.color = 'white';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = 'black';
-              }}
-            >
-              Send inquiry
-            </button>
-          </div>
+
         </div>
       </div>
     </>
