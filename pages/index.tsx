@@ -9,9 +9,11 @@ import Contact from '../components/Contact';
 import LoadingAnimation from '../components/LoadingAnimation';
 import FloatingGradient from '../components/FloatingGradient';
 import ChatWidget from '../components/ChatWidget';
+import ContactDrawer from '../components/ContactDrawer';
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,8 +61,8 @@ export default function Home() {
                 objectFit: 'contain'
               }}
             />
-            <a
-              href="#contact"
+            <button
+              onClick={() => setIsDrawerOpen(true)}
               className="cta-button"
               style={{ 
                 padding: '10px 24px', 
@@ -73,15 +75,16 @@ export default function Home() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                textDecoration: 'none'
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = 'white';
-                (e.currentTarget as HTMLAnchorElement).style.color = 'black';
+                (e.currentTarget as HTMLButtonElement).style.background = 'white';
+                (e.currentTarget as HTMLButtonElement).style.color = 'black';
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
-                (e.currentTarget as HTMLAnchorElement).style.color = 'white';
+                (e.currentTarget as HTMLButtonElement).style.background = 'transparent';
+                (e.currentTarget as HTMLButtonElement).style.color = 'white';
               }}
             >
               Let&apos;s Partner Up
@@ -89,7 +92,7 @@ export default function Home() {
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />
               </svg>
-            </a>
+            </button>
           </nav>
 
           {/* Main scroll container */}
@@ -102,9 +105,12 @@ export default function Home() {
             <Results />
             <Partnership />
             <section className="snap-start">
-              <Contact />
+              <Contact onOpenDrawer={() => setIsDrawerOpen(true)} />
             </section>
           </div>
+
+          {/* Centralized Contact Drawer Overlay */}
+          <ContactDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
         </>
       )}
 
