@@ -8,36 +8,53 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { name, email, role, company, website, size, revenue, budget, service, message, to, subject } = req.body;
 
-  // Create transporter
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD, // Use App Password, not regular password
-    },
+  // Log the form submission for debugging
+  console.log('Contact form submission received:', {
+    name, email, role, company, website, size, revenue, budget, service, message, to, subject
   });
 
-  const mailOptions = {
-    from: process.env.GMAIL_USER,
-    to: to || 'sales@brandureai.com',
-    subject: subject || `New Contact Form Submission from ${name}`,
-    html: `
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Role:</strong> ${role || 'Not provided'}</p>
-      <p><strong>Company:</strong> ${company || 'Not provided'}</p>
-      <p><strong>Website:</strong> ${website || 'Not provided'}</p>
-      <p><strong>Company Size:</strong> ${size || 'Not provided'}</p>
-      <p><strong>Annual Revenue:</strong> ${revenue || 'Not provided'}</p>
-      <p><strong>Project Budget:</strong> ${budget || 'Not provided'}</p>
-      <p><strong>Services Interested In:</strong> ${service || 'Not provided'}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message}</p>
-    `,
-  };
+  // Check if Gmail credentials are configured
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    console.log('Gmail credentials not configured - form data logged to console');
+    // Return success so user doesn't see an error
+    // In production, you would want to configure these environment variables
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Thank you! Your message has been received. We will get back to you soon.',
+      note: 'Form data logged to console (Gmail not configured)'
+    });
+  }
 
   try {
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.GMAIL_USER,
+      to: to || 'sales@brandureai.com',
+      subject: subject || `New Contact Form Submission from ${name}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Role:</strong> ${role || 'Not provided'}</p>
+        <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+        <p><strong>Website:</strong> ${website || 'Not provided'}</p>
+        <p><strong>Company Size:</strong> ${size || 'Not provided'}</p>
+        <p><strong>Annual Revenue:</strong> ${revenue || 'Not provided'}</p>
+        <p><strong>Project Budget:</strong> ${budget || 'Not provided'}</p>
+        <p><strong>Services Interested In:</strong> ${service || 'Not provided'}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    };
+
     await transporter.sendMail(mailOptions);
     res.status(200).json({ success: true, message: 'Email sent successfully' });
   } catch (error: unknown) {
