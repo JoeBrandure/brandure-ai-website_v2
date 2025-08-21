@@ -1,39 +1,41 @@
 'use client';
 
+import { cn } from "../lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from "framer-motion";
 import { forwardRef } from "react";
 
-const getSizeStyles = (size: string) => {
-  switch (size) {
-    case 'sm': return { width: '64px', height: '64px' };
-    case 'lg': return { width: '128px', height: '128px' };
-    case 'xl': return { width: '192px', height: '192px' };
-    default: return { width: '96px', height: '96px' };
+const spiralVariants = cva(
+  "relative flex items-center justify-center",
+  {
+    variants: {
+      size: {
+        default: "h-24 w-24",
+        sm: "h-16 w-16",
+        lg: "h-32 w-32",
+        xl: "h-48 w-48",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
   }
-};
+);
 
 const SpiralAnimation = forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { size?: string }
->(({ className, size = 'default', ...props }, ref) => {
-  const sizeStyles = getSizeStyles(size);
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof spiralVariants>
+>(({ className, size, ...props }, ref) => {
+  console.log('SpiralAnimation rendering with size:', size);
   
   return (
     <div
       ref={ref}
-      style={{
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        ...sizeStyles,
-        ...props.style
-      }}
-      className={className}
+      className={cn(spiralVariants({ size }), className)}
       {...props}
     >
       <motion.div
-        className="absolute inset-0 rounded-full border border-white/20"
+        className="absolute inset-0 rounded-full border-2 border-white/40"
         animate={{
           rotate: 360,
         }}
@@ -44,7 +46,7 @@ const SpiralAnimation = forwardRef<
         }}
       />
       <motion.div
-        className="absolute inset-0 rounded-full border border-white/20"
+        className="absolute inset-0 rounded-full border-2 border-white/40"
         animate={{
           rotate: -360,
         }}
@@ -55,7 +57,7 @@ const SpiralAnimation = forwardRef<
         }}
       />
       <motion.div
-        className="absolute inset-0 rounded-full border border-white/20"
+        className="absolute inset-0 rounded-full border-2 border-white/40"
         animate={{
           rotate: 360,
         }}
@@ -66,7 +68,7 @@ const SpiralAnimation = forwardRef<
         }}
       />
       <motion.div
-        className="absolute inset-0 rounded-full border border-white/20"
+        className="absolute inset-0 rounded-full border-2 border-white/40"
         animate={{
           rotate: -360,
         }}
@@ -77,7 +79,7 @@ const SpiralAnimation = forwardRef<
         }}
       />
       <motion.div
-        className="absolute inset-0 rounded-full border border-white/20"
+        className="absolute inset-0 rounded-full border-2 border-white/40"
         animate={{
           rotate: 360,
         }}
@@ -93,4 +95,4 @@ const SpiralAnimation = forwardRef<
 
 SpiralAnimation.displayName = "SpiralAnimation";
 
-export { SpiralAnimation };
+export { SpiralAnimation, spiralVariants };
