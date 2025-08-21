@@ -69,18 +69,25 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
         }`}
         aria-hidden={!isOpen}
         onClick={() => { console.log('Backdrop clicked'); onClose(); }}
+        style={{
+          border: isOpen ? '3px solid blue' : 'none', // Debug border for backdrop
+          background: isOpen ? 'rgba(0, 0, 255, 0.3)' : 'rgba(0, 0, 0, 0)', // Debug background
+          visibility: isOpen ? 'visible' : 'hidden' // Ensure backdrop visibility
+        }}
       />
 
       {/* Panel container (slide in) */}
       <div
-        className={`fixed right-0 top-0 h-[95vh] md:h-[100vh] w-full lg:w-[40vw] px-2 pb-4 flex items-center justify-center text-black transform transition-transform duration-300 ease-in-out z-[9999] ${
+        className={`fixed right-0 top-0 h-[95vh] md:h-[100vh] w-full lg:w-[40vw] px-2 pb-4 flex items-center justify-center text-black transition-all duration-300 ease-in-out z-[9999] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
         aria-modal="true"
         style={{
           border: isOpen ? '3px solid red' : 'none', // Debug border
-          background: isOpen ? 'rgba(255, 0, 0, 0.1)' : 'transparent' // Debug background
+          background: isOpen ? 'rgba(255, 0, 0, 0.1)' : 'transparent', // Debug background
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)', // Force transform
+          visibility: isOpen ? 'visible' : 'hidden' // Ensure visibility
         }}
       >
         {/* Panel */}
