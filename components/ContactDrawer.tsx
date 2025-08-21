@@ -28,6 +28,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
   useEffect(() => {
     console.log('ContactDrawer: Component rendered with isOpen:', isOpen);
+    console.log('ContactDrawer: Component DOM element should be visible:', isOpen);
   });
 
   useEffect(() => {
@@ -60,6 +61,23 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
         fontSize: '12px'
       }}>
         Drawer: {isOpen ? 'OPEN' : 'CLOSED'}
+      </div>
+
+      {/* Always visible debug panel to test if component renders */}
+      <div style={{
+        position: 'fixed',
+        top: '50px',
+        right: '10px',
+        background: 'lime',
+        color: 'black',
+        padding: '10px',
+        zIndex: 10000,
+        fontSize: '14px',
+        border: '2px solid black'
+      }}>
+        Component is rendering!<br/>
+        isOpen: {String(isOpen)}<br/>
+        Time: {new Date().toLocaleTimeString()}
       </div>
 
       {/* Backdrop */}
