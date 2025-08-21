@@ -80,15 +80,20 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
         Time: {new Date().toLocaleTimeString()}
       </div>
 
-      {/* Backdrop - Force visible for debugging */}
+      {/* Backdrop - Force visible with !important */}
       <div
-        className="fixed inset-0 z-[9998]"
         onClick={() => { console.log('Backdrop clicked'); onClose(); }}
         style={{
-          border: '5px solid yellow', // Force visible border
-          background: isOpen ? 'rgba(255, 255, 0, 0.5)' : 'rgba(255, 0, 255, 0.3)', // Bright colors
-          visibility: 'visible', // Force visibility
-          pointerEvents: isOpen ? 'auto' : 'none'
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          right: '0',
+          bottom: '0',
+          border: '5px solid yellow !important',
+          background: isOpen ? 'rgba(255, 255, 0, 0.5) !important' : 'rgba(255, 0, 255, 0.3) !important',
+          visibility: 'visible' as any,
+          pointerEvents: isOpen ? 'auto' : 'none',
+          zIndex: '9998'
         }}
       >
         {/* Debug text on backdrop */}
@@ -97,188 +102,218 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           top: '100px',
           left: '50%',
           transform: 'translateX(-50%)',
-          background: 'black',
-          color: 'white',
+          background: 'black !important',
+          color: 'white !important',
           padding: '10px',
           fontSize: '16px',
-          zIndex: 10001
+          zIndex: '10001'
         }}>
           BACKDROP: isOpen = {String(isOpen)}
         </div>
       </div>
 
-      {/* Panel container - Force visible for debugging */}
+      {/* Panel container - Force visible and working */}
       <div
-        className="fixed right-0 top-0 h-[95vh] md:h-[100vh] w-full lg:w-[40vw] px-2 pb-4 flex items-center justify-center text-black z-[9999]"
         role="dialog"
         aria-modal="true"
         style={{
-          border: '5px solid red', // Force visible border
-          background: isOpen ? 'rgba(255, 0, 0, 0.8)' : 'rgba(0, 255, 0, 0.8)', // Bright colors
-          visibility: 'visible', // Force visibility
-          transform: isOpen ? 'translateX(0)' : 'translateX(100%)', // Keep transform logic
+          position: 'fixed',
+          top: '0',
+          right: '0',
+          width: '40vw',
+          height: '100vh',
+          border: '5px solid red !important',
+          background: isOpen ? 'rgba(255, 0, 0, 0.8) !important' : 'rgba(0, 255, 0, 0.8) !important',
+          visibility: 'visible' as any,
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 0.3s ease',
+          zIndex: '9999',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px'
         }}
       >
-        {/* Panel */}
-        <div className="shadow-2xl rounded-xl w-[96%] md:w-[98%] lg:w-full h-[90%] bg-[#EDECE4] overflow-hidden">
+        {/* Panel content */}
+        <div style={{
+          width: '90%',
+          height: '90%',
+          background: '#EDECE4 !important',
+          borderRadius: '12px',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          overflow: 'hidden',
+          position: 'relative'
+        }}>
           {/* Debug header */}
-          <div style={{ background: 'red', color: 'white', padding: '5px', textAlign: 'center' }}>
+          <div style={{ 
+            background: 'red !important', 
+            color: 'white !important', 
+            padding: '5px', 
+            textAlign: 'center',
+            fontSize: '14px'
+          }}>
             DEBUG: Drawer is {isOpen ? 'OPEN' : 'CLOSED'} - Content should be visible
           </div>
           
           {/* Header */}
-          <div className="flex flex-col px-4 md:px-6 py-2">
-            <div className="flex flex-row justify-end">
-              <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full" aria-label="Close">
-                <svg width="24" height="24" viewBox="0 0 24 24" className="text-gray-600" fill="currentColor">
-                  <path d="M5.72 5.72a.75.75 0 0 1 1.06 0L12 10.94l5.22-5.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L13.06 12l5.22 5.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L12 13.06l-5.22 5.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.94 12 5.72 6.78a.75.75 0 0 1 0-1.06Z" />
-                </svg>
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            padding: '16px 24px 8px' 
+          }}>
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'flex-end' 
+            }}>
+              <button 
+                onClick={onClose} 
+                style={{
+                  padding: '8px',
+                  borderRadius: '50%',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#666',
+                  fontSize: '18px'
+                }}
+                aria-label="Close"
+              >
+                ✕
               </button>
             </div>
-            <h2 className="text-3xl md:text-4xl font-medium pt-0 pb-[1.75rem] text-left">Tell us where you're at</h2>
+            <h2 style={{ 
+              fontSize: '32px', 
+              fontWeight: '500', 
+              margin: '0 0 28px 0', 
+              textAlign: 'left',
+              color: 'black'
+            }}>
+              Tell us where you're at
+            </h2>
           </div>
 
           {/* Scrollable content */}
-          <div className="h-[calc(100%-56px)] overflow-y-auto px-4 py-1 md:px-6 md:py-2">
-            <form onSubmit={handleSubmit} className="flex h-full w-full flex-col gap-4 pr-1 md:pr-0" action="#">
-              {/* Row 1 */}
-              <div className="flex w-full flex-col gap-2 lg:flex-row">
-                <div className="flex w-full flex-col gap-2 lg:w-1/2">
-                  <label className="text-md font-medium">What is your name?</label>
+          <div style={{ 
+            height: 'calc(100% - 120px)', 
+            overflowY: 'auto', 
+            padding: '4px 24px 8px' 
+          }}>
+            <form onSubmit={handleSubmit} style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '16px',
+              height: '100%',
+              width: '100%'
+            }}>
+              {/* Name and Email */}
+              <div style={{ 
+                display: 'flex', 
+                gap: '16px' 
+              }}>
+                <div style={{ flex: '1' }}>
+                  <label style={{ 
+                    fontSize: '16px', 
+                    fontWeight: '500',
+                    color: 'black',
+                    display: 'block',
+                    marginBottom: '8px'
+                  }}>
+                    What is your name?
+                  </label>
                   <input
                     type="text"
                     placeholder="Name"
-                    className="border-b border-black/40 bg-transparent outline-none py-2"
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                      outline: 'none',
+                      padding: '8px 0',
+                      color: 'black',
+                      fontSize: '16px'
+                    }}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
-                <div className="flex w-full flex-col gap-2 lg:w-1/2">
-                  <label className="text-md font-medium">What is your email?</label>
+                <div style={{ flex: '1' }}>
+                  <label style={{ 
+                    fontSize: '16px', 
+                    fontWeight: '500',
+                    color: 'black',
+                    display: 'block',
+                    marginBottom: '8px'
+                  }}>
+                    What is your email?
+                  </label>
                   <input
                     type="email"
                     placeholder="Email"
-                    className="border-b border-black/40 bg-transparent outline-none py-2"
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                      outline: 'none',
+                      padding: '8px 0',
+                      color: 'black',
+                      fontSize: '16px'
+                    }}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
               </div>
 
-              {/* Role */}
-              <div className="flex w-full flex-col gap-2">
-                <label className="text-md font-medium">What is your role in the company?</label>
-                <input
-                  type="text"
-                  placeholder="Enter role"
-                  className="border-b border-black/40 bg-transparent outline-none py-2"
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                />
-              </div>
-
-              {/* Company name / website */}
-              <div className="flex w-full flex-col gap-2 lg:flex-row">
-                <div className="flex w-full flex-col gap-2 lg:w-1/2">
-                  <label className="text-md font-medium">Company Name</label>
-                  <input
-                    type="text"
-                    placeholder="Enter company name"
-                    className="border-b border-black/40 bg-transparent outline-none py-2"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  />
-                </div>
-                <div className="flex w-full flex-col gap-2 lg:w-1/2">
-                  <label className="text-md font-medium">Company Website</label>
-                  <input
-                    type="url"
-                    placeholder="Enter company website"
-                    className="border-b border-black/40 bg-transparent outline-none py-2"
-                    value={formData.website}
-                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                  />
-                </div>
-              </div>
-
-              {/* Size / Revenue */}
-              <div className="flex w-full flex-col gap-2 lg:flex-row">
-                <div className="flex w-full flex-col gap-2 lg:w-1/2">
-                  <label className="text-md font-medium">Company Size</label>
-                  <select
-                    className="border-b border-black/40 bg-transparent outline-none py-2"
-                    value={formData.size}
-                    onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-                  >
-                    <option value="">Select company size</option>
-                    <option value="<20">Less than 20</option>
-                    <option value="20-50">20-50</option>
-                    <option value="50-200">50-200</option>
-                    <option value="200-500">200-500</option>
-                    <option value=">500">More than 500</option>
-                  </select>
-                </div>
-                <div className="flex w-full flex-col gap-2 lg:w-1/2">
-                  <label className="text-md font-medium">Company's Annual Revenue</label>
-                  <select
-                    className="border-b border-black/40 bg-transparent outline-none py-2"
-                    value={formData.revenue}
-                    onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
-                  >
-                    <option value="">Select revenue range</option>
-                    <option value="<100K">Less than $100K</option>
-                    <option value="100K-500K">$100K-$500K</option>
-                    <option value="500K-1M">$500K-$1M</option>
-                    <option value="1M-2M">$1M-$2M</option>
-                    <option value=">2M">More than $2M</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Budget */}
-              <div className="flex w-full flex-col gap-2">
-                <label className="text-md font-medium">Project budget</label>
-                <select
-                  className="border-b border-black/40 bg-transparent outline-none py-2"
-                  value={formData.budget}
-                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                >
-                  <option value="">Select budget range</option>
-                  <option value="<5K">Less than $5K</option>
-                  <option value="5K-20K">$5K-$20K</option>
-                  <option value="20K-100K">$20K-$100K</option>
-                  <option value=">100K">More than $100K</option>
-                </select>
-              </div>
-
-              {/* Services */}
-              <div className="flex w-full flex-col gap-2">
-                <label className="text-md font-medium">What services are you interested in?</label>
-                <select
-                  className="border-b border-black/40 bg-transparent outline-none py-2"
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                >
-                  <option value="">Select service</option>
-                  <option value="identifying">Identifying AI opportunities</option>
-                  <option value="developing">Developing custom AI solutions</option>
-                  <option value="scaling">Scaling through AI</option>
-                </select>
-              </div>
-
               {/* Message */}
-              <div className="flex w-full flex-col gap-2">
-                <label className="text-md font-medium">Message</label>
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '8px' 
+              }}>
+                <label style={{ 
+                  fontSize: '16px', 
+                  fontWeight: '500',
+                  color: 'black'
+                }}>
+                  Message
+                </label>
                 <textarea
-                  rows={7}
+                  rows={4}
                   placeholder="Enter message"
-                  className="resize-none border-b border-black/40 bg-transparent outline-none py-2"
+                  style={{
+                    width: '100%',
+                    background: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                    outline: 'none',
+                    padding: '8px 0',
+                    color: 'black',
+                    fontSize: '16px',
+                    resize: 'none'
+                  }}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
               </div>
 
-              <button type="submit" className="w-fit cursor-pointer rounded-full border border-black px-4 py-2 text-black">Send inquiry</button>
+              <button 
+                type="submit" 
+                style={{ 
+                  width: 'fit-content',
+                  cursor: 'pointer', 
+                  borderRadius: '25px', 
+                  border: '1px solid black', 
+                  padding: '8px 16px', 
+                  color: 'black',
+                  background: 'transparent',
+                  fontSize: '16px',
+                  marginTop: '16px'
+                }}
+              >
+                Send inquiry
+              </button>
             </form>
           </div>
         </div>
