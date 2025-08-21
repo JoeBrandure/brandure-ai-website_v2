@@ -127,27 +127,13 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           left: '0',
           right: '0',
           bottom: '0',
-          border: '5px solid yellow !important',
-          background: isOpen ? 'rgba(255, 255, 0, 0.5) !important' : 'rgba(255, 0, 255, 0.3) !important',
+          background: isOpen ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.5)',
           visibility: 'visible' as any,
           pointerEvents: isOpen ? 'auto' : 'none',
           zIndex: '9998'
         }}
       >
-        {/* Debug text on backdrop */}
-        <div style={{
-          position: 'absolute',
-          top: '100px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'black !important',
-          color: 'white !important',
-          padding: '10px',
-          fontSize: '16px',
-          zIndex: '10001'
-        }}>
-          BACKDROP: isOpen = {String(isOpen)}
-        </div>
+
       </div>
 
       {/* Panel container - Force visible and working */}
@@ -160,8 +146,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           right: '0',
           width: '40vw',
           height: '100vh',
-          border: '5px solid red !important',
-          background: isOpen ? 'rgba(255, 0, 0, 0.8) !important' : 'rgba(0, 255, 0, 0.8) !important',
+          background: isOpen ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.95)',
           visibility: 'visible' as any,
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.3s ease',
@@ -202,7 +187,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
             fontSize: '12px',
             borderTop: '1px solid white'
           }}>
-            Panel: 90% of 100vh | Scrollable: calc(100% - 120px) | Form fields: 8
+            Panel: 90% of 100vh | Scrollable: calc(100% - 140px) | Form fields: 8
           </div>
           
           {/* Header */}
@@ -244,7 +229,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* Scrollable content */}
           <div style={{ 
-            height: 'calc(100% - 120px)', 
+            height: 'calc(100% - 140px)', 
             overflowY: 'auto', 
             padding: '4px 24px 8px'
           }}>
@@ -587,16 +572,16 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   width: 'fit-content',
                   cursor: 'pointer', 
                   borderRadius: '25px', 
-                  border: '2px solid red !important', 
+                  border: '1px solid black', 
                   padding: '12px 24px', 
                   color: 'black',
-                  background: 'yellow !important',
+                  background: 'transparent',
                   fontSize: '16px',
                   marginTop: '16px',
                   alignSelf: 'center'
                 }}
               >
-                Send inquiry (DEBUG: Button should be visible)
+                Send inquiry
               </button>
             </form>
           </div>
