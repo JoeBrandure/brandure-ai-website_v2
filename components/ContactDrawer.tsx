@@ -140,28 +140,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           overflow: 'hidden',
           position: 'relative'
         }}>
-          {/* Debug header */}
-          <div style={{ 
-            background: 'red !important', 
-            color: 'white !important', 
-            padding: '5px', 
-            textAlign: 'center',
-            fontSize: '14px'
-          }}>
-            DEBUG: Drawer is {isOpen ? 'OPEN' : 'CLOSED'} - Content should be visible
-          </div>
-          
-          {/* Height Debug Info */}
-          <div style={{ 
-            background: 'blue !important', 
-            color: 'white !important', 
-            padding: '5px', 
-            textAlign: 'center',
-            fontSize: '12px',
-            borderTop: '1px solid white'
-          }}>
-            Panel: 90% of 100vh | Scrollable: calc(100% - 160px) | Form fields: 8
-          </div>
+
           
           {/* Header */}
           <div style={{ 
@@ -551,6 +530,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   background: 'transparent',
                   fontSize: '16px',
                   marginTop: '16px',
+                  marginBottom: '20px',
                   alignSelf: 'center'
                 }}
               >
