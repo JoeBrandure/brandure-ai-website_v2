@@ -234,9 +234,10 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           <div style={{ 
             height: 'calc(100% - 120px)', 
             overflowY: 'auto', 
-            padding: '4px 24px 8px' 
+            padding: '4px 24px 8px',
+            paddingBottom: '80px' // Add extra bottom padding to ensure button is visible
           }}>
-            <form onSubmit={handleSubmit} style={{ 
+            <form style={{ 
               display: 'flex', 
               flexDirection: 'column', 
               gap: '16px',
@@ -568,27 +569,46 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 />
               </div>
 
-              <button 
-                type="submit" 
-                style={{ 
-                  width: 'fit-content',
-                  cursor: 'pointer', 
-                  borderRadius: '25px', 
-                  border: '1px solid black', 
-                  padding: '8px 16px', 
-                  color: 'black',
-                  background: 'transparent',
-                  fontSize: '16px',
-                  marginTop: '24px',
-                  marginBottom: '16px'
-                }}
-              >
-                Send inquiry
-              </button>
             </form>
-            
-            {/* Spacer to ensure button is always visible */}
-            <div style={{ height: '40px' }}></div>
+          </div>
+          
+          {/* Button area - always visible at bottom */}
+          <div style={{
+            position: 'absolute',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            background: '#EDECE4',
+            padding: '16px 24px',
+            borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <button 
+              type="submit" 
+              onClick={handleSubmit}
+              style={{ 
+                width: 'fit-content',
+                cursor: 'pointer', 
+                borderRadius: '25px', 
+                border: '1px solid black', 
+                padding: '12px 24px', 
+                color: 'black',
+                background: 'transparent',
+                fontSize: '16px',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'black';
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = 'black';
+              }}
+            >
+              Send inquiry
+            </button>
           </div>
         </div>
       </div>
