@@ -266,6 +266,238 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 </div>
               </div>
 
+              {/* Role */}
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '8px' 
+              }}>
+                <label style={{ 
+                  fontSize: '16px', 
+                  fontWeight: '500',
+                  color: 'black'
+                }}>
+                  What is your role in the company?
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter role"
+                  style={{
+                    width: '100%',
+                    background: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                    outline: 'none',
+                    padding: '8px 0',
+                    color: 'black',
+                    fontSize: '16px'
+                  }}
+                  value={formData.role}
+                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                />
+              </div>
+
+              {/* Company name / website */}
+              <div style={{ 
+                display: 'flex', 
+                gap: '16px' 
+              }}>
+                <div style={{ flex: '1' }}>
+                  <label style={{ 
+                    fontSize: '16px', 
+                    fontWeight: '500',
+                    color: 'black',
+                    display: 'block',
+                    marginBottom: '8px'
+                  }}>
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter company name"
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                      outline: 'none',
+                      padding: '8px 0',
+                      color: 'black',
+                      fontSize: '16px'
+                    }}
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  />
+                </div>
+                <div style={{ flex: '1' }}>
+                  <label style={{ 
+                    fontSize: '16px', 
+                    fontWeight: '500',
+                    color: 'black',
+                    display: 'block',
+                    marginBottom: '8px'
+                  }}>
+                    Company Website
+                  </label>
+                  <input
+                    type="url"
+                    placeholder="Enter company website"
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                      outline: 'none',
+                      padding: '8px 0',
+                      color: 'black',
+                      fontSize: '16px'
+                    }}
+                    value={formData.website}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              {/* Size / Revenue */}
+              <div style={{ 
+                display: 'flex', 
+                gap: '16px' 
+              }}>
+                <div style={{ flex: '1' }}>
+                  <label style={{ 
+                    fontSize: '16px', 
+                    fontWeight: '500',
+                    color: 'black',
+                    display: 'block',
+                    marginBottom: '8px'
+                  }}>
+                    Company Size
+                  </label>
+                  <select
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                      outline: 'none',
+                      padding: '8px 0',
+                      color: 'black',
+                      fontSize: '16px'
+                    }}
+                    value={formData.size}
+                    onChange={(e) => setFormData({ ...formData, size: e.target.value })}
+                  >
+                    <option value="">Select company size</option>
+                    <option value="<20">Less than 20</option>
+                    <option value="20-50">20-50</option>
+                    <option value="50-200">50-200</option>
+                    <option value="200-500">200-500</option>
+                    <option value=">500">More than 500</option>
+                  </select>
+                </div>
+                <div style={{ flex: '1' }}>
+                  <label style={{ 
+                    fontSize: '16px', 
+                    fontWeight: '500',
+                    color: 'black',
+                    display: 'block',
+                    marginBottom: '8px'
+                  }}>
+                    Company's Annual Revenue
+                  </label>
+                  <select
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                      outline: 'none',
+                      padding: '8px 0',
+                      color: 'black',
+                      fontSize: '16px'
+                    }}
+                    value={formData.revenue}
+                    onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
+                  >
+                    <option value="">Select revenue range</option>
+                    <option value="<100K">Less than $100K</option>
+                    <option value="100K-500K">$100K-$500K</option>
+                    <option value="500K-1M">$500K-$1M</option>
+                    <option value="1M-2M">$1M-$2M</option>
+                    <option value=">2M">More than $2M</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Budget */}
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '8px' 
+              }}>
+                <label style={{ 
+                  fontSize: '16px', 
+                  fontWeight: '500',
+                  color: 'black'
+                }}>
+                  Project budget
+                </label>
+                <select
+                  style={{
+                    width: '100%',
+                    background: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                    outline: 'none',
+                    padding: '8px 0',
+                    color: 'black',
+                    fontSize: '16px'
+                  }}
+                  value={formData.budget}
+                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                >
+                  <option value="">Select budget range</option>
+                  <option value="<5K">Less than $5K</option>
+                  <option value="5K-20K">$5K-$20K</option>
+                  <option value="20K-100K">$20K-$100K</option>
+                  <option value=">100K">More than $100K</option>
+                </select>
+              </div>
+
+              {/* Services */}
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '8px' 
+              }}>
+                <label style={{ 
+                  fontSize: '16px', 
+                  fontWeight: '500',
+                  color: 'black'
+                }}>
+                  What services are you interested in?
+                </label>
+                <select
+                  style={{
+                    width: '100%',
+                    background: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                    outline: 'none',
+                    padding: '8px 0',
+                    color: 'black',
+                    fontSize: '16px'
+                  }}
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                >
+                  <option value="">Select service</option>
+                  <option value="identifying">Identifying AI opportunities</option>
+                  <option value="developing">Developing custom AI solutions</option>
+                  <option value="scaling">Scaling through AI</option>
+                </select>
+              </div>
+
               {/* Message */}
               <div style={{ 
                 display: 'flex', 
