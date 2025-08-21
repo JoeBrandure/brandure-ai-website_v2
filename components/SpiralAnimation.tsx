@@ -392,10 +392,13 @@ class Star {
 export function SpiralAnimation() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const animationRef = useRef<AnimationController | null>(null)
-    const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight })
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
     
     // 处理窗口大小变化
     useEffect(() => {
+        // Only run on client side
+        if (typeof window === 'undefined') return
+        
         const handleResize = () => {
             setDimensions({
                 width: window.innerWidth,
@@ -442,6 +445,15 @@ export function SpiralAnimation() {
             }
         }
     }, [dimensions])
+    
+    // Don't render until dimensions are set
+    if (dimensions.width === 0 || dimensions.height === 0) {
+        return (
+            <div className="relative w-full h-full flex items-center justify-center">
+                <div className="text-white text-sm">Loading...</div>
+            </div>
+        )
+    }
     
     return (
         <div className="relative w-full h-full">
