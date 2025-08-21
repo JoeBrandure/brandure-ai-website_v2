@@ -18,14 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fallbackTimer = setTimeout(() => {
-      if (!showContent) {
-        console.log('Home: Fallback timer triggered, setting showContent to true');
-        setShowContent(true);
-      }
-    }, 5000);
-    
-    return () => clearTimeout(fallbackTimer);
+    // Removed fallback timer - user must manually click to enter
   }, [showContent]);
 
   return (

@@ -5,6 +5,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { createContext, useContext, useState } from 'react';
 import FloatingGradient from '../components/FloatingGradient';
+import ContactDrawer from '../components/ContactDrawer';
 
 export const ContactDrawerContext = createContext({
   isOpen: false,
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ContactDrawerContext.Provider value={contactDrawerValue}>
       <FloatingGradient />
       <Component {...pageProps} />
+      <ContactDrawer isOpen={isContactDrawerOpen} onClose={() => setIsContactDrawerOpen(false)} />
     </ContactDrawerContext.Provider>
   );
 }

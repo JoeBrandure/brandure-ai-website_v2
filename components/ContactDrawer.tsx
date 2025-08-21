@@ -43,14 +43,27 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
   return (
     <>
-      <div className={`drawer-backdrop ${isOpen ? 'open' : ''}`} onClick={onClose} />
-      <div className={`drawer-panel ${isOpen ? 'open' : ''} bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white`}>
-        <div className="p-6 md:p-8">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-medium">Tell us where you&apos;re at</h2>
+      {/* Backdrop */}
+      <div 
+        className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 z-40 ${
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`} 
+        onClick={onClose} 
+      />
+      
+      {/* Drawer Panel */}
+      <div 
+        className={`fixed right-0 top-0 h-full w-full md:w-[700px] bg-white transform transition-transform duration-300 ease-in-out z-50 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="h-full flex flex-col">
+          {/* Header */}
+          <div className="flex justify-between items-center p-10 border-b border-gray-200">
+            <h2 className="text-3xl font-semibold text-gray-900">Tell us where you&apos;re at</h2>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-neutral-800 rounded-full transition-colors"
+              className="p-3 hover:bg-gray-100 rounded-full transition-colors"
               aria-label="Close drawer"
             >
               <svg
@@ -60,7 +73,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className="text-neutral-300"
+                className="text-gray-600"
               >
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
@@ -68,159 +81,165 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
             </button>
           </div>
 
-          <div className="h-[calc(100vh-112px)] overflow-y-auto pr-1">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Row 1 (2 cols): Name / Email */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Form Content - Scrollable */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-10">
+              <form onSubmit={handleSubmit} className="space-y-10">
+                {/* Name and Email Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-4">What is your name?</label>
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 transition-all text-base"
+                      placeholder="Name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-4">What is your email?</label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 transition-all text-base"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Role */}
                 <div>
-                  <label className="block text-sm text-neutral-300 mb-2">What is your name?</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-4">What is your role in the company?</label>
                   <input
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
-                    placeholder="Enter your name"
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 transition-all text-base"
+                    placeholder="Enter role"
                     required
                   />
                 </div>
-                <div>
-                  <label className="block text-sm text-neutral-300 mb-2">What is your email?</label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-              </div>
 
-              {/* Row 2 (1 col): Role */}
-              <div>
-                <label className="block text-sm text-neutral-300 mb-2">What is your role in the company?</label>
-                <input
-                  type="text"
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
-                  placeholder="Enter your role"
-                  required
-                />
-              </div>
-
-              {/* Row 3 (2 cols): Company Name / Company Website */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm text-neutral-300 mb-2">Company Name</label>
-                  <input
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
-                    placeholder="Enter company name"
-                    required
-                  />
+                {/* Company Name and Website */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-4">Company Name</label>
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 transition-all text-base"
+                      placeholder="Enter company name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-4">Company Website</label>
+                    <input
+                      type="url"
+                      value={formData.website}
+                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                      className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 transition-all text-base"
+                      placeholder="Enter company website"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-sm text-neutral-300 mb-2">Company Website</label>
-                  <input
-                    type="url"
-                    value={formData.website}
-                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500"
-                    placeholder="https://example.com"
-                  />
-                </div>
-              </div>
 
-              {/* Row 4 (2 cols): Company Size / Company's Annual Revenue */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Company Size and Revenue */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-4">Company Size</label>
+                    <select
+                      value={formData.size}
+                      onChange={(e) => setFormData({ ...formData, size: e.target.value })}
+                      className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-base"
+                      required
+                    >
+                      <option value="">Select company size</option>
+                      <option value="<20">Less than 20</option>
+                      <option value="20-50">20-50</option>
+                      <option value="50-200">50-200</option>
+                      <option value="200-500">200-500</option>
+                      <option value=">500">More than 500</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-4">Company&apos;s Annual Revenue</label>
+                    <select
+                      value={formData.revenue}
+                      onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
+                      className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-base"
+                    >
+                      <option value="">Select revenue range</option>
+                      <option value="<100K">Less than $100K</option>
+                      <option value="100K-500K">$100K-$500K</option>
+                      <option value="500K-1M">$500K-$1M</option>
+                      <option value="1M-2M">$1M-$2M</option>
+                      <option value=">2M">More than $2M</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Project Budget */}
                 <div>
-                  <label className="block text-sm text-neutral-300 mb-2">Company Size</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-4">Project budget</label>
                   <select
-                    value={formData.size}
-                    onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
-                    required
+                    value={formData.budget}
+                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                    className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-base"
                   >
-                    <option value="">Select company size</option>
-                    <option value="<20">Less than 20</option>
-                    <option value="20-50">20-50</option>
-                    <option value="50-200">50-200</option>
-                    <option value="200-500">200-500</option>
-                    <option value=">500">More than 500</option>
+                    <option value="">Select budget range</option>
+                    <option value="<5K">Less than $5K</option>
+                    <option value="5K-20K">$5K-$20K</option>
+                    <option value="20K-100K">$20K-$100K</option>
+                    <option value=">100K">More than $100K</option>
                   </select>
                 </div>
+
+                {/* Services */}
                 <div>
-                  <label className="block text-sm text-neutral-300 mb-2">Company&apos;s Annual Revenue</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-4">What services are you interested in?</label>
                   <select
-                    value={formData.revenue}
-                    onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-base"
+                    required
                   >
-                    <option value="">Select revenue range</option>
-                    <option value="<100K">Less than $100K</option>
-                    <option value="100K-500K">$100K-$500K</option>
-                    <option value="500K-1M">$500K-$1M</option>
-                    <option value="1M-2M">$1M-$2M</option>
-                    <option value=">2M">More than $2M</option>
+                    <option value="">Select service</option>
+                    <option value="identifying">Identifying AI opportunities</option>
+                    <option value="developing">Developing custom AI solutions</option>
+                    <option value="scaling">Scaling through AI</option>
                   </select>
                 </div>
-              </div>
 
-              {/* Row 5 (1 col): Project budget */}
-              <div>
-                <label className="block text-sm text-neutral-300 mb-2">Project budget</label>
-                <select
-                  value={formData.budget}
-                  onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
-                >
-                  <option value="">Select budget range</option>
-                  <option value="<5K">Less than $5K</option>
-                  <option value="5K-20K">$5K-$20K</option>
-                  <option value="20K-100K">$20K-$100K</option>
-                  <option value=">100K">More than $100K</option>
-                </select>
-              </div>
+                {/* Message */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-4">Message</label>
+                  <textarea
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full px-5 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 resize-none transition-all text-base"
+                    placeholder="Message"
+                    rows={8}
+                    required
+                  />
+                </div>
 
-              {/* Row 6 (1 col): What services are you interested in? */}
-              <div>
-                <label className="block text-sm text-neutral-300 mb-2">What services are you interested in?</label>
-                <select
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF]"
-                  required
-                >
-                  <option value="">Select service</option>
-                  <option value="identifying">Identifying AI opportunities</option>
-                  <option value="developing">Developing custom AI solutions</option>
-                  <option value="scaling">Scaling through AI</option>
-                </select>
-              </div>
-
-              {/* Row 7 (1 col): Message */}
-              <div>
-                <label className="block text-sm text-neutral-300 mb-2">Message</label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-900 text-white border border-gray-700 rounded-lg focus:outline-none focus:border-[#00D9FF] placeholder-gray-500 resize-none"
-                  placeholder="Tell us about your project..."
-                  rows={7}
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full md:w-auto px-6 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 font-medium"
-              >
-                Send Inquiry
-              </button>
-            </form>
+                {/* Submit Button */}
+                <div className="pt-6">
+                  <button
+                    type="submit"
+                    className="w-full px-8 py-5 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-medium text-lg"
+                  >
+                    Send Inquiry
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

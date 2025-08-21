@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import AnimatedText from './AnimatedText';
-import ContactDrawer from './ContactDrawer';
 import { ContactDrawerContext } from '../pages/_app';
 
 export default function Contact() {
-  const { isOpen, openDrawer, closeDrawer } = useContext(ContactDrawerContext);
+  const { openDrawer } = useContext(ContactDrawerContext);
 
   return (
     <section id="contact" className="section-snap relative min-h-screen flex items-center">
@@ -72,8 +71,6 @@ export default function Contact() {
                   </p>
         </div>
       </div>
-
-      <ContactDrawer isOpen={isOpen} onClose={closeDrawer} />
     </section>
   );
 }
