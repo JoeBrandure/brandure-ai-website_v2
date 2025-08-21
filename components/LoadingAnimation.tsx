@@ -58,7 +58,9 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         onClick={handleSkip}
         title="Click to skip loading"
       >
-        <SpiralAnimation size="xl" />
+        <div style={{ width: '300px', height: '300px' }}>
+          <SpiralAnimation />
+        </div>
         
         {/* Skip hint */}
         <div
