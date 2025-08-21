@@ -45,6 +45,44 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    
+    // Send form data to sales@brandureai.com
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          to: 'sales@brandureai.com',
+          subject: 'New Contact Form Submission from Brandure Website'
+        }),
+      });
+      
+      if (response.ok) {
+        alert('Thank you! Your message has been sent successfully.');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          role: '',
+          company: '',
+          website: '',
+          size: '',
+          revenue: '',
+          budget: '',
+          service: '',
+          message: '',
+        });
+        onClose(); // Close the drawer
+      } else {
+        alert('There was an error sending your message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error sending your message. Please try again.');
+    }
   };
 
   return (
@@ -541,12 +579,16 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   color: 'black',
                   background: 'transparent',
                   fontSize: '16px',
-                  marginTop: '16px'
+                  marginTop: '24px',
+                  marginBottom: '16px'
                 }}
               >
                 Send inquiry
               </button>
             </form>
+            
+            {/* Spacer to ensure button is always visible */}
+            <div style={{ height: '40px' }}></div>
           </div>
         </div>
       </div>
