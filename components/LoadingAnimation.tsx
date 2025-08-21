@@ -46,10 +46,23 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         pointerEvents: isAnimating ? 'auto' : 'none',
       }}
     >
+      {/* Spiral Animation - Full Screen */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+        }}
+      >
+        <SpiralAnimation />
+      </div>
+      
+      {/* Skip Button - Overlay on top */}
       <div
         style={{
           cursor: 'pointer',
           position: 'relative',
+          zIndex: 2,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -58,10 +71,6 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         onClick={handleSkip}
         title="Click to skip loading"
       >
-        <div style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }}>
-          <SpiralAnimation />
-        </div>
-        
         {/* Skip hint */}
         <div
           style={{

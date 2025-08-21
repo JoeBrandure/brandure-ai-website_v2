@@ -421,11 +421,10 @@ export function SpiralAnimation() {
         
         // 处理DPR以解决模糊问题
         const dpr = window.devicePixelRatio || 1
-        // 使用全屏尺寸
-        const size = Math.max(dimensions.width, dimensions.height)
         
-        canvas.width = size * dpr
-        canvas.height = size * dpr
+        // 使用实际视口尺寸，不强制为正方形
+        canvas.width = dimensions.width * dpr
+        canvas.height = dimensions.height * dpr
         
         // 设置CSS尺寸
         canvas.style.width = `${dimensions.width}px`
@@ -435,7 +434,7 @@ export function SpiralAnimation() {
         ctx.scale(dpr, dpr)
         
         // 创建动画控制器
-        animationRef.current = new AnimationController(canvas, ctx, dpr, size)
+        animationRef.current = new AnimationController(canvas, ctx, dpr, Math.max(dimensions.width, dimensions.height))
         
         return () => {
             // 清理动画
@@ -456,10 +455,17 @@ export function SpiralAnimation() {
     }
     
     return (
-        <div className="relative w-full h-full">
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
             <canvas
                 ref={canvasRef}
-                className="absolute inset-0 w-full h-full"
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    display: 'block'
+                }}
             />
         </div>
     )
