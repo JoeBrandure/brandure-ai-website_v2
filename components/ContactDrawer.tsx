@@ -91,23 +91,21 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
 
 
-      {/* Backdrop - Force visible with !important */}
-      <div
-        onClick={() => { console.log('Backdrop clicked'); onClose(); }}
-        style={{
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          right: '0',
-          bottom: '0',
-          background: isOpen ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.5)',
-          visibility: 'visible' as any,
-          pointerEvents: isOpen ? 'auto' : 'none',
-          zIndex: '9998'
-        }}
-      >
-
-      </div>
+      {/* Backdrop - Only visible when drawer is open */}
+      {isOpen && (
+        <div
+          onClick={() => { console.log('Backdrop clicked'); onClose(); }}
+          style={{
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            right: '0',
+            bottom: '0',
+            background: 'rgba(0, 0, 0, 0.5)',
+            zIndex: '9998'
+          }}
+        />
+      )}
 
       {/* Panel container - Force visible and working */}
       <div
