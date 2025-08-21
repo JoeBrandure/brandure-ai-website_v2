@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import AnimatedText from './AnimatedText';
-import { ContactDrawerContext } from '../pages/_app';
+import ContactDrawer from './ContactDrawer';
 
 export default function Contact() {
-  const { openDrawer } = useContext(ContactDrawerContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <section id="contact" className="section-snap relative min-h-screen flex items-center">
@@ -21,7 +21,7 @@ export default function Contact() {
         {/* CTA Button — perfectly centered under subhead */}
         <div className="text-center" style={{ marginTop: '20px' }}>
           <button
-            onClick={openDrawer}
+            onClick={() => setIsOpen(true)}
             className="cta-button"
           >
             Let&apos;s Partner Up
@@ -71,6 +71,8 @@ export default function Contact() {
                   </p>
         </div>
       </div>
+
+      <ContactDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </section>
   );
 }

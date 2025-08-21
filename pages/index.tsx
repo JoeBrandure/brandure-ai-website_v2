@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Hero from '../components/Hero';
 import Pitch from '../components/Pitch';
@@ -10,11 +10,8 @@ import LoadingAnimation from '../components/LoadingAnimation';
 import FloatingGradient from '../components/FloatingGradient';
 import ChatWidget from '../components/ChatWidget';
 
-import { ContactDrawerContext } from './_app';
-
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
-  const { openDrawer } = useContext(ContactDrawerContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -62,8 +59,8 @@ export default function Home() {
                 objectFit: 'contain'
               }}
             />
-            <button
-              onClick={openDrawer}
+            <a
+              href="#contact"
               className="cta-button"
               style={{ 
                 padding: '10px 24px', 
@@ -79,12 +76,12 @@ export default function Home() {
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'white';
-                e.currentTarget.style.color = 'black';
+                (e.currentTarget as HTMLAnchorElement).style.background = 'white';
+                (e.currentTarget as HTMLAnchorElement).style.color = 'black';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = 'white';
+                (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
+                (e.currentTarget as HTMLAnchorElement).style.color = 'white';
               }}
             >
               Let&apos;s Partner Up
@@ -92,7 +89,7 @@ export default function Home() {
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />
               </svg>
-            </button>
+            </a>
           </nav>
 
           {/* Main scroll container */}
