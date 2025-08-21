@@ -23,8 +23,8 @@ export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) 
           >
             Let&apos;s Partner Up
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2">
-              <path d="M5 12h14" />
-              <path d="M13 5l7 7-7 7" />
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
             </svg>
           </button>
         </div>

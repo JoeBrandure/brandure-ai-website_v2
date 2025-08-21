@@ -490,7 +490,7 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         <div
           style={{
             color: 'rgba(255, 255, 255, 0.8)',
-            fontSize: '16px',
+            fontSize: '20px',
             fontWeight: '500',
             textAlign: 'center',
             pointerEvents: 'none',
