@@ -87,36 +87,9 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
   return (
     <>
-      {/* Debug element - remove after testing */}
-      <div style={{
-        position: 'fixed',
-        top: '10px',
-        right: '10px',
-        background: 'red',
-        color: 'white',
-        padding: '5px',
-        zIndex: 10000,
-        fontSize: '12px'
-      }}>
-        Drawer: {isOpen ? 'OPEN' : 'CLOSED'}
-      </div>
 
-      {/* Always visible debug panel to test if component renders */}
-      <div style={{
-        position: 'fixed',
-        top: '50px',
-        right: '10px',
-        background: 'lime',
-        color: 'black',
-        padding: '10px',
-        zIndex: 10000,
-        fontSize: '14px',
-        border: '2px solid black'
-      }}>
-        Component is rendering!<br/>
-        isOpen: {String(isOpen)}<br/>
-        Time: {new Date().toLocaleTimeString()}
-      </div>
+
+
 
       {/* Backdrop - Force visible with !important */}
       <div
@@ -146,7 +119,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           right: '0',
           width: '40vw',
           height: '100vh',
-          background: isOpen ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+          background: isOpen ? 'transparent' : 'transparent',
           visibility: 'visible' as any,
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.3s ease',
@@ -187,7 +160,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
             fontSize: '12px',
             borderTop: '1px solid white'
           }}>
-            Panel: 90% of 100vh | Scrollable: calc(100% - 140px) | Form fields: 8
+            Panel: 90% of 100vh | Scrollable: calc(100% - 160px) | Form fields: 8
           </div>
           
           {/* Header */}
@@ -229,7 +202,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
           {/* Scrollable content */}
           <div style={{ 
-            height: 'calc(100% - 140px)', 
+            height: 'calc(100% - 160px)', 
             overflowY: 'auto', 
             padding: '4px 24px 8px'
           }}>
