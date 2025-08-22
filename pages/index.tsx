@@ -3,12 +3,11 @@ import Image from 'next/image';
 import Hero from '../components/Hero';
 import Pitch from '../components/Pitch';
 import Journey from '../components/Journey';
-import HowWeWork from '../components/HowWeWork';
 import Results from '../components/Results';
 import Partnership from '../components/Partnership';
 import Contact from '../components/Contact';
 import LoadingAnimation from '../components/LoadingAnimation';
-import FloatingGradient from '../components/FloatingGradient';
+import FloatingGradientCanvas from '../components/FloatingGradientCanvas';
 import ChatWidget from '../components/ChatWidget';
 import ContactDrawer from '../components/ContactDrawer';
 
@@ -39,7 +38,7 @@ export default function Home() {
   return (
     <>
       {/* Background Elements */}
-      <FloatingGradient />
+      <FloatingGradientCanvas />
 
       {!showContent && (
         <LoadingAnimation onComplete={() => {
@@ -118,7 +117,6 @@ export default function Home() {
             <section className="snap-start">
               <Journey />
             </section>
-            <HowWeWork />
             <Results />
             <Partnership />
             <section className="snap-start">
