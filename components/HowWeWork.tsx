@@ -21,6 +21,7 @@ export default function HowWeWork() {
     }
   ];
 
+  const [currentStep, setCurrentStep] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
@@ -36,38 +37,63 @@ export default function HowWeWork() {
     setHoveredCard(null);
   };
 
+  const scrollToStep = (index: number) => {
+    setCurrentStep(index);
+    const element = document.getElementById(`step-${index}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section id="how-we-work" className="section-snap snap-start" style={{ position: 'relative' }}>
-      <div className="content-wrapper" style={{ position: 'relative', zIndex: 11 }}>
-        {/* Process Cards Container */}
-        <div className="process-cards-container">
+      <div className="how-we-work-container">
+        {/* Left Navigation */}
+        <div className="step-navigation">
           {steps.map((step, index) => (
-            <div 
-              key={step.id} 
-              className="process-card" 
-              data-step={index + 1}
-              onMouseMove={(e) => handleMouseMove(e, index)}
-              onMouseLeave={handleMouseLeave}
+            <button
+              key={step.id}
+              onClick={() => scrollToStep(index)}
+              className={`nav-step ${currentStep === index ? 'active' : ''}`}
             >
-              {/* Cursor-following glow effect */}
-              {hoveredCard === index && (
-                <div 
-                  className="card-glow"
-                  style={{
-                    left: mousePosition.x,
-                    top: mousePosition.y,
-                  }}
-                />
-              )}
-              
-              <div className="card-header">
-                <div className="step-number-card text-[#00D9FF]">{index + 1}</div>
-                <h3 className="step-title-card text-white text-3xl font-bold mb-6">{step.title}</h3>
-              </div>
-              <div className="card-content">
-                <p className="step-description-card text-gray-300">
-                  {step.description}
-                </p>
+              <span className="nav-step-number">{index + 1}</span>
+              <span className="nav-step-title">{step.title}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Scrollable Content Container */}
+        <div className="steps-scroll-container">
+          {steps.map((step, index) => (
+            <div
+              key={step.id}
+              id={`step-${index}`}
+              className="step-section"
+              data-step={index + 1}
+            >
+              <div 
+                className="step-card-horizontal"
+                onMouseMove={(e) => handleMouseMove(e, index)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {/* Cursor-following glow effect */}
+                {hoveredCard === index && (
+                  <div 
+                    className="card-glow-horizontal"
+                    style={{
+                      left: mousePosition.x,
+                      top: mousePosition.y,
+                    }}
+                  />
+                )}
+                
+                <div className="step-content">
+                  <div className="step-number-large">{index + 1}</div>
+                  <div className="step-text-content">
+                    <h2 className="step-title-large">{step.title}</h2>
+                    <p className="step-description-large">{step.description}</p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
