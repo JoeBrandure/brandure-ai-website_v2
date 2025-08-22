@@ -78,7 +78,7 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           --hue: 200;
           --hue-speed: 0.5;
           --rotate: 0;
-          --animation-speed: 6s;
+          --animation-speed: 4s;
           --interaction-speed: 0.55s;
           --glow-scale: 1.5;
           --scale-factor: 1;
@@ -146,8 +146,8 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
             hsl(calc(200 + var(--hue) * 0.3) 100% 60%) calc(40% * var(--bg-size)),
             transparent 100%
           );
-          animation: hue-animation var(--animation-speed) ease-in-out infinite,
-                     rotate-bg var(--animation-speed) ease-in-out infinite;
+          animation: hue-animation var(--animation-speed) linear infinite,
+                     rotate-bg var(--animation-speed) linear infinite;
           transition: --bg-size var(--interaction-speed) ease;
         }
 
@@ -155,13 +155,12 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           --glow-translate-y: 0;
           display: block;
           position: absolute;
-          width: 200px;
-          height: 200px;
-          animation: rotate var(--animation-speed) ease-in-out infinite;
+          width: calc(var(--card-width) / 5);
+          height: calc(var(--card-width) / 5);
+          animation: rotate var(--animation-speed) linear infinite;
           transform: rotateZ(calc(var(--rotate) * var(--glow-rotate-unit)));
           transform-origin: center;
-          border-radius: 50%;
-          z-index: 1;
+          border-radius: calc(var(--glow-radius) * 10vw);
         }
 
         .glow:after {
@@ -175,8 +174,8 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           top: -15%;
           background: hsl(calc(200 + var(--hue) * 0.3) 100% 60%);
           position: relative;
-          border-radius: 50%;
-          animation: hue-animation var(--animation-speed) ease-in-out infinite;
+          border-radius: calc(var(--glow-radius) * 10vw);
+          animation: hue-animation var(--animation-speed) linear infinite;
           transform: scaleY(calc(var(--glow-scale) * var(--scale-factor) / 1.1))
                      scaleX(calc(var(--glow-scale) * var(--scale-factor) * 1.2))
                      translateY(calc(var(--glow-translate-y) * 1%));
@@ -187,7 +186,7 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           mix-blend-mode: darken;
           --text-color: white;
           box-shadow: 0 0 calc(var(--white-shadow) * 1vw) calc(var(--white-shadow) * 0.15vw) rgb(255 255 255 / 20%);
-          animation: shadow-pulse calc(var(--animation-speed) * 2) ease-in-out infinite;
+          animation: shadow-pulse calc(var(--animation-speed) * 2) linear infinite;
         }
 
         .glow-container:hover .glow-content:before {
@@ -216,22 +215,22 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
         }
 
         @keyframes shadow-pulse {
-          0%, 100% {
+          0%, 24%, 46%, 73%, 96% {
             --white-shadow: 0.5;
           }
-          25% {
+          12%, 28%, 41%, 63%, 75%, 82%, 98% {
             --white-shadow: 2.5;
           }
-          50% {
+          6%, 32%, 57% {
             --white-shadow: 1.3;
           }
-          75% {
+          18%, 52%, 88% {
             --white-shadow: 3.5;
           }
         }
 
         @keyframes rotate-bg {
-          0%, 100% {
+          0% {
             --bg-x: 0;
             --bg-y: 0;
           }
@@ -246,40 +245,42 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           75% {
             --bg-x: 0;
             --bg-y: 100;
+          }
+          100% {
+            --bg-x: 0;
+            --bg-y: 0;
           }
         }
 
         @keyframes rotate {
-          0%, 100% {
+          from {
             --rotate: -70;
             --glow-translate-y: -65;
           }
           25% {
-            --rotate: 20;
             --glow-translate-y: -65;
           }
           50% {
-            --rotate: 110;
             --glow-translate-y: -65;
           }
-          75% {
-            --rotate: 200;
+          60%, 75% {
+            --glow-translate-y: -65;
+          }
+          85% {
+            --glow-translate-y: -65;
+          }
+          to {
+            --rotate: calc(360 - 70);
             --glow-translate-y: -65;
           }
         }
 
         @keyframes hue-animation {
-          0%, 100% {
+          0% {
             --hue: 0;
           }
-          25% {
-            --hue: 15;
-          }
-          50% {
-            --hue: 30;
-          }
-          75% {
-            --hue: 45;
+          100% {
+            --hue: 60;
           }
         }
       `}</style>
