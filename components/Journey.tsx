@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatedText } from './AnimatedText';
+import ParticleTransition from './ParticleTransition';
 
 export default function Journey() {
   return (
@@ -19,6 +20,10 @@ export default function Journey() {
           </h2>
         </div>
         
+        {/* Particle transition - positioned at bottom half of Journey */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 z-10">
+          <ParticleTransition />
+        </div>
 
       </div>
     </section>

@@ -31,6 +31,51 @@ export default function FloatingGradient() {
       { x: width * 0.7, y: height * 0.6, r: Math.min(width, height) * 0.28, a: 0.14, dx: -0.06, dy: 0.05 },
     ];
 
+    // Add floating particles
+    const particles: Particle[] = [];
+    const particleCount = 80;
+    const colors = ['#00D9FF', '#FFFFFF', 'rgba(0, 217, 255, 0.3)'];
+
+    class Particle {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      color: string;
+
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > width) this.x = 0;
+        if (this.x < 0) this.x = width;
+        if (this.y > height) this.y = 0;
+        if (this.y < 0) this.y = height;
+      }
+
+      draw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
     function draw() {
       try {
         if (!ctx) return;
@@ -57,6 +102,12 @@ export default function FloatingGradient() {
           ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
           ctx.fill();
           ctx.globalCompositeOperation = 'source-over';
+        });
+
+        // Draw particles
+        particles.forEach(particle => {
+          particle.update();
+          particle.draw(ctx);
         });
 
         rafRef.current = requestAnimationFrame(draw);

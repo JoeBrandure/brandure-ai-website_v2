@@ -19,7 +19,15 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
     budget: '',
     service: '',
     message: '',
+    honeypot: '', // Honeypot field for bot protection
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  
+  // Debug logging for submitStatus changes
+  useEffect(() => {
+    console.log('ContactDrawer: submitStatus changed to:', submitStatus);
+  }, [submitStatus]);
 
   // Debug logging
   useEffect(() => {
@@ -44,24 +52,57 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
     
-    // Send form data to sales@brandureai.com
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim()) {
+      alert('Please fill in your name and email address.');
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    
+    // Message validation
+    if (!formData.message.trim()) {
+      alert('Please add a message describing your project or inquiry.');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    
+    // Show immediate feedback that form is being processed
+    console.log('Form submission started, setting submitting state');
+    
     try {
-      const response = await fetch('/api/contact', {
+      // Prepare payload with additional tracking data
+      const payload = {
+        ...formData,
+        pagePath: typeof window !== 'undefined' ? window.location.pathname : '',
+        utm_source: typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get("utm_source") || "" : "",
+        utm_medium: typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get("utm_medium") || "" : "",
+        utm_campaign: typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get("utm_campaign") || "" : "",
+      };
+
+      const response = await fetch('/api/send-inquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          to: 'sales@brandureai.com',
-          subject: 'New Contact Form Submission from Brandure Website'
-        }),
+        body: JSON.stringify(payload),
       });
       
-      if (response.ok) {
-        alert('Thank you! Your message has been sent successfully.');
+      const responseData = await response.json();
+      
+      if (response.ok && responseData.ok) {
+        console.log('Form submission successful, setting success status');
+        setSubmitStatus('success');
+        console.log('Success status set, message should be visible now');
+        
         // Reset form
         setFormData({
           name: '',
@@ -74,14 +115,26 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           budget: '',
           service: '',
           message: '',
+          honeypot: '',
         });
-        onClose(); // Close the drawer
+        
+        // Show success message immediately, then close after delay
+        // The success message will be visible for 3 seconds before closing
+        setTimeout(() => {
+          onClose();
+          setSubmitStatus('idle');
+        }, 3000); // Show success message for 3 seconds
       } else {
-        alert('There was an error sending your message. Please try again.');
+        console.log('Form submission failed:', response.status, responseData);
+        setSubmitStatus('error');
+        console.error('API Error:', response.status, response.statusText);
       }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('There was an error sending your message. Please try again.');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Error submitting form:', errorMessage);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -118,7 +171,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           width: '40vw',
           height: '100vh',
           background: isOpen ? 'transparent' : 'transparent',
-          visibility: 'visible' as any,
+          visibility: 'visible' as const,
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.3s ease',
           zIndex: '9999',
@@ -173,7 +226,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
               textAlign: 'left',
               color: 'black'
             }}>
-              Tell us where you're at
+              Tell us where you&apos;re at
             </h2>
           </div>
 
@@ -190,6 +243,14 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
               width: '100%',
               paddingBottom: '20px'
             }}>
+              {/* Required fields note */}
+              <div style={{
+                fontSize: '14px',
+                color: '#666',
+                marginBottom: '8px'
+              }}>
+                <span style={{ color: '#ef4444' }}>*</span> Required fields
+              </div>
               {/* Name and Email */}
               <div style={{ 
                 display: 'flex', 
@@ -203,7 +264,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                     display: 'block',
                     marginBottom: '8px'
                   }}>
-                    What is your name?
+                    What is your name? <span style={{ color: '#ef4444' }}>*</span>
                   </label>
                   <input
                     type="text"
@@ -230,7 +291,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                     display: 'block',
                     marginBottom: '8px'
                   }}>
-                    What is your email?
+                    What is your email? <span style={{ color: '#ef4444' }}>*</span>
                   </label>
                   <input
                     type="email"
@@ -264,22 +325,22 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                 }}>
                   What is your role in the company?
                 </label>
-                <input
-                  type="text"
-                  placeholder="Enter role"
-                  style={{
-                    width: '100%',
-                    background: 'transparent',
-                    border: 'none',
-                    borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
-                    outline: 'none',
-                    padding: '8px 0',
-                    color: 'black',
-                    fontSize: '16px'
-                  }}
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                />
+                  <input
+                    type="text"
+                    placeholder="Enter your role"
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
+                      outline: 'none',
+                      padding: '8px 0',
+                      color: 'black',
+                      fontSize: '16px'
+                    }}
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                  />
               </div>
 
               {/* Company name / website */}
@@ -388,7 +449,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                     display: 'block',
                     marginBottom: '8px'
                   }}>
-                    Company's Annual Revenue
+                    Company&apos;s Annual Revenue
                   </label>
                   <select
                     style={{
@@ -512,28 +573,141 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
                   }}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  maxLength={500}
                 />
+                <div style={{
+                  fontSize: '12px',
+                  color: '#666',
+                  textAlign: 'right'
+                }}>
+                  {formData.message.length}/500 characters
+                </div>
               </div>
+
+              {/* Hidden honeypot field for bot protection */}
+              <input
+                name="honeypot"
+                type="text"
+                style={{ 
+                  position: 'absolute',
+                  left: '-9999px',
+                  width: '1px',
+                  height: '1px',
+                  opacity: 0,
+                  pointerEvents: 'none'
+                }}
+                tabIndex={-1}
+                autoComplete="off"
+                value={formData.honeypot}
+                onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+              />
 
               {/* Send Inquiry Button - at the end of the form */}
               <button 
                 type="submit" 
+                disabled={isSubmitting}
                 style={{ 
                   width: 'fit-content',
-                  cursor: 'pointer', 
+                  cursor: isSubmitting ? 'not-allowed' : 'pointer', 
                   borderRadius: '25px', 
                   border: '1px solid black', 
                   padding: '12px 24px', 
-                  color: 'black',
-                  background: 'transparent',
+                  color: isSubmitting ? '#999' : 'black',
+                  background: isSubmitting ? '#f5f5f5' : 'transparent',
                   fontSize: '16px',
                   marginTop: '16px',
                   marginBottom: '20px',
-                  alignSelf: 'center'
+                  alignSelf: 'center',
+                  opacity: isSubmitting ? 0.7 : 1
                 }}
               >
-                Send inquiry
+                {isSubmitting ? (
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{
+                      width: '16px',
+                      height: '16px',
+                      border: '2px solid transparent',
+                      borderTop: '2px solid currentColor',
+                      borderRadius: '50%',
+                      animation: 'spin 1s linear infinite'
+                    }} />
+                    Sending...
+                  </span>
+                ) : (
+                  'Send inquiry'
+                )}
               </button>
+              
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div 
+                  style={{
+                    textAlign: 'center',
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    marginTop: '24px',
+                    marginBottom: '24px',
+                    padding: '24px',
+                    background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                    color: 'white',
+                    borderRadius: '16px',
+                    border: '2px solid #16a34a',
+                    boxShadow: '0 12px 32px rgba(34, 197, 94, 0.4)',
+                    position: 'relative',
+                    zIndex: 1000,
+                    transform: 'scale(1.05)',
+                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    animation: 'successPulse 2s ease-in-out'
+                  }}
+                >
+                  🎉 Thank You!
+                  <br />
+                  <span style={{ 
+                    fontSize: '18px', 
+                    fontWeight: '400', 
+                    marginTop: '12px', 
+                    display: 'block', 
+                    opacity: 0.95,
+                    lineHeight: '1.4'
+                  }}>
+                    Your message has been sent successfully.
+                    <br />
+                    We&apos;ll get back to you within 24 hours.
+                  </span>
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div style={{
+                  textAlign: 'center',
+                  color: '#ef4444',
+                  fontSize: '20px',
+                  fontWeight: '600',
+                  marginTop: '24px',
+                  marginBottom: '24px',
+                  padding: '24px',
+                  background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.25))',
+                  borderRadius: '16px',
+                  border: '2px solid rgba(239, 68, 68, 0.4)',
+                  boxShadow: '0 8px 24px rgba(239, 68, 68, 0.3)',
+                  transform: 'scale(1.02)',
+                  transition: 'all 0.3s ease'
+                }}>
+                  ❌ Something went wrong
+                  <br />
+                  <span style={{ 
+                    fontSize: '18px', 
+                    fontWeight: '400', 
+                    marginTop: '12px', 
+                    display: 'block',
+                    lineHeight: '1.4'
+                  }}>
+                    There was an error sending your message.
+                    <br />
+                    Please try again or contact us directly.
+                  </span>
+                </div>
+              )}
             </form>
           </div>
           

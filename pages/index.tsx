@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Hero from '../components/Hero';
 import Pitch from '../components/Pitch';
 import Journey from '../components/Journey';
+import HowWeWork from '../components/HowWeWork';
 import Results from '../components/Results';
 import Partnership from '../components/Partnership';
 import Contact from '../components/Contact';
@@ -117,6 +118,7 @@ export default function Home() {
             <section className="snap-start">
               <Journey />
             </section>
+            <HowWeWork />
             <Results />
             <Partnership />
             <section className="snap-start">
