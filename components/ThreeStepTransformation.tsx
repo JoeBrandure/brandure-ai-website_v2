@@ -38,12 +38,12 @@ export default function ThreeStepTransformation() {
   ];
 
   return (
-    <section className="snap-start w-full h-screen relative">
+    <section id="three-step-transformation" className="section-snap snap-start relative" style={{ scrollSnapStop: 'always' }}>
       {/* Background with FloatingGradientCanvas */}
       <div className="absolute inset-0 z-0">
         <FloatingGradientCanvas />
       </div>
-      
+
       {/* FullScreenScrollFX component */}
       <div className="relative z-10 w-full h-full">
         <FullScreenScrollFX
