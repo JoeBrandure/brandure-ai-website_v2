@@ -20,8 +20,8 @@ export default function Journey() {
           </h2>
         </div>
         
-        {/* Particle transition - positioned at bottom half of Journey */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 z-10">
+        {/* Particle transition - positioned below text and spans to HowWeWork */}
+        <div className="absolute bottom-0 left-0 right-0 h-full z-10">
           <ParticleTransition />
         </div>
 

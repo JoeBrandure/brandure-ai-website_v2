@@ -31,10 +31,10 @@ export default function FloatingGradient() {
       { x: width * 0.7, y: height * 0.6, r: Math.min(width, height) * 0.28, a: 0.14, dx: -0.06, dy: 0.05 },
     ];
 
-    // Add floating particles
+    // Add floating particles (the ones you liked from the original animation)
     const particles: Particle[] = [];
-    const particleCount = 80;
-    const colors = ['#00D9FF', '#FFFFFF', 'rgba(0, 217, 255, 0.3)'];
+    const particleCount = 120;
+    const colors = ['#00D9FF', '#FFFFFF', 'rgba(0, 217, 255, 0.4)'];
 
     class Particle {
       x: number;
@@ -47,9 +47,9 @@ export default function FloatingGradient() {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 2;
+        this.speedY = (Math.random() - 0.5) * 2;
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
 

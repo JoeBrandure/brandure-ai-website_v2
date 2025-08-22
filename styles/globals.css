@@ -713,11 +713,7 @@ section#contact .footer-wrapper,
 #how-we-work {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
-  padding: 80px 20px;
+  background: transparent;
 }
 
 /* Particle transition overlay for top half of How We Work */

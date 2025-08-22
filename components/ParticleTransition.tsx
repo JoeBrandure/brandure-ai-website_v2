@@ -82,8 +82,8 @@ export default function ParticleTransition() {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Calculate scroll progress (0 = top of Journey, 1 = bottom of HowWeWork)
-      const scrollProgress = Math.min(Math.max((window.scrollY - window.innerHeight) / (window.innerHeight * 2), 0), 1);
+      // Calculate scroll progress for smooth transition between Journey and HowWeWork
+      const scrollProgress = Math.min(Math.max((window.scrollY - window.innerHeight * 0.5) / (window.innerHeight * 1.5), 0), 1);
       
       particles.forEach(particle => {
         particle.update(scrollProgress);
@@ -113,7 +113,10 @@ export default function ParticleTransition() {
       <canvas 
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ background: 'transparent' }}
+        style={{ 
+          background: 'transparent',
+          zIndex: 1
+        }}
       />
     </div>
   );
