@@ -773,14 +773,14 @@ section#contact .footer-wrapper,
 /* === Process Cards Styles === */
 .process-cards-container {
   position: relative;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 100px 0;
   z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  gap: 40px;
+  gap: 60px;
 }
 
 .process-card {
@@ -788,8 +788,8 @@ section#contact .footer-wrapper,
   flex: 1;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 217, 255, 0.2);
-  border-radius: 20px;
-  padding: 40px 30px;
+  border-radius: 24px;
+  padding: 60px 40px;
   text-align: center;
   opacity: 0;
   transform: translateY(30px);
@@ -798,6 +798,8 @@ section#contact .footer-wrapper,
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  min-height: 400px;
+  overflow: hidden;
 }
 
 .process-card[data-step="1"] { --step-delay: 1; }
@@ -810,40 +812,64 @@ section#contact .footer-wrapper,
   box-shadow: 0 16px 48px rgba(0, 217, 255, 0.1);
 }
 
+/* Cursor-following glow effect */
+.card-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 217, 255, 0.3) 0%,
+    rgba(0, 217, 255, 0.1) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  filter: blur(1px);
+}
+
 .card-header {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
 }
 
 .step-number-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border: 2px solid #00D9FF;
   background: rgba(0, 217, 255, 0.15);
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: bold;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 25px auto;
   box-shadow: 0 4px 20px rgba(0, 217, 255, 0.2);
 }
 
 .step-title-card {
-  margin-bottom: 16px;
-  font-size: 1.75rem;
+  margin-bottom: 20px;
+  font-size: 2.25rem;
   color: #ffffff;
+  line-height: 1.2;
 }
 
 .card-content {
-  padding: 0 10px;
+  padding: 0 15px;
+  position: relative;
+  z-index: 2;
 }
 
 .step-description-card {
-  line-height: 1.6;
+  line-height: 1.5;
   max-width: 100%;
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.8);
+  font-size: 1.125rem;
 }
 
 /* Fade in animation */
@@ -874,25 +900,27 @@ section#contact .footer-wrapper,
   /* Process cards mobile responsiveness */
   .process-cards-container {
     flex-direction: column;
-    gap: 40px;
-    padding: 60px 20px;
+    gap: 50px;
+    padding: 80px 20px;
   }
   
   .process-card {
-    padding: 30px 20px;
+    padding: 40px 25px;
+    min-height: 350px;
   }
   
   .step-number-card {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
   }
   
   .step-title-card {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   
   .step-description-card {
     max-width: 100%;
+    font-size: 1rem;
   }
 }
