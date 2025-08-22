@@ -60,7 +60,7 @@ export default function HowWeWork() {
             >
               <GlowingShadow>
                 <div className="step-content">
-                  <div className="step-number-large">{index + 1}</div>
+                  <div className="step-number-corner">{index + 1}</div>
                   <div className="step-text-content">
                     <h2 className="step-title-large">{step.title}</h2>
                     <p className="step-description-large">{step.description}</p>
