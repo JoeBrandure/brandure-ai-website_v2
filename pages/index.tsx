@@ -66,7 +66,7 @@ export default function Home() {
             alignItems: 'center',
           }}>
             <Image
-              src="/logos/brandure-ai-white.png"
+              src="/Logos/brandure-logo-new-white.svg"
               alt="Brandure AI"
               width={150}
               height={40}
