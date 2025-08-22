@@ -25,13 +25,13 @@ export default function HowWeWork() {
   return (
     <section id="how-we-work" className="section-snap snap-start" style={{ position: 'relative' }}>
       <div className="content-wrapper" style={{ position: 'relative', zIndex: 11 }}>
-        {/* Process Timeline Container */}
-        <div className="process-timeline-container">
+        {/* Process Timeline Container - Horizontal Layout */}
+        <div className="process-timeline-container-horizontal">
           {steps.map((step, index) => (
-            <div key={step.id} className="process-step" data-step={index + 1}>
-              <div className="step-number text-[#00D9FF]">{index + 1}</div>
-              <h3 className="step-title text-white text-2xl font-bold mb-4">{step.title}</h3>
-              <p className="step-description text-gray-300">
+            <div key={step.id} className="process-step-horizontal" data-step={index + 1}>
+              <div className="step-number-horizontal text-[#00D9FF]">{index + 1}</div>
+              <h3 className="step-title-horizontal text-white text-2xl font-bold mb-4">{step.title}</h3>
+              <p className="step-description-horizontal text-gray-300">
                 {step.description1}<br />
                 {step.description2}
               </p>

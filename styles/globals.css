@@ -710,6 +710,7 @@ section#contact .footer-wrapper,
 }
 
 /* === Process Timeline Styles === */
+/* Vertical Layout (keeping for reference) */
 .process-timeline-container {
   position: relative;
   max-width: 1200px;
@@ -769,6 +770,80 @@ section#contact .footer-wrapper,
   max-width: 600px;
 }
 
+/* === Horizontal Process Timeline Styles === */
+.process-timeline-container-horizontal {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.process-step-horizontal {
+  position: relative;
+  flex: 1;
+  padding: 40px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: calc(var(--step-delay) * 0.2s);
+}
+
+.process-step-horizontal[data-step="1"] { --step-delay: 1; }
+.process-step-horizontal[data-step="2"] { --step-delay: 2; }
+.process-step-horizontal[data-step="3"] { --step-delay: 3; }
+
+.process-step-horizontal::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(180deg, #00D9FF 0%, transparent 100%);
+}
+
+.process-step-horizontal:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 100%;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #00D9FF 0%, transparent 100%);
+}
+
+.step-number-horizontal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #00D9FF;
+  background: rgba(0, 217, 255, 0.1);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 auto 20px auto;
+}
+
+.step-title-horizontal {
+  margin-bottom: 16px;
+  font-size: 1.75rem;
+}
+
+.step-description-horizontal {
+  line-height: 1.6;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
 /* Fade in animation */
 @keyframes fadeInUp {
   to {
@@ -792,5 +867,38 @@ section#contact .footer-wrapper,
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
+  }
+  
+  /* Horizontal layout mobile responsiveness */
+  .process-timeline-container-horizontal {
+    flex-direction: column;
+    gap: 60px;
+    padding: 60px 20px;
+  }
+  
+  .process-step-horizontal {
+    padding: 30px 20px;
+  }
+  
+  .process-step-horizontal::before {
+    display: none;
+  }
+  
+  .process-step-horizontal::after {
+    display: none;
+  }
+  
+  .step-number-horizontal {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .step-title-horizontal {
+    font-size: 1.5rem;
+  }
+  
+  .step-description-horizontal {
+    max-width: 100%;
   }
 }
