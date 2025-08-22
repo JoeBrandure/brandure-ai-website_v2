@@ -947,47 +947,54 @@ section#contact .footer-wrapper,
   .how-we-work-container {
     flex-direction: column;
     height: auto;
+    position: relative;
   }
   
   .step-navigation {
-    position: relative;
-    left: auto;
-    top: auto;
+    position: sticky;
+    top: 20px;
+    left: 20px;
     transform: none;
     flex-direction: column;
     justify-content: flex-start;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     padding: 15px;
-    width: 100%;
-    max-width: 300px;
-    margin-left: 20px;
+    width: 80px;
+    height: fit-content;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
   }
   
   .nav-step {
-    flex-direction: row;
-    gap: 12px;
-    padding: 12px 15px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 8px;
     align-items: center;
+    text-align: center;
   }
   
   .nav-step-number {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 35px;
+    height: 35px;
+    font-size: 0.875rem;
   }
   
   .nav-step-title {
     writing-mode: horizontal-tb;
     text-orientation: mixed;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
   }
   
   .steps-scroll-container {
-    margin-left: 0;
+    margin-left: 100px;
     height: auto;
     overflow-y: visible;
-    padding: 0 20px;
+    padding: 0 20px 0 0;
+    width: calc(100% - 120px);
   }
   
   .step-section {
