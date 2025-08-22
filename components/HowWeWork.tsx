@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GlowingShadow } from './GlowingShadow';
 
 export default function HowWeWork() {
@@ -31,6 +31,45 @@ export default function HowWeWork() {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  // Add scroll listener to automatically highlight active step
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = document.querySelector('.steps-scroll-container');
+      if (!container) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const containerTop = containerRect.top;
+      const containerHeight = containerRect.height;
+
+      // Calculate which step is most visible
+      let activeStep = 0;
+      let minDistance = Infinity;
+
+      steps.forEach((_, index) => {
+        const stepElement = document.getElementById(`step-${index}`);
+        if (stepElement) {
+          const stepRect = stepElement.getBoundingClientRect();
+          const stepCenter = stepRect.top + stepRect.height / 2;
+          const containerCenter = containerTop + containerHeight / 2;
+          const distance = Math.abs(stepCenter - containerCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            activeStep = index;
+          }
+        }
+      });
+
+      setCurrentStep(activeStep);
+    };
+
+    const container = document.querySelector('.steps-scroll-container');
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, [steps]);
 
   return (
     <section id="how-we-work" className="section-snap snap-start" style={{ position: 'relative' }}>

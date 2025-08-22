@@ -877,8 +877,8 @@ section#contact .footer-wrapper,
 
 .step-number-corner {
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 20px;
+  left: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
