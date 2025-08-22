@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Hero from '../components/Hero';
 import Pitch from '../components/Pitch';
 import Journey from '../components/Journey';
-import ScrollFxSection from '../components/ScrollFxSection';
+import ThreeStepTransformation from '../components/ThreeStepTransformation';
 import Results from '../components/Results';
 import Partnership from '../components/Partnership';
 import Contact from '../components/Contact';
@@ -118,9 +118,7 @@ export default function Home() {
             <section className="snap-start">
               <Journey />
             </section>
-            <section className="snap-start">
-              <ScrollFxSection />
-            </section>
+            <ThreeStepTransformation />
             <Results />
             <Partnership />
             <section className="snap-start">

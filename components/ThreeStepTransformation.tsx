@@ -3,7 +3,7 @@
 import { FullScreenScrollFX } from './FullScreenScrollFx';
 import FloatingGradientCanvas from './FloatingGradientCanvas';
 
-export default function ScrollFxSection() {
+export default function ThreeStepTransformation() {
   const sections = [
     {
       id: 'ai-strategy',
@@ -38,7 +38,7 @@ export default function ScrollFxSection() {
   ];
 
   return (
-    <section className="w-full h-screen relative">
+    <section className="snap-start w-full h-screen relative">
       {/* Background with FloatingGradientCanvas */}
       <div className="absolute inset-0 z-0">
         <FloatingGradientCanvas />
