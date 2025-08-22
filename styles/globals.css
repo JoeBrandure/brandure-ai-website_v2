@@ -770,8 +770,8 @@ section#contact .footer-wrapper,
   max-width: 600px;
 }
 
-/* === Horizontal Process Timeline Styles === */
-.process-timeline-container-horizontal {
+/* === Process Cards Styles === */
+.process-cards-container {
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
@@ -779,69 +779,71 @@ section#contact .footer-wrapper,
   z-index: 2;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 40px;
 }
 
-.process-step-horizontal {
+.process-card {
   position: relative;
   flex: 1;
-  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px 30px;
   text-align: center;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s ease forwards;
   animation-delay: calc(var(--step-delay) * 0.2s);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.process-step-horizontal[data-step="1"] { --step-delay: 1; }
-.process-step-horizontal[data-step="2"] { --step-delay: 2; }
-.process-step-horizontal[data-step="3"] { --step-delay: 3; }
+.process-card[data-step="1"] { --step-delay: 1; }
+.process-card[data-step="2"] { --step-delay: 2; }
+.process-card[data-step="3"] { --step-delay: 3; }
 
-.process-step-horizontal::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 40px;
-  background: linear-gradient(180deg, #00D9FF 0%, transparent 100%);
+.process-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 217, 255, 0.4);
+  box-shadow: 0 16px 48px rgba(0, 217, 255, 0.1);
 }
 
-.process-step-horizontal:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 60px;
-  left: 100%;
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, #00D9FF 0%, transparent 100%);
+.card-header {
+  margin-bottom: 30px;
 }
 
-.step-number-horizontal {
+.step-number-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: 2px solid #00D9FF;
-  background: rgba(0, 217, 255, 0.1);
-  font-size: 1.5rem;
+  background: rgba(0, 217, 255, 0.15);
+  font-size: 1.75rem;
   font-weight: bold;
   margin: 0 auto 20px auto;
+  box-shadow: 0 4px 20px rgba(0, 217, 255, 0.2);
 }
 
-.step-title-horizontal {
+.step-title-card {
   margin-bottom: 16px;
   font-size: 1.75rem;
+  color: #ffffff;
 }
 
-.step-description-horizontal {
+.card-content {
+  padding: 0 10px;
+}
+
+.step-description-card {
   line-height: 1.6;
-  max-width: 350px;
+  max-width: 100%;
   margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Fade in animation */
@@ -869,36 +871,28 @@ section#contact .footer-wrapper,
     font-size: 1.2rem;
   }
   
-  /* Horizontal layout mobile responsiveness */
-  .process-timeline-container-horizontal {
+  /* Process cards mobile responsiveness */
+  .process-cards-container {
     flex-direction: column;
-    gap: 60px;
+    gap: 40px;
     padding: 60px 20px;
   }
   
-  .process-step-horizontal {
+  .process-card {
     padding: 30px 20px;
   }
   
-  .process-step-horizontal::before {
-    display: none;
-  }
-  
-  .process-step-horizontal::after {
-    display: none;
-  }
-  
-  .step-number-horizontal {
-    width: 50px;
-    height: 50px;
-    font-size: 1.25rem;
-  }
-  
-  .step-title-horizontal {
+  .step-number-card {
+    width: 60px;
+    height: 60px;
     font-size: 1.5rem;
   }
   
-  .step-description-horizontal {
+  .step-title-card {
+    font-size: 1.5rem;
+  }
+  
+  .step-description-card {
     max-width: 100%;
   }
 }
