@@ -118,7 +118,9 @@ export default function Home() {
             <section className="snap-start">
               <Journey />
             </section>
-            <ScrollFxSection />
+            <section className="snap-start">
+              <ScrollFxSection />
+            </section>
             <Results />
             <Partnership />
             <section className="snap-start">
