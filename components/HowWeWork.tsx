@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { GlowingShadow } from './GlowingShadow';
 
 export default function HowWeWork() {
   const steps = [
@@ -22,20 +23,6 @@ export default function HowWeWork() {
   ];
 
   const [currentStep, setCurrentStep] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  const handleMouseMove = (e: React.MouseEvent, cardIndex: number) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setMousePosition({ x, y });
-    setHoveredCard(cardIndex);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredCard(null);
-  };
 
   const scrollToStep = (index: number) => {
     setCurrentStep(index);
@@ -71,22 +58,7 @@ export default function HowWeWork() {
               className="step-section"
               data-step={index + 1}
             >
-              <div 
-                className="step-card-horizontal"
-                onMouseMove={(e) => handleMouseMove(e, index)}
-                onMouseLeave={handleMouseLeave}
-              >
-                {/* Cursor-following glow effect */}
-                {hoveredCard === index && (
-                  <div 
-                    className="card-glow-horizontal"
-                    style={{
-                      left: mousePosition.x,
-                      top: mousePosition.y,
-                    }}
-                  />
-                )}
-                
+              <GlowingShadow>
                 <div className="step-content">
                   <div className="step-number-large">{index + 1}</div>
                   <div className="step-text-content">
@@ -94,7 +66,7 @@ export default function HowWeWork() {
                     <p className="step-description-large">{step.description}</p>
                   </div>
                 </div>
-              </div>
+              </GlowingShadow>
             </div>
           ))}
         </div>
