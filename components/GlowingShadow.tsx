@@ -70,12 +70,13 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
         .glow-container {
           --card-color: hsl(260deg 100% 3%);
           --text-color: hsl(260deg 10% 55%);
-          --card-radius: 3.6vw;
-          --card-width: 35vw;
+          --card-radius: 24px;
+          --card-width: 100%;
+          --card-height: 500px;
           --border-width: 3px;
           --bg-size: 1;
-          --hue: 0;
-          --hue-speed: 1;
+          --hue: 200;
+          --hue-speed: 0.5;
           --rotate: 0;
           --animation-speed: 4s;
           --interaction-speed: 0.55s;
@@ -87,8 +88,7 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           --glow-rotate-unit: 1deg;
 
           width: var(--card-width);
-          width: min(480px, var(--card-width));
-          aspect-ratio: 1.5/1;
+          height: var(--card-height);
           color: white;
           margin: auto;
           display: flex;
@@ -117,7 +117,9 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           display: flex;
           align-items: center;
           justify-content: center;  
-          padding: calc(var(--card-width) / 8);
+          padding: 80px 60px;
+          width: 100%;
+          height: 100%;
         }
 
         .glow-content span {
@@ -139,9 +141,9 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           z-index: -1;
           background: hsl(0deg 0% 16%) radial-gradient(
             30% 30% at calc(var(--bg-x) * 1%) calc(var(--bg-y) * 1%),
-            hsl(calc(var(--hue) * var(--hue-speed) * 1deg) 100% 90%) calc(0% * var(--bg-size)),
-            hsl(calc(var(--hue) * var(--hue-speed) * 1deg) 100% 80%) calc(20% * var(--bg-size)),
-            hsl(calc(var(--hue) * var(--hue-speed) * 1deg) 100% 60%) calc(40% * var(--bg-size)),
+            hsl(calc(200 + var(--hue) * 0.3) 100% 90%) calc(0% * var(--bg-size)),
+            hsl(calc(200 + var(--hue) * 0.3) 100% 80%) calc(20% * var(--bg-size)),
+            hsl(calc(200 + var(--hue) * 0.3) 100% 60%) calc(40% * var(--bg-size)),
             transparent 100%
           );
           animation: hue-animation var(--animation-speed) linear infinite,
@@ -170,7 +172,7 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
           height: 130%;
           left: -15%;
           top: -15%;
-          background: hsl(calc(var(--hue) * var(--hue-speed) * 1deg) 100% 60%);
+          background: hsl(calc(200 + var(--hue) * 0.3) 100% 60%);
           position: relative;
           border-radius: calc(var(--glow-radius) * 10vw);
           animation: hue-animation var(--animation-speed) linear infinite;
@@ -278,7 +280,7 @@ export function GlowingShadow({ children }: GlowingShadowButtonProps) {
             --hue: 0;
           }
           100% {
-            --hue: 360;
+            --hue: 60;
           }
         }
       `}</style>
