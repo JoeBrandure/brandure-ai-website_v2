@@ -23,6 +23,19 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if mobile on client side
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Debug logging for submitStatus changes
   useEffect(() => {
@@ -168,7 +181,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           position: 'fixed',
           top: '0',
           right: '0',
-          width: window.innerWidth <= 768 ? '100vw' : '40vw',
+          width: isMobile ? '100vw' : '40vw',
           height: '100vh',
           background: isOpen ? 'transparent' : 'transparent',
           visibility: 'visible' as const,
@@ -178,15 +191,15 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: window.innerWidth <= 768 ? '0' : '20px'
+          padding: isMobile ? '0' : '20px'
         }}
       >
         {/* Panel content */}
         <div style={{
-          width: window.innerWidth <= 768 ? '100%' : '90%',
-          height: window.innerWidth <= 768 ? '100%' : '90%',
+          width: isMobile ? '100%' : '90%',
+          height: isMobile ? '100%' : '90%',
           background: '#EDECE4 !important',
-          borderRadius: window.innerWidth <= 768 ? '0' : '12px',
+          borderRadius: isMobile ? '0' : '12px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           overflow: 'hidden',
           position: 'relative'
