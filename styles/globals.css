@@ -913,15 +913,16 @@ section#contact .footer-wrapper,
     border: 3px solid red !important;
   }
   
-  /* Make number circle slightly taller */
+  /* Make number circle proportional (equal width and height) */
   .step-section .step-number-top {
-    height: 80px !important;
+    width: 75px !important;
+    height: 75px !important;
   }
   
-  /* Widen the orange and green boxes */
+  /* Widen the orange and green boxes to better utilize card space */
   .step-section .step-text-content {
-    max-width: 90% !important;
-    padding: 0 20px !important;
+    max-width: 95% !important;
+    padding: 0 30px !important;
   }
 }
 
