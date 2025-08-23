@@ -912,6 +912,17 @@ section#contact .footer-wrapper,
     /* DEBUG: Add border to see actual card boundaries */
     border: 3px solid red !important;
   }
+  
+  /* Make number circle slightly taller */
+  .step-section .step-number-top {
+    height: 80px !important;
+  }
+  
+  /* Widen the orange and green boxes */
+  .step-section .step-text-content {
+    max-width: 90% !important;
+    padding: 0 20px !important;
+  }
 }
 
 
