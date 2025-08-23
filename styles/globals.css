@@ -912,18 +912,6 @@ section#contact .footer-wrapper,
     /* DEBUG: Add border to see actual card boundaries */
     border: 3px solid red !important;
   }
-  
-  /* Make number circle proportional (equal width and height) */
-  .step-section .step-number-top {
-    width: 75px !important;
-    height: 75px !important;
-  }
-  
-  /* Widen the orange and green boxes to better utilize card space */
-  .step-section .step-text-content {
-    max-width: 95% !important;
-    padding: 0 30px !important;
-  }
 }
 
 
@@ -984,8 +972,8 @@ section#contact .footer-wrapper,
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    width: 70px !important;
-    height: 70px !important;
+    width: 75px !important;
+    height: 75px !important;
     font-size: 2rem !important;
     margin: 0 auto 20px auto !important;
     background: rgba(0, 217, 255, 0.15) !important;
@@ -1011,11 +999,10 @@ section#contact .footer-wrapper,
 /* Mobile override - must come after desktop styles */
 @media (max-width: 768px) {
   .step-text-content {
-    max-width: 100% !important;
-    padding: 0 10px !important;
+    max-width: 95% !important;
+    padding: 0 30px !important;
     /* DEBUG: Add border to see text content wrapper boundaries */
     border: 2px solid orange !important;
-    padding: 15px !important;
   }
 }
 
