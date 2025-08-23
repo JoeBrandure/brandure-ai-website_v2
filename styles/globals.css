@@ -636,6 +636,12 @@ section#contact .footer-wrapper,
     grid-row: 2 !important; /* Second row - below CONTACT and FOLLOW */
     margin-top: 16px !important;
   }
+  
+  /* Reduce footer title size on mobile to match subtext */
+  .footer-title {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+  }
 }
 
 
@@ -924,6 +930,7 @@ section#contact .footer-wrapper,
   max-width: 100%;
   max-height: 5.6em; /* Limit to 4 lines on desktop */
   overflow: hidden;
+  word-wrap: break-word;
 }
 
 /* Fade in animation */
@@ -988,16 +995,19 @@ section#contact .footer-wrapper,
     margin-bottom: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   
   .step-content {
     flex-direction: column;
     gap: 40px;
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 30px;
     width: 100%;
     height: 100%;
     justify-content: center;
+    max-width: 90vw;
+    margin: 0 auto;
   }
   
   .step-number-top {
@@ -1036,8 +1046,8 @@ section#contact .footer-wrapper,
     line-height: 1.4;
     padding: 0;
     margin: 0 auto;
-    max-height: 4.8em; /* Limit to 4 lines */
-    overflow: hidden;
+    max-height: none; /* Remove height constraint to prevent text cutoff */
+    overflow: visible;
   }
   
   /* Responsive text sizing for mobile */

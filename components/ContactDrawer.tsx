@@ -168,7 +168,7 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           position: 'fixed',
           top: '0',
           right: '0',
-          width: '40vw',
+          width: window.innerWidth <= 768 ? '100vw' : '40vw',
           height: '100vh',
           background: isOpen ? 'transparent' : 'transparent',
           visibility: 'visible' as const,
@@ -178,15 +178,15 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '20px'
+          padding: window.innerWidth <= 768 ? '0' : '20px'
         }}
       >
         {/* Panel content */}
         <div style={{
-          width: '90%',
-          height: '90%',
+          width: window.innerWidth <= 768 ? '100%' : '90%',
+          height: window.innerWidth <= 768 ? '100%' : '90%',
           background: '#EDECE4 !important',
-          borderRadius: '12px',
+          borderRadius: window.innerWidth <= 768 ? '0' : '12px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           overflow: 'hidden',
           position: 'relative'
