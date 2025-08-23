@@ -873,7 +873,7 @@ section#contact .footer-wrapper,
     margin-left: 0 !important;
     height: auto !important;
     overflow-y: visible !important;
-    padding: 0 5px !important;
+    padding: 0 15px !important;
     width: 100% !important;
   }
 }
@@ -924,13 +924,13 @@ section#contact .footer-wrapper,
 @media (max-width: 768px) {
   .step-content {
     flex-direction: column !important;
-    gap: 80px !important;
+    gap: 100px !important;
     text-align: center !important;
-    padding: 120px 15px !important;
+    padding: 140px 25px !important;
     width: 100% !important;
-    min-height: 80vh !important;
+    min-height: 90vh !important;
     justify-content: center !important;
-    max-width: 98vw !important;
+    max-width: 92vw !important;
     margin: 0 auto !important;
   }
 }
@@ -964,10 +964,10 @@ section#contact .footer-wrapper,
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    width: 100px !important;
-    height: 100px !important;
-    font-size: 3.5rem !important;
-    margin: 0 auto 40px auto !important;
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 2.5rem !important;
+    margin: 0 auto 30px auto !important;
     background: rgba(0, 217, 255, 0.15) !important;
     border: 3px solid #00D9FF !important;
     border-radius: 50% !important;
@@ -998,10 +998,10 @@ section#contact .footer-wrapper,
 /* Mobile override - must come after desktop styles */
 @media (max-width: 768px) {
   .step-title-large {
-    font-size: 4rem !important;
-    margin-bottom: 50px !important;
+    font-size: 2.5rem !important;
+    margin-bottom: 40px !important;
     margin-top: 0 !important;
-    line-height: 1.1 !important;
+    line-height: 1.2 !important;
   }
 }
 
@@ -1018,10 +1018,10 @@ section#contact .footer-wrapper,
 /* Mobile override - must come after desktop styles */
 @media (max-width: 768px) {
   .step-description-large {
-    font-size: 1.5rem !important;
+    font-size: 1.125rem !important;
     max-width: 100% !important;
-    line-height: 1.6 !important;
-    padding: 0 5px !important;
+    line-height: 1.5 !important;
+    padding: 0 10px !important;
     margin: 0 auto !important;
     max-height: none !important;
     overflow: visible !important;
