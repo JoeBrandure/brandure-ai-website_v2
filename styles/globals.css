@@ -642,6 +642,18 @@ section#contact .footer-wrapper,
     font-size: 0.75rem !important;
     line-height: 1.4 !important;
   }
+  
+  /* Make footer text consistent with titles on mobile */
+  .footer-text {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  /* Make footer links consistent with titles on mobile */
+  .footer-link {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+  }
 }
 
 
@@ -985,13 +997,13 @@ section#contact .footer-wrapper,
     margin-left: 0;
     height: auto;
     overflow-y: visible;
-    padding: 0 20px;
+    padding: 0 10px;
     width: 100%;
   }
   
   .step-section {
     min-height: 100vh;
-    padding: 20px 0;
+    padding: 40px 0;
     margin-bottom: 0;
     display: flex;
     align-items: center;
@@ -1000,13 +1012,13 @@ section#contact .footer-wrapper,
   
   .step-content {
     flex-direction: column;
-    gap: 40px;
+    gap: 60px;
     text-align: center;
-    padding: 60px 30px;
+    padding: 80px 20px;
     width: 100%;
     height: 100%;
     justify-content: center;
-    max-width: 90vw;
+    max-width: 95vw;
     margin: 0 auto;
   }
   
@@ -1014,10 +1026,10 @@ section#contact .footer-wrapper,
     position: relative;
     top: auto;
     left: auto;
-    width: 80px;
-    height: 80px;
-    font-size: 2.5rem;
-    margin: 0 auto 20px auto;
+    width: 90px;
+    height: 90px;
+    font-size: 3rem;
+    margin: 0 auto 30px auto;
     background: rgba(0, 217, 255, 0.15);
     border: 3px solid #00D9FF;
     border-radius: 50%;
@@ -1034,17 +1046,17 @@ section#contact .footer-wrapper,
   }
   
   .step-title-large {
-    font-size: 3rem;
-    margin-bottom: 30px;
+    font-size: 3.5rem;
+    margin-bottom: 40px;
     margin-top: 0;
     line-height: 1.1;
   }
   
   .step-description-large {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     max-width: 100%;
-    line-height: 1.4;
-    padding: 0;
+    line-height: 1.5;
+    padding: 0 10px;
     margin: 0 auto;
     max-height: none; /* Remove height constraint to prevent text cutoff */
     overflow: visible;
