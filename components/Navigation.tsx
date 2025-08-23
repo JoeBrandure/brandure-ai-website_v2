@@ -14,7 +14,7 @@ export default function Navigation(){
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled?'bg-black/70 backdrop-blur-md py-3':'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 flex items-center justify-between">
-        {/* Brandure logo */}
+        {/* Keep our Brandure logo (do not change path/name) */}
         <img
           src="/Logos/brandure-logo-new-white.svg"
           alt="Brandure.ai"
