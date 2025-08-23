@@ -904,6 +904,14 @@ section#contact .footer-wrapper,
     align-items: center !important;
     justify-content: center !important;
   }
+  
+  /* Override GlowingShadow component dimensions for mobile */
+  .step-section .glow-container {
+    width: 88vw !important;
+    height: 70vh !important;
+    /* DEBUG: Add border to see actual card boundaries */
+    border: 3px solid red !important;
+  }
 }
 
 
@@ -930,10 +938,8 @@ section#contact .footer-wrapper,
     width: 100% !important;
     min-height: 70vh !important;
     justify-content: center !important;
-    max-width: 88vw !important;
+    max-width: 100% !important;
     margin: 0 auto !important;
-    /* DEBUG: Add border to see card boundaries */
-    border: 2px solid red !important;
   }
 }
 
