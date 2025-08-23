@@ -932,6 +932,8 @@ section#contact .footer-wrapper,
     justify-content: center !important;
     max-width: 92vw !important;
     margin: 0 auto !important;
+    /* DEBUG: Add border to see card boundaries */
+    border: 2px solid red !important;
   }
 }
 
@@ -977,6 +979,8 @@ section#contact .footer-wrapper,
     color: #00D9FF !important;
     font-weight: bold !important;
     box-shadow: 0 8px 32px rgba(0, 217, 255, 0.2) !important;
+    /* DEBUG: Add border to see number boundaries */
+    border: 3px solid red !important;
   }
 }
 
@@ -984,6 +988,17 @@ section#contact .footer-wrapper,
   text-align: center;
   max-width: 700px;
   padding: 0 40px;
+}
+
+/* Mobile override - must come after desktop styles */
+@media (max-width: 768px) {
+  .step-text-content {
+    max-width: 100% !important;
+    padding: 0 20px !important;
+    /* DEBUG: Add border to see text content wrapper boundaries */
+    border: 2px solid orange !important;
+    padding: 20px !important;
+  }
 }
 
 .step-title-large {
@@ -1002,6 +1017,9 @@ section#contact .footer-wrapper,
     margin-bottom: 40px !important;
     margin-top: 0 !important;
     line-height: 1.2 !important;
+    /* DEBUG: Add border to see title boundaries */
+    border: 2px solid blue !important;
+    padding: 10px !important;
   }
 }
 
@@ -1025,6 +1043,9 @@ section#contact .footer-wrapper,
     margin: 0 auto !important;
     max-height: none !important;
     overflow: visible !important;
+    /* DEBUG: Add border to see description boundaries */
+    border: 2px solid green !important;
+    padding: 10px !important;
   }
 }
 
