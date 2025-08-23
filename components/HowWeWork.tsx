@@ -74,8 +74,8 @@ export default function HowWeWork() {
   return (
     <section id="how-we-work" className="section-snap snap-start" style={{ position: 'relative' }}>
       <div className="how-we-work-container">
-        {/* Left Navigation */}
-        <div className="step-navigation">
+        {/* Left Navigation - Hidden on Mobile */}
+        <div className="step-navigation hidden md:block">
           {steps.map((step, index) => (
             <button
               key={step.id}
@@ -99,7 +99,7 @@ export default function HowWeWork() {
             >
               <GlowingShadow>
                 <div className="step-content">
-                  <div className="step-number-corner">{index + 1}</div>
+                  <div className="step-number-top">{index + 1}</div>
                   <div className="step-text-content">
                     <h2 className="step-title-large">{step.title}</h2>
                     <p className="step-description-large">{step.description}</p>
