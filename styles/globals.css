@@ -4,6 +4,23 @@
   box-sizing: border-box;
 }
 
+/* Safari viewport fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific styles */
+  body {
+    -webkit-overflow-scrolling: touch;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Fix for Safari bottom bar */
+  .section-snap {
+    min-height: calc(100vh - env(safe-area-inset-bottom)) !important;
+  }
+}
+
 html, body {
   font-family: 'DM Sans', sans-serif;
   background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
@@ -190,9 +207,17 @@ html, body {
 /* Sticky chat widget */
 .chat-widget-container {
   position: fixed;
-  bottom: 80px; /* Moved up to avoid blocking footer text */
+  bottom: 120px; /* Moved up further to avoid blocking footer text */
   right: 20px;
   z-index: 1000;
+}
+
+/* Mobile chat widget positioning */
+@media (max-width: 768px) {
+  .chat-widget-container {
+    bottom: 140px !important;
+    right: 15px !important;
+  }
 }
 
 .chat-toggle-button {
@@ -466,6 +491,13 @@ html, body {
   align-items: center;
 }
 
+/* Mobile navigation adjustments */
+@media (max-width: 768px) {
+  .nav-fixed {
+    padding: 12px 20px !important;
+  }
+}
+
 
 
 /* Button styles */
@@ -482,6 +514,16 @@ html, body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Mobile button adjustments */
+@media (max-width: 768px) {
+  .cta-button {
+    padding: 12px 24px !important;
+    font-size: 1rem !important;
+    min-width: auto !important;
+    max-width: 140px !important;
+  }
 }
 
 .cta-button:hover {
@@ -908,17 +950,18 @@ section#contact .footer-wrapper,
   /* Override GlowingShadow component dimensions for mobile */
   .step-section .glow-container {
     width: 92vw !important;
-    height: 70vh !important;
+    height: 80vh !important;
+    min-height: 600px !important;
   }
   
-  /* Step number mobile overrides */
+  /* Step number mobile overrides - ensure consistent sizing */
   .step-number-top {
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    width: 80px !important;
-    height: 80px !important;
-    font-size: 2.2rem !important;
+    width: 100px !important;
+    height: 100px !important;
+    font-size: 2.8rem !important;
     margin: 0 auto 20px auto !important;
     background: rgba(0, 217, 255, 0.15) !important;
     border: 3px solid #00D9FF !important;
@@ -956,14 +999,26 @@ section#contact .footer-wrapper,
 @media (max-width: 768px) {
   .step-content {
     flex-direction: column !important;
-    gap: 80px !important;
+    gap: 60px !important;
     text-align: center !important;
-    padding: 100px 10px !important;
+    padding: 80px 10px !important;
     width: 100% !important;
-    min-height: 70vh !important;
+    min-height: 80vh !important;
     justify-content: center !important;
     max-width: 100% !important;
     margin: 0 auto !important;
+  }
+  
+  /* Prevent scroll jumping between steps */
+  .step-section {
+    scroll-snap-align: start !important;
+    min-height: 100vh !important;
+  }
+  
+  /* Ensure proper spacing between steps */
+  .steps-scroll-container {
+    scroll-snap-type: y mandatory !important;
+    scroll-behavior: smooth !important;
   }
 }
 

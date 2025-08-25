@@ -3,22 +3,22 @@
 import React from 'react';
 
 const logos = [
-  '/logos/Carousel Logo/bottlebottle-carousel-transparent.png',
-  '/logos/Carousel Logo/homematters-carousel-transparent.png',
-  '/logos/Carousel Logo/lionmortgage-carousel-transparent.png',
-  '/logos/Carousel Logo/macypetgrooming-carousel-transparent.png',
-  '/logos/Carousel Logo/petlove-carousel-transparent.png',
-  '/logos/Carousel Logo/finsbury-carousel-transparent.png',
-  '/logos/Carousel Logo/tiger21-carousel-transparent.png',
-  '/logos/Carousel Logo/sukoon-carousel-transparent.png',
-  '/logos/Carousel Logo/tdc-carousel-transparent.png',
-  '/logos/Carousel Logo/citationuk-carousel-transparent.png',
-  '/logos/Carousel Logo/realestateu-carousel-transparent.png',
-  '/logos/Carousel Logo/briefslaw-carousel-transparent.png',
-  '/logos/Carousel Logo/kwluxury-carousel-transparent.png',
-  '/logos/Carousel Logo/lme-carousel-transparent.png',
-  '/logos/Carousel Logo/uaelawyers-carousel-transparent.png',
-  '/logos/Carousel Logo/arcticedge-carousel-transparent.png',
+  '/Logos/Carousel Logo/bottlebottle-carousel-transparent.png',
+  '/Logos/Carousel Logo/homematters-carousel-transparent.png',
+  '/Logos/Carousel Logo/lionmortgage-carousel-transparent.png',
+  '/Logos/Carousel Logo/macypetgrooming-carousel-transparent.png',
+  '/Logos/Carousel Logo/petlove-carousel-transparent.png',
+  '/Logos/Carousel Logo/finsbury-carousel-transparent.png',
+  '/Logos/Carousel Logo/tiger21-carousel-transparent.png',
+  '/Logos/Carousel Logo/sukoon-carousel-transparent.png',
+  '/Logos/Carousel Logo/tdc-carousel-transparent.png',
+  '/Logos/Carousel Logo/citationuk-carousel-transparent.png',
+  '/Logos/Carousel Logo/realestateu-carousel-transparent.png',
+  '/Logos/Carousel Logo/briefslaw-carousel-transparent.png',
+  '/Logos/Carousel Logo/kwluxury-carousel-transparent.png',
+  '/Logos/Carousel Logo/lme-carousel-transparent.png',
+  '/Logos/Carousel Logo/uaelawyers-carousel-transparent.png',
+  '/Logos/Carousel Logo/arcticedge-carousel-transparent.png',
 ];
 
 export default function LogoMarquee() {
