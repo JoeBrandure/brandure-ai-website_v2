@@ -3,10 +3,10 @@ import AnimatedText from './AnimatedText';
 
 export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) {
   return (
-    <section id="contact" className="section-snap relative min-h-screen flex items-start pt-48">
-      <div className="content-wrapper">
+    <section id="contact" className="section-snap relative min-h-screen flex items-center">
+      <div className="content-wrapper pb-24">
         {/* Heading */}
-        <h1 className="section-heading animate-text text-center" style={{ marginBottom: '24px', lineHeight: 1.2 }}>
+        <h1 className="section-heading animate-text text-center" style={{ marginBottom: '24px' }}>
           Ready to <AnimatedText text="transform" /> your business?
         </h1>
 

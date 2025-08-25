@@ -75,11 +75,6 @@ html, body {
   text-align: center;
 }
 
-/* Contact page specific positioning */
-#contact .content-wrapper {
-  padding-top: 120px;
-}
-
 /* Hide scrollbar */
 .main-container::-webkit-scrollbar {
   display: none;
@@ -533,13 +528,11 @@ html, body {
 @media (max-width: 768px) {
   .cta-button {
     padding: 8px 16px !important;
-    font-size: 0.75rem !important;
+    font-size: 0.875rem !important;
     min-width: auto !important;
-    max-width: 110px !important;
+    max-width: 120px !important;
     white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    line-height: 1.1 !important;
+    line-height: 1.2 !important;
   }
 }
 
