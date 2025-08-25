@@ -85,6 +85,7 @@ class AnimationController {
                 ease: "none",
                 onUpdate: () => this.render()
             })
+            .play() // Start the animation immediately
     }
     
     // Easing functions

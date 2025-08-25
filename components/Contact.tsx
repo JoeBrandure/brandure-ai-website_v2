@@ -3,7 +3,7 @@ import AnimatedText from './AnimatedText';
 
 export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) {
   return (
-    <section id="contact" className="section-snap relative min-h-screen flex items-start pt-32">
+    <section id="contact" className="section-snap relative min-h-screen flex items-start pt-48">
       <div className="content-wrapper">
         {/* Heading */}
         <h1 className="section-heading animate-text text-center" style={{ marginBottom: '24px', lineHeight: 1.2 }}>
