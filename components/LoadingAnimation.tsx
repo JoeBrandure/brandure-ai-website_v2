@@ -384,11 +384,22 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
       setDimensions(newDimensions);
     };
     
-    // Set initial dimensions immediately
+    // Set initial dimensions immediately and ensure they're set
     handleResize();
+    
+    // Fallback: if dimensions are still 0 after a short delay, force set them
+    const fallbackTimer = setTimeout(() => {
+      if (dimensions.width === 0 || dimensions.height === 0) {
+        handleResize();
+      }
+    }, 100);
+    
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(fallbackTimer);
+    };
+  }, [dimensions.width, dimensions.height]);
 
   // Create and manage animation
   useEffect(() => {
@@ -470,16 +481,16 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
 
   // Don't render until dimensions are set
   if (dimensions.width === 0 || dimensions.height === 0) {
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 9999,
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #000000 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    return (
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9999,
+          background: 'linear-gradient(180deg, #0a0a0a 0%, #000000 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <div className="text-white text-sm">Loading...</div>
