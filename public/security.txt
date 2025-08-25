@@ -1,0 +1,5 @@
+Contact: mailto:security@brandureai.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://brandureai.com/.well-known/security.txt
+Policy: https://brandureai.com/security-policy
