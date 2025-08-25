@@ -4,21 +4,11 @@ import ContactDrawer from './ContactDrawer';
 export default function Navigation(){
   const [scrolled,setScrolled]=useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [showLogo, setShowLogo] = useState(false);
   
   useEffect(()=>{
     const onScroll=()=>setScrolled(window.scrollY>50);
     window.addEventListener('scroll',onScroll);
-    
-    // Show logo after a delay to allow loading transition to complete
-    const timer = setTimeout(() => {
-      setShowLogo(true);
-    }, 1500); // Slightly longer than the 1.2s transition
-    
-    return()=>{
-      window.removeEventListener('scroll',onScroll);
-      clearTimeout(timer);
-    };
+    return()=>window.removeEventListener('scroll',onScroll);
   },[]);
 
   return (
@@ -28,9 +18,7 @@ export default function Navigation(){
         <img
           src="/Logos/brandure-logo-new-white.svg"
           alt="Brandure.ai"
-          className={`h-10 md:h-12 lg:h-14 w-auto transition-all duration-500 ${
-            showLogo ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`}
+          className="h-10 md:h-12 lg:h-14 w-auto"
         />
         <button
           onClick={() => setIsDrawerOpen(true)}
