@@ -1,10 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Disable experimental features that may cause build cache corruption
+  // Allow external network access for mobile testing
   experimental: {
-    // Disable features that can cause module resolution issues
+    // Disable experimental features that may cause build cache corruption
     webpackBuildWorker: false,
+  },
+  
+  // Network configuration for mobile access
+  serverRuntimeConfig: {
+    // Allow external connections
+    hostname: '0.0.0.0',
+    port: 3000,
   },
   
   // Force stable webpack configuration

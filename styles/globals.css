@@ -909,8 +909,6 @@ section#contact .footer-wrapper,
   .step-section .glow-container {
     width: 92vw !important;
     height: 70vh !important;
-    /* DEBUG: Add border to see actual card boundaries */
-    border: 3px solid red !important;
   }
   
   /* Step number mobile overrides */
@@ -931,16 +929,12 @@ section#contact .footer-wrapper,
     color: #00D9FF !important;
     font-weight: bold !important;
     box-shadow: 0 8px 32px rgba(0, 217, 255, 0.2) !important;
-    /* DEBUG: Add border to see number boundaries */
-    border: 3px solid red !important;
   }
   
   /* Text content mobile overrides */
   .step-text-content {
     max-width: 100% !important;
     padding: 0 15px !important;
-    /* DEBUG: Add border to see text content wrapper boundaries */
-    border: 2px solid orange !important;
   }
 }
 
@@ -1021,8 +1015,6 @@ section#contact .footer-wrapper,
     margin-bottom: 30px !important;
     margin-top: 0 !important;
     line-height: 1.2 !important;
-    /* DEBUG: Add border to see title boundaries */
-    border: 2px solid blue !important;
     padding: 8px !important;
   }
 }
@@ -1047,8 +1039,6 @@ section#contact .footer-wrapper,
     margin: 0 auto !important;
     max-height: none !important;
     overflow: visible !important;
-    /* DEBUG: Add border to see description boundaries */
-    border: 2px solid green !important;
   }
   
   /* Mobile description styling */
@@ -1142,8 +1132,6 @@ section#contact .footer-wrapper,
   .step-section .glow-container {
     width: 92vw !important;
     height: 70vh !important;
-    /* DEBUG: Add border to see actual card boundaries */
-    border: 3px solid red !important;
   }
   
   /* Step number mobile overrides */
@@ -1164,16 +1152,12 @@ section#contact .footer-wrapper,
     color: #00D9FF !important;
     font-weight: bold !important;
     box-shadow: 0 8px 32px rgba(0, 217, 255, 0.2) !important;
-    /* DEBUG: Add border to see number boundaries */
-    border: 3px solid red !important;
   }
   
   /* Text content mobile overrides */
   .step-text-content {
     max-width: 100% !important;
     padding: 0 15px !important;
-    /* DEBUG: Add border to see text content wrapper boundaries */
-    border: 2px solid orange !important;
   }
   
   /* Responsive text sizing for mobile */
