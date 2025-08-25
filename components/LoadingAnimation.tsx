@@ -364,10 +364,16 @@ class Star {
     }
 }
 
-export default function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
+interface LoadingAnimationProps {
+  onComplete: () => void;
+}
+
+export default function LoadingAnimation({ onComplete }: LoadingAnimationProps) {
   const [isAnimating, setIsAnimating] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<AnimationController | null>(null);
+  const animationRef = useRef<any>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   // Handle window resize and initialize dimensions immediately
@@ -420,24 +426,48 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
     };
   }, [dimensions]);
 
-  // Manual skip handler - only way to exit
+  // Manual skip handler - now with transition
   const handleSkip = () => {
-    setIsAnimating(false);
-    onComplete();
+    setIsTransitioning(true);
+    
+    // Start the logo transition animation
+    if (logoRef.current) {
+      logoRef.current.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+      logoRef.current.style.position = 'fixed';
+      logoRef.current.style.zIndex = '9999';
+      
+      // Get the final position (top-left navigation area)
+      const finalLeft = 24; // px-6 = 24px
+      const finalTop = 20; // py-5 = 20px
+      const finalSize = 56; // h-14 = 56px
+      
+      // Animate to final position
+      logoRef.current.style.left = `${finalLeft}px`;
+      logoRef.current.style.top = `${finalTop}px`;
+      logoRef.current.style.width = `${finalSize}px`;
+      logoRef.current.style.height = `${finalSize}px`;
+      logoRef.current.style.transform = 'translate(0, 0)';
+    }
+    
+    // Wait for transition to complete, then call onComplete
+    setTimeout(() => {
+      setIsAnimating(false);
+      onComplete();
+    }, 1200);
   };
 
   // Don't render until dimensions are set
   if (dimensions.width === 0 || dimensions.height === 0) {
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 9999,
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #000000 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    return (
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9999,
+          background: 'linear-gradient(180deg, #0a0a0a 0%, #000000 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <div className="text-white text-sm">Loading...</div>
@@ -488,14 +518,17 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         title="Enter Brandure AI"
       >
         <img
+          ref={logoRef}
           src="/Logos/brandure-logo-new-white.png"
           alt="Brandure AI"
+          className="animate-text"
           style={{
             maxWidth: '200px',
             width: '100%',
             height: 'auto',
             pointerEvents: 'none',
             userSelect: 'none',
+            transition: isTransitioning ? 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
           }}
         />
       </div>
