@@ -8,17 +8,33 @@ export default function HowWeWork() {
     {
       id: 'identify',
       title: 'Identify',
-      description: 'We identify high-impact AI opportunities and map the transformation strategy to bring them to life'
+      description: 'We identify high-impact AI opportunities and map the transformation strategy to bring them to life',
+      mobileDescription: [
+        'We identify high-impact AI',
+        'opportunities and map the',
+        'transformation strategy to',
+        'bring them to life.'
+      ]
     },
     {
       id: 'develop',
       title: 'Develop',
-      description: 'We design and build bespoke AI systems and automations proven to move the needle'
+      description: 'We design and build bespoke AI systems and automations proven to move the needle',
+      mobileDescription: [
+        'We design and build bespoke AI',
+        'systems and automations',
+        'proven to move the needle.'
+      ]
     },
     {
       id: 'scale',
       title: 'Scale',
-      description: 'We monitor, optimize and scale adoption across teams to compound ROI'
+      description: 'We monitor, optimize and scale adoption across teams to compound ROI',
+      mobileDescription: [
+        'We monitor, optimize and scale',
+        'adoption across teams to',
+        'compound ROI'
+      ]
     }
   ];
 
@@ -102,7 +118,14 @@ export default function HowWeWork() {
                   <div className="step-number-top">{index + 1}</div>
                   <div className="step-text-content">
                     <h2 className="step-title-large">{step.title}</h2>
-                    <p className="step-description-large">{step.description}</p>
+                    {/* Desktop description */}
+                    <p className="step-description-large hidden md:block">{step.description}</p>
+                    {/* Mobile description with line breaks */}
+                    <div className="step-description-mobile md:hidden">
+                      {step.mobileDescription.map((line, lineIndex) => (
+                        <p key={lineIndex} className="step-description-line">{line}</p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </GlowingShadow>
