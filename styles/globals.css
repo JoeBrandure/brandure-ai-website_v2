@@ -991,6 +991,16 @@ section#contact .footer-wrapper,
   display: none;
 }
 
+/* Ensure mobile description is hidden on desktop */
+.step-description-mobile {
+  display: none;
+}
+
+/* Ensure desktop description is visible on desktop */
+.step-description-large {
+  display: block;
+}
+
 .step-text-content {
   text-align: center;
   max-width: 700px;
@@ -1046,6 +1056,12 @@ section#contact .footer-wrapper,
     text-align: center;
     margin: 0 auto;
     max-width: 100%;
+    display: block !important;
+  }
+  
+  /* Hide desktop description on mobile */
+  .step-description-large {
+    display: none !important;
   }
   
   .step-description-line {

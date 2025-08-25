@@ -10,8 +10,31 @@ const nextConfig: NextConfig = {
   // Network configuration for mobile access
   serverRuntimeConfig: {
     // Allow external connections
-    hostname: '0.0.0.0',
+    hostname: '10.20.12.9',
     port: 3000,
+  },
+  
+  // Add headers for mobile access
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization',
+          },
+        ],
+      },
+    ];
   },
   
   // Force stable webpack configuration
