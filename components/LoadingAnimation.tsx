@@ -487,19 +487,17 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         onClick={handleSkip}
         title="Enter Brandure AI"
       >
-        <div
+        <img
+          src="/brandure-logo-new-colour.png"
+          alt="Brandure AI"
           style={{
-            color: 'rgba(255, 255, 255, 0.8)',
-            fontSize: '20px',
-            fontWeight: '500',
-            textAlign: 'center',
+            maxWidth: '200px',
+            width: '100%',
+            height: 'auto',
             pointerEvents: 'none',
             userSelect: 'none',
-            letterSpacing: '0.5px',
           }}
-        >
-          ENTER BRANDURE AI
-        </div>
+        />
       </div>
     </div>
   );
