@@ -29,7 +29,7 @@ const ShaderBackground = () => {
     const float minorLineFrequency = 1.0;
     const float gridColor = 0.5;
     const float scale = 5.0;
-    const vec4 lineColor = vec4(0.0, 0.85, 1.0, 1.0); // Brandure blue (#00D9FF)
+    const vec4 lineColor = vec4(0.0, 0.85, 1.0, 0.8); // Brandure blue with transparency
     const float minLineWidth = 0.01;
     const float maxLineWidth = 0.2;
     const float lineSpeed = 1.0 * overallSpeed;
@@ -80,8 +80,8 @@ const ShaderBackground = () => {
       space.x += random(space.y * warpFrequency + iTime * warpSpeed + 2.0) * warpAmplitude * horizontalFade;
 
       vec4 lines = vec4(0.0);
-      vec4 bgColor1 = vec4(0.0, 0.0, 0.0, 1.0); // Black
-      vec4 bgColor2 = vec4(0.05, 0.05, 0.1, 1.0); // Dark blue-black
+      vec4 bgColor1 = vec4(0.0, 0.0, 0.0, 0.0); // Transparent
+      vec4 bgColor2 = vec4(0.05, 0.05, 0.1, 0.0); // Transparent
 
       for(int l = 0; l < linesPerGroup; l++) {
         float normalizedLineIndex = float(l) / float(linesPerGroup);
@@ -103,7 +103,7 @@ const ShaderBackground = () => {
 
       fragColor = mix(bgColor1, bgColor2, uv.x);
       fragColor *= verticalFade;
-      fragColor.a = 1.0;
+      fragColor.a = 0.0; // Fully transparent background
       fragColor += lines;
 
       gl_FragColor = fragColor;
@@ -242,24 +242,18 @@ export default function Journey() {
       alignItems: 'stretch',
       justifyContent: 'flex-start'
     }}>
-      {/* Shader Background positioned below center */}
-      <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: -1 }}>
-        <div className="w-full h-96 max-w-4xl">
+      {/* Shader Background positioned lower and smaller with proper z-index */}
+      <div className="absolute inset-0 flex items-end justify-center" style={{ zIndex: 1 }}>
+        <div className="w-full h-48 max-w-6xl mb-32 opacity-60">
           <ShaderBackground />
         </div>
       </div>
       
-      {/* Content positioned above the shader with responsive positioning */}
-      <div className="relative z-10 text-center" style={{ 
+      {/* Content positioned with original classnames and positioning */}
+      <div className="content-wrapper flex flex-col items-center justify-center text-center" style={{ 
         paddingTop: 'calc(18vh)',
-        position: 'absolute',
-        top: '18vh',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '100%',
-        maxWidth: '90vw',
-        paddingLeft: '20px',
-        paddingRight: '20px'
+        position: 'relative',
+        zIndex: 2
       }}>
         <div>
           <h2 className="section-heading-medium animate-text" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
