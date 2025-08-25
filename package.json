@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 10.20.12.9",
+    "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "clean": "./scripts/clean-dev.sh",
     "clean:dev": "rm -rf .next && rm -rf node_modules/.cache && pkill -f 'next dev' 2>/dev/null || true",
-    "mobile-test": "./scripts/mobile-test.sh"
+    "mobile-test": "./scripts/mobile-test.sh",
+    "network-diagnostic": "./scripts/network-diagnostic.sh"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.6",

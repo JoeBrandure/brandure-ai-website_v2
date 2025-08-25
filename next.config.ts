@@ -7,13 +7,6 @@ const nextConfig: NextConfig = {
     webpackBuildWorker: false,
   },
   
-  // Network configuration for mobile access
-  serverRuntimeConfig: {
-    // Allow external connections
-    hostname: '10.20.12.9',
-    port: 3000,
-  },
-  
   // Add headers for mobile access
   async headers() {
     return [
