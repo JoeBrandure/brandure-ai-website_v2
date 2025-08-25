@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function MobileTest() {
   return (
     <div style={{ 
@@ -32,8 +34,8 @@ export default function MobileTest() {
         <ol>
           <li>Make sure your phone is on the same WiFi network</li>
           <li>Try accessing: <code>http://10.20.12.9:3000</code></li>
-          <li>If that doesn't work, try: <code>http://10.20.12.9:3000/mobile-test</code></li>
-          <li>Check if your phone's browser shows any error messages</li>
+          <li>If that doesn&apos;t work, try: <code>http://10.20.12.9:3000/mobile-test</code></li>
+          <li>Check if your phone&apos;s browser shows any error messages</li>
         </ol>
       </div>
       
@@ -52,7 +54,7 @@ export default function MobileTest() {
         </ul>
       </div>
       
-      <a 
+      <Link 
         href="/" 
         style={{ 
           display: 'inline-block',
@@ -65,7 +67,7 @@ export default function MobileTest() {
         }}
       >
         ← Back to Main Site
-      </a>
+      </Link>
     </div>
   );
 }
