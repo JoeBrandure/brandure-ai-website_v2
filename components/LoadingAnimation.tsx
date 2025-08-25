@@ -488,7 +488,7 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         title="Enter Brandure AI"
       >
         <img
-          src="/brandure-logo-new-colour.png"
+          src="/Logos/brandure-logo-new-colour.png"
           alt="Brandure AI"
           style={{
             maxWidth: '200px',
