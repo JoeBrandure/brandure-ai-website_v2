@@ -1,13 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // SEO and Performance Optimization
+  poweredByHeader: false,
+  compress: true,
+  
   // Allow external network access for mobile testing
   experimental: {
     // Disable experimental features that may cause build cache corruption
     webpackBuildWorker: false,
   },
   
-  // Add headers for mobile access
+  // Add headers for mobile access, SEO, and security
   async headers() {
     return [
       {
@@ -24,6 +28,38 @@ const nextConfig: NextConfig = {
           {
             key: 'Access-Control-Allow-Headers',
             value: 'Content-Type, Authorization',
+          },
+          // SEO and Performance Headers
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          // Cache Control for Static Assets
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Specific headers for HTML pages
+      {
+        source: '/(.*).html',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
           },
         ],
       },

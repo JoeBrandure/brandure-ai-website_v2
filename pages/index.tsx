@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 import Hero from '../components/Hero';
 import Pitch from '../components/Pitch';
 import Journey from '../components/Journey';
@@ -38,6 +39,59 @@ export default function Home() {
 
   return (
     <>
+      {/* SEO Metadata */}
+      <Head>
+        <title>Brandure AI - Your Trusted Partner in AI-Powered Business Transformation</title>
+        <meta name="description" content="Transform your business with AI. Brandure AI helps you identify, develop, and scale high-impact AI opportunities. Expert AI consulting and implementation services." />
+        <meta name="keywords" content="AI consulting, business transformation, artificial intelligence, AI implementation, machine learning, automation, digital transformation, AI strategy" />
+        <meta name="author" content="Brandure AI" />
+        <meta name="robots" content="index, follow" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://brandureai.com" />
+        <meta property="og:title" content="Brandure AI - Your Trusted Partner in AI-Powered Business Transformation" />
+        <meta property="og:description" content="Transform your business with AI. Brandure AI helps you identify, develop, and scale high-impact AI opportunities. Expert AI consulting and implementation services." />
+        <meta property="og:image" content="https://brandureai.com/Logos/brandure-logo-new-colour.png" />
+        <meta property="og:site_name" content="Brandure AI" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://brandureai.com" />
+        <meta property="twitter:title" content="Brandure AI - Your Trusted Partner in AI-Powered Business Transformation" />
+        <meta property="twitter:description" content="Transform your business with AI. Brandure AI helps you identify, develop, and scale high-impact AI opportunities. Expert AI consulting and implementation services." />
+        <meta property="twitter:image" content="https://brandureai.com/Logos/brandure-logo-new-colour.png" />
+        
+        {/* Canonical */}
+        <link rel="canonical" href="https://brandureai.com" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Brandure AI",
+              "url": "https://brandureai.com",
+              "logo": "https://brandureai.com/Logos/brandure-logo-new-colour.png",
+              "description": "Transform your business with AI. Brandure AI helps you identify, develop, and scale high-impact AI opportunities. Expert AI consulting and implementation services.",
+              "sameAs": [
+                "https://twitter.com/brandureai",
+                "https://linkedin.com/company/brandureai"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "email": "sales@brandureai.com"
+              },
+              "serviceType": "AI Consulting and Implementation",
+              "areaServed": "Worldwide"
+            })
+          }}
+        />
+      </Head>
+      
       {/* Background Elements */}
       <FloatingGradientCanvas />
 
