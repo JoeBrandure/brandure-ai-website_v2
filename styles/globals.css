@@ -75,6 +75,11 @@ html, body {
   text-align: center;
 }
 
+/* Contact page specific positioning */
+#contact .content-wrapper {
+  padding-top: 80px;
+}
+
 /* Hide scrollbar */
 .main-container::-webkit-scrollbar {
   display: none;
@@ -215,7 +220,7 @@ html, body {
 /* Mobile chat widget positioning */
 @media (max-width: 768px) {
   .chat-widget-container {
-    bottom: 140px !important;
+    bottom: 100px !important;
     right: 15px !important;
   }
 }
@@ -494,7 +499,15 @@ html, body {
 /* Mobile navigation adjustments */
 @media (max-width: 768px) {
   .nav-fixed {
-    padding: 12px 20px !important;
+    padding: 8px 20px !important;
+    align-items: center !important;
+    min-height: 50px !important;
+  }
+  
+  /* Ensure logo and button are properly aligned */
+  .nav-fixed > * {
+    display: flex !important;
+    align-items: center !important;
   }
 }
 
@@ -519,10 +532,14 @@ html, body {
 /* Mobile button adjustments */
 @media (max-width: 768px) {
   .cta-button {
-    padding: 12px 24px !important;
-    font-size: 1rem !important;
+    padding: 8px 16px !important;
+    font-size: 0.875rem !important;
     min-width: auto !important;
-    max-width: 140px !important;
+    max-width: 110px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 1.2 !important;
   }
 }
 
@@ -1013,12 +1030,34 @@ section#contact .footer-wrapper,
   .step-section {
     scroll-snap-align: start !important;
     min-height: 100vh !important;
+    scroll-padding-top: 60px !important;
   }
   
   /* Ensure proper spacing between steps */
   .steps-scroll-container {
     scroll-snap-type: y mandatory !important;
     scroll-behavior: smooth !important;
+    scroll-padding-top: 60px !important;
+  }
+  
+  /* Fix scroll snapping to ensure full card visibility */
+  .step-section .glow-container {
+    scroll-margin-top: 60px !important;
+  }
+  
+  /* Fix form buttons being cut off by browser footer */
+  .contact-form, .inquiry-form {
+    padding-bottom: 120px !important;
+  }
+  
+  /* Ensure footer content is visible above browser UI */
+  .footer-wrapper {
+    padding-bottom: 100px !important;
+  }
+  
+  /* Contact page text positioning for mobile */
+  #contact .content-wrapper {
+    padding-top: 60px !important;
   }
 }
 
