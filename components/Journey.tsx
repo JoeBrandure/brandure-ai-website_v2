@@ -237,7 +237,11 @@ const ShaderBackground = () => {
 
 export default function Journey() {
   return (
-    <section id="journey" className="section-snap relative overflow-visible">
+    <section id="journey" className="section-snap relative overflow-visible" style={{ 
+      display: 'block',
+      alignItems: 'stretch',
+      justifyContent: 'flex-start'
+    }}>
       {/* Shader Background positioned below center */}
       <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: -1 }}>
         <div className="w-full h-96 max-w-4xl">
@@ -245,9 +249,17 @@ export default function Journey() {
         </div>
       </div>
       
-      {/* Content positioned above the shader */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center" style={{ 
-        paddingTop: 'calc(18vh)'
+      {/* Content positioned above the shader with responsive positioning */}
+      <div className="relative z-10 text-center" style={{ 
+        paddingTop: 'calc(18vh)',
+        position: 'absolute',
+        top: '18vh',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        maxWidth: '90vw',
+        paddingLeft: '20px',
+        paddingRight: '20px'
       }}>
         <div>
           <h2 className="section-heading-medium animate-text" style={{ lineHeight: 1.3, marginBottom: '40px' }}>
