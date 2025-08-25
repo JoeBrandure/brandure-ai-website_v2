@@ -443,7 +443,6 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
       // Calculate the exact navigation logo position based on the actual page layout
       // Navigation is at top-0, with padding: '8px 40px', height: '60px'
       // Logo is width: '150px', height: 'auto'
-      const viewportWidth = window.innerWidth;
       const navPadding = 40; // px-40 = 40px
       const logoWidth = 150;
       const logoHeight = 40; // height: '40px'
@@ -470,16 +469,16 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
 
   // Don't render until dimensions are set
   if (dimensions.width === 0 || dimensions.height === 0) {
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 9999,
-        background: 'linear-gradient(180deg, #0a0a0a 0%, #000000 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    return (
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9999,
+          background: 'linear-gradient(180deg, #0a0a0a 0%, #000000 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <div className="text-white text-sm">Loading...</div>
