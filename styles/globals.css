@@ -966,7 +966,7 @@ section#contact .footer-wrapper,
   
   /* Reduce spacing between step cards on mobile */
   .step-section {
-    margin-bottom: -20px !important; /* Reduce gap between cards */
+    margin-bottom: -40px !important; /* Increased from -20px to -40px for tighter spacing */
   }
   
   /* Step number mobile overrides - ensure consistent sizing */
@@ -1055,13 +1055,13 @@ section#contact .footer-wrapper,
   
   /* Contact page text positioning for mobile */
   #contact .content-wrapper {
-    padding-top: 80px !important; /* Increased to position below navigation header */
-    margin-top: -40px !important; /* Adjusted from -80px to -40px for better positioning */
+    padding-top: 120px !important; /* Increased to position below navigation header */
+    margin-top: 0 !important; /* Reset margin for proper positioning */
   }
   
   /* Shift contact content up on mobile */
   #contact {
-    padding-top: 20px !important;
+    padding-top: 0 !important; /* Reset padding for proper positioning */
   }
   
   /* Adjust footer positioning for mobile */
@@ -1360,7 +1360,7 @@ section#contact .footer-wrapper,
 /* Mobile override for Results page numbers - make them bigger */
 @media (max-width: 768px) {
   #results .hero-text-large {
-    font-size: 4.5rem !important; /* 72px - adjusted size on mobile */
+    font-size: 3.125rem !important; /* 50px - reduced size on mobile */
     line-height: 1 !important;
   }
   

@@ -7,6 +7,12 @@ export default function Document() {
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
         
+        {/* Favicon and Tab Icons */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/Logos/brandure-logo-new-colour.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/Logos/brandure-logo-new-colour.png" />
+        <link rel="apple-touch-icon" href="/Logos/brandure-logo-new-colour.png" />
+        <link rel="shortcut icon" href="/Logos/brandure-logo-new-colour.png" />
+        
         {/* Viewport and Mobile Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
         <meta name="application-name" content="Brandure AI" />
