@@ -8,8 +8,9 @@ export default function Journey() {
       <div className="content-wrapper">
         <h2 className="section-heading animate-text text-center">
           We spend our days<br />
-          guiding companies through<br />
-          our <AnimatedText text="3-step AI-Transformation" /> process
+          guiding companies<br />
+          through our <AnimatedText text="3-step" /> <AnimatedText text="AI-Transformation" /><br />
+          process
         </h2>
       </div>
     </section>

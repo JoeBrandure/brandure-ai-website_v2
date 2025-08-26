@@ -1307,11 +1307,11 @@ section#contact .footer-wrapper,
   /* Improve Journey text spacing on mobile - HIGHEST SPECIFICITY */
   #journey .section-heading {
     line-height: 1.4 !important;
-    padding: 0 15px !important; /* Reduced from 20px to 15px for wider text space */
+    padding: 0 20px !important; /* Increased padding for wider text space */
     font-size: 2rem !important; /* Override generic section-heading */
     text-align: center !important;
     margin: 0 auto !important;
-    max-width: 90vw !important; /* Ensure text doesn't go off page */
+    max-width: 95vw !important; /* Wider container to fit text properly */
     /* DEBUG: Add obvious styling to see if this is working */
     background-color: red !important;
     border: 5px solid yellow !important;
@@ -1320,9 +1320,11 @@ section#contact .footer-wrapper,
   
   /* Ensure 3-step text stays together - HIGHEST SPECIFICITY */
   #journey .section-heading .accent-blue {
-    white-space: nowrap !important;
+    white-space: normal !important; /* Allow text to wrap naturally */
     display: inline-block !important;
     color: #00D9FF !important; /* Ensure blue color is applied */
+    max-width: 100% !important; /* Ensure it doesn't overflow container */
+    word-wrap: break-word !important; /* Allow long words to break */
     /* DEBUG: Add obvious styling to see if this is working */
     background-color: purple !important;
     border: 3px solid orange !important;
@@ -1349,7 +1351,7 @@ section#contact .footer-wrapper,
   
   /* Contact page text positioning for mobile - HIGHEST SPECIFICITY */
   section#contact .content-wrapper {
-    padding-top: 120px !important; /* Increased to position below navigation header */
+    padding-top: 80px !important; /* Reduced to position closer to navigation header */
     margin-top: 0 !important; /* Reset margin for proper positioning */
     /* DEBUG: Add obvious styling to see if this is working */
     background-color: blue !important;
@@ -1380,6 +1382,7 @@ section#contact .footer-wrapper,
   section#contact .footer-title {
     font-size: 1.5rem !important; /* Same as section-subheading */
     line-height: 1.4 !important;
+    color: white !important; /* Ensure text is visible */
   }
   
   /* Results page numbers - reduced size on mobile */
