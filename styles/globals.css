@@ -960,8 +960,8 @@ section#contact .footer-wrapper,
   /* Override GlowingShadow component dimensions for mobile */
   .step-section .glow-container {
     width: 92vw !important;
-    height: 70vh !important; /* Reduced from 80vh to 70vh */
-    min-height: 500px !important; /* Reduced from 600px to 500px */
+    height: 70vh !important;
+    min-height: 500px !important;
   }
   
   /* Reduce spacing between step cards on mobile */
