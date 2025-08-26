@@ -8,9 +8,10 @@ export default function Document() {
         <link rel="manifest" href="/manifest.json" />
         
         {/* Favicon and Tab Icons */}
+        <link rel="icon" type="image/png" sizes="48x48" href="/Logos/brandure-logo-new-colour-b.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/Logos/brandure-logo-new-colour-b.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="apple-touch-icon" href="/Logos/brandure-logo-new-colour-b.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/Logos/brandure-logo-new-colour-b.png" />
         <link rel="shortcut icon" href="/Logos/brandure-logo-new-colour-b.png" />
         
         {/* Viewport and Mobile Meta Tags */}

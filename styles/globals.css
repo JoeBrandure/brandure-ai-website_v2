@@ -1067,7 +1067,9 @@ section#contact .footer-wrapper,
     left: 0 !important;
   }
   
-  /* Make footer text same size as subheading on mobile */
+  /* Make footer text same size as subheading on mobile - HIGHER SPECIFICITY */
+  #contact .footer-wrapper .footer-text,
+  #contact .footer-wrapper .footer-title,
   #contact .footer-text,
   #contact .footer-title {
     font-size: 1.5rem !important; /* Same as section-subheading */
@@ -1377,7 +1379,9 @@ section#contact .footer-wrapper,
     left: 0 !important;
   }
   
-  /* Make footer text same size as subheading on mobile */
+  /* Make footer text same size as subheading on mobile - HIGHER SPECIFICITY */
+  #contact .footer-wrapper .footer-text,
+  #contact .footer-wrapper .footer-title,
   #contact .footer-text,
   #contact .footer-title {
     font-size: 1.5rem !important; /* Same as section-subheading */
