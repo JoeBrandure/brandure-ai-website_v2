@@ -1312,6 +1312,10 @@ section#contact .footer-wrapper,
     text-align: center !important;
     margin: 0 auto !important;
     max-width: 90vw !important; /* Ensure text doesn't go off page */
+    /* DEBUG: Add obvious styling to see if this is working */
+    background-color: red !important;
+    border: 5px solid yellow !important;
+    color: white !important;
   }
   
   /* Ensure 3-step text stays together - HIGHEST SPECIFICITY */
@@ -1319,6 +1323,10 @@ section#contact .footer-wrapper,
     white-space: nowrap !important;
     display: inline-block !important;
     color: #00D9FF !important; /* Ensure blue color is applied */
+    /* DEBUG: Add obvious styling to see if this is working */
+    background-color: purple !important;
+    border: 3px solid orange !important;
+    padding: 5px !important;
   }
   
   /* Fix Navigation button text alignment */
@@ -1343,11 +1351,17 @@ section#contact .footer-wrapper,
   section#contact .content-wrapper {
     padding-top: 120px !important; /* Increased to position below navigation header */
     margin-top: 0 !important; /* Reset margin for proper positioning */
+    /* DEBUG: Add obvious styling to see if this is working */
+    background-color: blue !important;
+    border: 5px solid green !important;
   }
   
   /* Shift contact content up on mobile - HIGHEST SPECIFICITY */
   section#contact {
     padding-top: 0 !important; /* Reset padding for proper positioning */
+    /* DEBUG: Add obvious styling to see if this is working */
+    background-color: lime !important;
+    border: 5px solid pink !important;
   }
   
   /* Adjust footer positioning for mobile - HIGHEST SPECIFICITY */
