@@ -23,7 +23,7 @@ export default function Navigation(){
         <button
           onClick={() => setIsDrawerOpen(true)}
           className="inline-flex items-center gap-1 px-5 py-2 border border-white rounded-full text-white bg-transparent hover:bg-white hover:text-black transition"
-          style={{ textDecoration: 'none' }}
+          style={{ textDecoration: 'none', paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
         >
           Get In Touch →
         </button>

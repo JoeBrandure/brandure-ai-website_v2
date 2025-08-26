@@ -1051,6 +1051,7 @@ section#contact .footer-wrapper,
   /* Contact page text positioning for mobile */
   #contact .content-wrapper {
     padding-top: 40px !important;
+    margin-top: -80px !important; /* Shift content higher on mobile */
   }
   
   /* Shift contact content up on mobile */
@@ -1061,6 +1062,9 @@ section#contact .footer-wrapper,
   /* Adjust footer positioning for mobile */
   #contact .footer-wrapper {
     bottom: 20px !important;
+    position: absolute !important;
+    width: 100% !important;
+    left: 0 !important;
   }
 }
 
@@ -1314,5 +1318,23 @@ section#contact .footer-wrapper,
   p {
     font-size: 1rem !important;
     line-height: 1.4 !important;
+  }
+}
+
+/* Mobile override for Results page numbers - make them bigger */
+@media (max-width: 768px) {
+  #results .hero-text-large {
+    font-size: 6rem !important; /* 96px - bigger on mobile */
+    line-height: 1 !important;
+  }
+  
+  /* Fix snap scroll issues on mobile for HowWeWork section */
+  #how-we-work.section-snap {
+    min-height: calc(100vh - 20px) !important;
+    padding-bottom: 20px !important;
+  }
+  
+  #how-we-work .how-we-work-container {
+    padding-bottom: 40px !important;
   }
 }
