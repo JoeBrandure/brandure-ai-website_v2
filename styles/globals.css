@@ -1337,7 +1337,23 @@ section#contact .footer-wrapper,
     border: 3px solid orange !important;
     padding: 5px !important;
     margin: 0 5px !important; /* Add spacing around the text */
+    /* Force text to be visible */
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
   }
+  
+  /* Ensure AnimatedText characters are visible and properly spaced */
+  #journey .section-heading .accent-blue .char {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #00D9FF !important;
+    margin: 0 1px !important;
+    position: relative !important;
+  }
+  
+  /* Remove duplicate rule - now handled above with better specificity */
   
   /* Force the 3-step text to be on the same line as "our" */
   #journey .section-heading {
@@ -1398,6 +1414,52 @@ section#contact .footer-wrapper,
     /* DEBUG: Add obvious styling to see if this is working */
     background-color: blue !important;
     border: 5px solid red !important; /* Changed to red for better visibility */
+    /* Ensure content inside is visible */
+    color: white !important;
+    z-index: 10 !important;
+  }
+  
+  /* Ensure Contact content is visible - HIGHEST SPECIFICITY */
+  section#contact .content-wrapper h1,
+  section#contact .content-wrapper p,
+  section#contact .content-wrapper button,
+  section#contact .content-wrapper div {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: white !important;
+    position: relative !important;
+    z-index: 20 !important;
+  }
+  
+  /* Ensure Contact heading is visible */
+  section#contact .content-wrapper .section-heading {
+    color: white !important;
+    font-size: 2rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Ensure Contact subheading is visible */
+  section#contact .content-wrapper .section-subheading {
+    color: #C0C0C0 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Ensure Contact CTA button is visible */
+  section#contact .content-wrapper .cta-button {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: white !important;
+    background: transparent !important;
+    border: 2px solid white !important;
+    padding: 16px 48px !important;
+    font-size: 1.25rem !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
   }
   
   /* Override desktop Contact styles with ULTRA-HIGH SPECIFICITY */
