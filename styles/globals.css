@@ -1307,11 +1307,11 @@ section#contact .footer-wrapper,
   /* Improve Journey text spacing on mobile - HIGHEST SPECIFICITY */
   #journey .section-heading {
     line-height: 1.4 !important;
-    padding: 0 20px !important; /* Increased padding for wider text space */
+    padding: 0 30px !important; /* Increased padding for wider text space */
     font-size: 2rem !important; /* Override generic section-heading */
     text-align: center !important;
     margin: 0 auto !important;
-    max-width: 95vw !important; /* Wider container to fit text properly */
+    max-width: 98vw !important; /* Much wider container to fit text properly */
     /* DEBUG: Add obvious styling to see if this is working */
     background-color: red !important;
     border: 5px solid yellow !important;
@@ -1355,7 +1355,26 @@ section#contact .footer-wrapper,
     margin-top: 0 !important; /* Reset margin for proper positioning */
     /* DEBUG: Add obvious styling to see if this is working */
     background-color: blue !important;
-    border: 5px solid green !important;
+    border: 5px solid red !important; /* Changed to red for better visibility */
+  }
+  
+  /* Override desktop Contact styles with ULTRA-HIGH SPECIFICITY */
+  @media (max-width: 768px) {
+    section#contact .content-wrapper {
+      padding-top: 80px !important; /* Force mobile positioning */
+    }
+    
+    section#contact {
+      padding-top: 0 !important; /* Force mobile positioning */
+    }
+    
+    section#contact .footer-wrapper {
+      bottom: 20px !important; /* Override desktop bottom: 0 */
+      position: absolute !important;
+      width: 100% !important;
+      left: 0 !important;
+      z-index: 100 !important;
+    }
   }
   
   /* Shift contact content up on mobile - HIGHEST SPECIFICITY */
@@ -1373,6 +1392,9 @@ section#contact .footer-wrapper,
     width: 100% !important;
     left: 0 !important;
     z-index: 100 !important; /* Ensure it's above other elements */
+    /* DEBUG: Add obvious styling to see if this is working */
+    background-color: orange !important;
+    border: 3px solid purple !important;
   }
   
   /* Make footer text same size as subheading on mobile - HIGHEST SPECIFICITY */
