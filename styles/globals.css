@@ -960,8 +960,8 @@ section#contact .footer-wrapper,
   /* Override GlowingShadow component dimensions for mobile */
   .step-section .glow-container {
     width: 92vw !important;
-    height: 80vh !important;
-    min-height: 600px !important;
+    height: 70vh !important; /* Reduced from 80vh to 70vh */
+    min-height: 500px !important; /* Reduced from 600px to 500px */
   }
   
   /* Step number mobile overrides - ensure consistent sizing */
@@ -1319,12 +1319,28 @@ section#contact .footer-wrapper,
     font-size: 1rem !important;
     line-height: 1.4 !important;
   }
+  
+  /* Improve Journey text spacing on mobile */
+  #journey .section-heading {
+    line-height: 1.4 !important;
+    letter-spacing: 0.02em !important;
+    padding: 0 20px !important;
+  }
+  
+  /* Fix Navigation button text alignment */
+  nav .cta-button,
+  nav button {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
 }
 
 /* Mobile override for Results page numbers - make them bigger */
 @media (max-width: 768px) {
   #results .hero-text-large {
-    font-size: 6rem !important; /* 96px - bigger on mobile */
+    font-size: 4.875rem !important; /* 78px - adjusted size on mobile */
     line-height: 1 !important;
   }
   
