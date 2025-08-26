@@ -1048,33 +1048,7 @@ section#contact .footer-wrapper,
     padding-bottom: 100px !important;
   }
   
-  /* Contact page text positioning for mobile */
-  #contact .content-wrapper {
-    padding-top: 120px !important; /* Increased to position below navigation header */
-    margin-top: 0 !important; /* Reset margin for proper positioning */
-  }
-  
-  /* Shift contact content up on mobile */
-  #contact {
-    padding-top: 0 !important; /* Reset padding for proper positioning */
-  }
-  
-  /* Adjust footer positioning for mobile */
-  #contact .footer-wrapper {
-    bottom: 20px !important;
-    position: absolute !important;
-    width: 100% !important;
-    left: 0 !important;
-  }
-  
-  /* Make footer text same size as subheading on mobile - HIGHER SPECIFICITY */
-  #contact .footer-wrapper .footer-text,
-  #contact .footer-wrapper .footer-title,
-  #contact .footer-text,
-  #contact .footer-title {
-    font-size: 1.5rem !important; /* Same as section-subheading */
-    line-height: 1.4 !important;
-  }
+
 }
 
 .step-number-corner {
@@ -1330,10 +1304,17 @@ section#contact .footer-wrapper,
     line-height: 1.4 !important;
   }
   
-  /* Improve Journey text spacing on mobile */
+  /* Improve Journey text spacing on mobile - HIGHER SPECIFICITY */
   #journey .section-heading {
     line-height: 1.4 !important;
     padding: 0 15px !important; /* Reduced from 20px to 15px for wider text space */
+    font-size: 2rem !important; /* Override generic section-heading */
+  }
+  
+  /* Ensure 3-step text stays together */
+  #journey .accent-blue {
+    white-space: nowrap !important;
+    display: inline-block !important;
   }
   
   /* Fix Navigation button text alignment */
@@ -1348,19 +1329,13 @@ section#contact .footer-wrapper,
   /* Apply same alignment to Contact buttons */
   #contact .cta-button,
   .cta-button {
-    padding-left: 1rem !important; /* Reduced for better centering */
-    padding-right: 1rem !important; /* Reduced for better centering */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
     text-align: center !important;
     justify-content: center !important;
   }
   
-  /* Ensure 3-step text stays together */
-  #journey .accent-blue {
-    white-space: nowrap !important;
-    display: inline-block !important;
-  }
-  
-  /* Contact page text positioning for mobile */
+  /* Contact page text positioning for mobile - HIGHER SPECIFICITY */
   #contact .content-wrapper {
     padding-top: 120px !important; /* Increased to position below navigation header */
     margin-top: 0 !important; /* Reset margin for proper positioning */
@@ -1379,7 +1354,7 @@ section#contact .footer-wrapper,
     left: 0 !important;
   }
   
-  /* Make footer text same size as subheading on mobile - HIGHER SPECIFICITY */
+  /* Make footer text same size as subheading on mobile - HIGHEST SPECIFICITY */
   #contact .footer-wrapper .footer-text,
   #contact .footer-wrapper .footer-title,
   #contact .footer-text,
@@ -1387,10 +1362,8 @@ section#contact .footer-wrapper,
     font-size: 1.5rem !important; /* Same as section-subheading */
     line-height: 1.4 !important;
   }
-}
-
-/* Mobile override for Results page numbers - make them bigger */
-@media (max-width: 768px) {
+  
+  /* Results page numbers - reduced size on mobile */
   #results .hero-text-large {
     font-size: 3.125rem !important; /* 50px - reduced size on mobile */
     line-height: 1 !important;
