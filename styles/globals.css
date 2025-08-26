@@ -1304,7 +1304,7 @@ section#contact .footer-wrapper,
     line-height: 1.4 !important;
   }
   
-  /* Improve Journey text spacing on mobile - HIGHEST SPECIFICITY */
+  /* Improve Journey text spacing on mobile - scoped to mobile only */
   #journey .section-heading {
     line-height: 1.4 !important;
     padding: 0 10px !important; /* Minimal padding to maximize text width */
@@ -1316,13 +1316,9 @@ section#contact .footer-wrapper,
     position: relative !important;
     left: 50% !important;
     transform: translateX(-50%) !important; /* Center the box properly */
-    /* DEBUG: Add obvious styling to see if this is working */
-    background-color: red !important;
-    border: 5px solid yellow !important;
-    color: white !important;
   }
   
-  /* Ensure 3-step text is visible and properly positioned - HIGHEST SPECIFICITY */
+  /* Ensure 3-step text is visible and properly positioned - mobile only */
   #journey .section-heading .accent-blue {
     display: inline-block !important;
     visibility: visible !important;
@@ -1332,15 +1328,17 @@ section#contact .footer-wrapper,
     color: #00D9FF !important; /* Ensure blue color is applied */
     max-width: 100% !important; /* Ensure it doesn't overflow container */
     word-wrap: break-word !important; /* Allow long words to break */
-    /* DEBUG: Add obvious styling to see if this is working */
-    background-color: purple !important;
-    border: 3px solid orange !important;
-    padding: 5px !important;
+    padding: 0 2px !important;
     margin: 0 5px !important; /* Add spacing around the text */
     /* Force text to be visible */
     font-size: inherit !important;
     font-weight: inherit !important;
     line-height: inherit !important;
+  }
+
+  /* Keep the first accent (3-step) with the word 'our' on one line */
+  #journey .section-heading .accent-blue:first-of-type {
+    white-space: nowrap !important;
   }
   
   /* Ensure AnimatedText characters are visible and properly spaced */
@@ -1355,26 +1353,8 @@ section#contact .footer-wrapper,
   
   /* Remove duplicate rule - now handled above with better specificity */
   
-  /* Force the 3-step text to be on the same line as "our" */
-  #journey .section-heading {
-    line-height: 1.4 !important;
-    padding: 0 10px !important; /* Minimal padding to maximize text width */
-    font-size: 2rem !important; /* Override generic section-heading */
-    text-align: center !important;
-    margin: 0 auto !important;
-    max-width: 100vw !important; /* Full viewport width for maximum text space */
-    width: 100vw !important; /* Force full width */
-    position: relative !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important; /* Center the box properly */
-    /* DEBUG: Add obvious styling to see if this is working */
-    background-color: red !important;
-    border: 5px solid yellow !important;
-    color: white !important;
-    /* Ensure proper text flow */
-    word-spacing: normal !important;
-    letter-spacing: normal !important;
-  }
+  /* Remove duplicate/over-aggressive Journey overrides */
+  /* (Intentionally left blank) */
   
   /* Ensure AnimatedText characters are visible */
   #journey .section-heading .accent-blue .char {
@@ -1404,19 +1384,22 @@ section#contact .footer-wrapper,
     justify-content: center !important;
   }
   
-  /* Contact page text positioning for mobile - HIGHEST SPECIFICITY */
+  /* Contact page text positioning for mobile - scoped and non-intrusive */
   section#contact .content-wrapper {
-    padding-top: 400px !important; /* EXTREMELY HIGH positioning - moving towards header navigation */
+    padding-top: 80px !important; /* Position content near header */
     margin-top: 0 !important; /* Reset margin for proper positioning */
     padding-left: 0 !important; /* Override generic content-wrapper padding */
     padding-right: 0 !important; /* Override generic content-wrapper padding */
     max-width: 100% !important; /* Override generic content-wrapper max-width */
-    /* DEBUG: Add obvious styling to see if this is working */
-    background-color: blue !important;
-    border: 5px solid red !important; /* Changed to red for better visibility */
     /* Ensure content inside is visible */
     color: white !important;
     z-index: 10 !important;
+  }
+
+  /* Align Contact section content toward the top on mobile */
+  section#contact {
+    align-items: flex-start !important;
+    padding-top: 0 !important;
   }
   
   /* Ensure Contact content is visible - HIGHEST SPECIFICITY */
@@ -1465,15 +1448,13 @@ section#contact .footer-wrapper,
   /* Override desktop Contact styles with ULTRA-HIGH SPECIFICITY */
   @media (max-width: 768px) {
     section#contact .content-wrapper {
-      padding-top: 400px !important; /* Force mobile positioning - EXTREMELY HIGH towards header */
+      padding-top: 80px !important; /* Force mobile positioning near header */
       padding-left: 0 !important; /* Override generic content-wrapper padding */
       padding-right: 0 !important; /* Override generic content-wrapper padding */
       max-width: 100% !important; /* Override generic content-wrapper max-width */
     }
     
-    section#contact {
-      padding-top: 0 !important; /* Force mobile positioning */
-    }
+    section#contact { padding-top: 0 !important; }
     
     section#contact .footer-wrapper {
       bottom: 20px !important; /* Override desktop bottom: 0 */
@@ -1484,24 +1465,16 @@ section#contact .footer-wrapper,
     }
   }
   
-  /* Shift contact content up on mobile - HIGHEST SPECIFICITY */
-  section#contact {
-    padding-top: 0 !important; /* Reset padding for proper positioning */
-    /* DEBUG: Add obvious styling to see if this is working */
-    background-color: lime !important;
-    border: 5px solid pink !important;
-  }
+  /* Remove debug styling for contact section */
+  section#contact { background: transparent !important; border: none !important; }
   
-  /* Adjust footer positioning for mobile - HIGHEST SPECIFICITY */
+  /* Adjust footer positioning for mobile - keep content above browser UI */
   section#contact .footer-wrapper {
-    bottom: 40px !important; /* Increased from 20px to prevent overlap */
+    bottom: 40px !important; /* Ensure footer is visible */
     position: absolute !important;
     width: 100% !important;
     left: 0 !important;
     z-index: 100 !important; /* Ensure it's above other elements */
-    /* DEBUG: Add obvious styling to see if this is working */
-    background-color: orange !important;
-    border: 3px solid purple !important;
   }
   
   /* Make footer text same size as subheading on mobile - HIGHEST SPECIFICITY */
