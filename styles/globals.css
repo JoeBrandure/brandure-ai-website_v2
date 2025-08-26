@@ -964,6 +964,11 @@ section#contact .footer-wrapper,
     min-height: 500px !important; /* Reduced from 600px to 500px */
   }
   
+  /* Reduce spacing between step cards on mobile */
+  .step-section {
+    margin-bottom: -20px !important; /* Reduce gap between cards */
+  }
+  
   /* Step number mobile overrides - ensure consistent sizing */
   .step-number-top {
     position: relative !important;
@@ -1050,8 +1055,8 @@ section#contact .footer-wrapper,
   
   /* Contact page text positioning for mobile */
   #contact .content-wrapper {
-    padding-top: 40px !important;
-    margin-top: -80px !important; /* Shift content higher on mobile */
+    padding-top: 80px !important; /* Increased to position below navigation header */
+    margin-top: -40px !important; /* Adjusted from -80px to -40px for better positioning */
   }
   
   /* Shift contact content up on mobile */
@@ -1065,6 +1070,13 @@ section#contact .footer-wrapper,
     position: absolute !important;
     width: 100% !important;
     left: 0 !important;
+  }
+  
+  /* Make footer text same size as subheading on mobile */
+  #contact .footer-text,
+  #contact .footer-title {
+    font-size: 1.5rem !important; /* Same as section-subheading */
+    line-height: 1.4 !important;
   }
 }
 
@@ -1323,15 +1335,23 @@ section#contact .footer-wrapper,
   /* Improve Journey text spacing on mobile */
   #journey .section-heading {
     line-height: 1.4 !important;
-    letter-spacing: 0.02em !important;
-    padding: 0 20px !important;
+    padding: 0 15px !important; /* Reduced from 20px to 15px for wider text space */
   }
   
   /* Fix Navigation button text alignment */
   nav .cta-button,
   nav button {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    padding-left: 1.125rem !important; /* Slightly reduced from 1.25rem for better centering */
+    padding-right: 1.125rem !important; /* Slightly reduced from 1.25rem for better centering */
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Apply same alignment to Contact buttons */
+  #contact .cta-button,
+  .cta-button {
+    padding-left: 1.125rem !important;
+    padding-right: 1.125rem !important;
     text-align: center !important;
     justify-content: center !important;
   }
@@ -1340,7 +1360,7 @@ section#contact .footer-wrapper,
 /* Mobile override for Results page numbers - make them bigger */
 @media (max-width: 768px) {
   #results .hero-text-large {
-    font-size: 4.875rem !important; /* 78px - adjusted size on mobile */
+    font-size: 4.5rem !important; /* 72px - adjusted size on mobile */
     line-height: 1 !important;
   }
   
