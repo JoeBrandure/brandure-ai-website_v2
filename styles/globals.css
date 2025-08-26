@@ -1322,10 +1322,13 @@ section#contact .footer-wrapper,
     color: white !important;
   }
   
-  /* Ensure 3-step text stays together - HIGHEST SPECIFICITY */
+  /* Ensure 3-step text is visible and properly positioned - HIGHEST SPECIFICITY */
   #journey .section-heading .accent-blue {
-    white-space: normal !important; /* Allow text to wrap naturally */
     display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    white-space: normal !important; /* Allow text to wrap naturally */
     color: #00D9FF !important; /* Ensure blue color is applied */
     max-width: 100% !important; /* Ensure it doesn't overflow container */
     word-wrap: break-word !important; /* Allow long words to break */
@@ -1334,6 +1337,16 @@ section#contact .footer-wrapper,
     border: 3px solid orange !important;
     padding: 5px !important;
   }
+  
+  /* Ensure AnimatedText characters are visible */
+  #journey .section-heading .accent-blue .char {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #00D9FF !important;
+  }
+  
+  /* Remove duplicate rule - now handled above with better specificity */
   
   /* Fix Navigation button text alignment */
   nav .cta-button,
@@ -1355,7 +1368,7 @@ section#contact .footer-wrapper,
   
   /* Contact page text positioning for mobile - HIGHEST SPECIFICITY */
   section#contact .content-wrapper {
-    padding-top: 40px !important; /* Much higher positioning to avoid footer overlap */
+    padding-top: 200px !important; /* SIGNIFICANTLY HIGHER positioning to avoid footer overlap */
     margin-top: 0 !important; /* Reset margin for proper positioning */
     padding-left: 0 !important; /* Override generic content-wrapper padding */
     padding-right: 0 !important; /* Override generic content-wrapper padding */
@@ -1368,7 +1381,7 @@ section#contact .footer-wrapper,
   /* Override desktop Contact styles with ULTRA-HIGH SPECIFICITY */
   @media (max-width: 768px) {
     section#contact .content-wrapper {
-      padding-top: 40px !important; /* Force mobile positioning - much higher */
+      padding-top: 200px !important; /* Force mobile positioning - SIGNIFICANTLY HIGHER */
       padding-left: 0 !important; /* Override generic content-wrapper padding */
       padding-right: 0 !important; /* Override generic content-wrapper padding */
       max-width: 100% !important; /* Override generic content-wrapper max-width */
