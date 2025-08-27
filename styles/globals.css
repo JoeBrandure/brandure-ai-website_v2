@@ -215,7 +215,7 @@ html, body {
 /* Mobile chat widget positioning */
 @media (max-width: 768px) {
   .chat-widget-container {
-    bottom: 100px !important;
+    bottom: 24px !important; /* lowered to avoid footer overlap */
     right: 15px !important;
   }
 }
@@ -527,10 +527,10 @@ html, body {
 /* Mobile button adjustments */
 @media (max-width: 768px) {
   .cta-button {
-    padding: 8px 16px !important;
-    font-size: 0.8rem !important;
+    padding: 10px 24px !important; /* match header nav button */
+    font-size: 1rem !important;   /* match header nav button */
     min-width: auto !important;
-    max-width: 120px !important;
+    max-width: none !important;
     white-space: nowrap !important;
     line-height: 1.1 !important;
   }
@@ -1426,7 +1426,7 @@ section#contact .footer-wrapper,
   /* Ensure Contact subheading is visible */
   section#contact .content-wrapper .section-subheading {
     color: #C0C0C0 !important;
-    font-size: 1.5rem !important;
+    font-size: 1rem !important; /* match pitch/partnership mobile subtext */
     line-height: 1.4 !important;
     margin-bottom: 1rem !important;
   }
