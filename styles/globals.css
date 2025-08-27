@@ -556,6 +556,14 @@ html, body {
 /* Utility: keep 'our 3-step' on one line */
 .nowrap-our-3step { white-space: nowrap; word-break: keep-all; }
 
+/* Visibility helpers */
+@media (max-width: 768px) {
+  .desktop-only { display: none !important; }
+}
+@media (min-width: 769px) {
+  .mobile-only { display: none !important; }
+}
+
 /* Utility: blue divider under stats */
 .stat-divider {
   width: 100%;
@@ -1434,7 +1442,7 @@ section#contact .footer-wrapper,
     margin-bottom: 1rem !important;
   }
   
-  /* Ensure Contact CTA button is visible */
+  /* Ensure Contact CTA button is visible and matches nav sizing on mobile */
   section#contact .content-wrapper .cta-button {
     display: inline-block !important;
     visibility: visible !important;
@@ -1442,10 +1450,14 @@ section#contact .footer-wrapper,
     color: white !important;
     background: transparent !important;
     border: 2px solid white !important;
-    padding: 16px 48px !important;
-    font-size: 1.25rem !important;
     border-radius: 50px !important;
     cursor: pointer !important;
+  }
+  @media (max-width: 768px) {
+    section#contact .content-wrapper .cta-button {
+      padding: 10px 24px !important; /* exactly like nav */
+      font-size: 1rem !important;   /* exactly like nav */
+    }
   }
   
   /* Override desktop Contact styles with ULTRA-HIGH SPECIFICITY */
@@ -1480,14 +1492,15 @@ section#contact .footer-wrapper,
     z-index: 100 !important; /* Ensure it's above other elements */
   }
   
-  /* Make footer text same size as subheading on mobile - HIGHEST SPECIFICITY */
+  /* Make footer text match subheading style on mobile (same color/size) */
   section#contact .footer-wrapper .footer-text,
   section#contact .footer-wrapper .footer-title,
   section#contact .footer-text,
   section#contact .footer-title {
-    font-size: 1.5rem !important; /* Same as section-subheading */
+    font-size: 1rem !important; /* same as section-subheading */
     line-height: 1.4 !important;
-    color: white !important; /* Ensure text is visible */
+    color: rgba(255, 255, 255, 0.7) !important; /* same color as subtext */
+    text-transform: none !important; /* Do not force all caps */
   }
   
   /* Results page numbers - reduced size on mobile */

@@ -34,7 +34,7 @@ export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) 
       <div className="footer-wrapper">
         {/* Left: CONTACT */}
         <div className="footer-left">
-          <h3 className="footer-title mb-2">CONTACT</h3>
+          <h3 className="footer-title mb-2">Contact</h3>
           <p className="footer-text">
             <a href="mailto:info@brandureai.com" className="footer-link">info@brandureai.com</a>
           </p>
@@ -55,7 +55,7 @@ export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) 
 
         {/* Right: FOLLOW */}
         <div className="footer-right">
-          <h3 className="footer-title mb-2">FOLLOW</h3>
+          <h3 className="footer-title mb-2">Follow</h3>
                             <p className="footer-text">
                     <a
                       href="https://www.linkedin.com/company/brandure-ai/"
@@ -63,7 +63,7 @@ export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) 
                       rel="noopener noreferrer"
                       className="footer-link"
                     >
-                      LINKEDIN
+                      LinkedIn
                     </a>
                   </p>
         </div>
