@@ -20,7 +20,7 @@ export default function ChatWidget() {
       {isOpen && (
         <div className="chat-interface">
           <div className="chat-header">
-            <h3>Brandure AI Chat</h3>
+            <h3>Brandure - Joe</h3>
             <button
               onClick={() => setIsOpen(false)}
               className="chat-close-button"
@@ -34,9 +34,9 @@ export default function ChatWidget() {
           </div>
 
           {/* Embedded Relevance AI iframe fills the panel */}
-          <div style={{ flex: 1, display: 'flex' }}>
+          <div style={{ flex: 1, display: 'flex', background: '#ffffff' }}>
             <iframe
-              src="https://app.relevanceai.com/agents/d7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5/embed-chat?starting_message_prompts=Hey%21+Is+there+anything+I+can+help+you+with%3F+&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true"
+              src="https://app.relevanceai.com/agents/d7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5/embed-chat?starting_message_prompts=Hi+this+is+Joe+from+Brandure+AI.+How+can+I+help%3F&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true&hide_title=true&theme=light"
               width="100%"
               height="100%"
               style={{ border: 0, flex: 1 }}

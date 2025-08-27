@@ -534,10 +534,7 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
           left: '50%',
           transform: 'translate(-50%, -50%)',
           zIndex: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '20px',
+          display: 'block',
         }}
         onClick={handleSkip}
         title="Enter Brandure AI"
@@ -560,14 +557,17 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
         />
         <div
           style={{
+            position: 'absolute',
+            top: 'calc(100% + 12px)',
+            left: '50%',
+            transform: 'translateX(-50%)',
             color: '#C0C0C0',
             fontSize: '0.9rem',
             letterSpacing: '0.02em',
-            userSelect: 'none'
+            userSelect: 'none',
+            textAlign: 'center'
           }}
-        >
-          click to enter
-        </div>
+        >click to enter</div>
       </div>
     </div>
   );
