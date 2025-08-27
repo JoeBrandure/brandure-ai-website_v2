@@ -7,16 +7,16 @@ export default function Document() {
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
         
-        {/* Favicon and Tab Icons */}
-        <link rel="icon" type="image/png" sizes="192x192" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="shortcut icon" href="/Logos/brandure-logo-new-colour-b.png" />
-        <link rel="mask-icon" href="/Logos/brandure-logo-new-colour-b.png" color="#000000" />
+        {/* Favicon and Tab Icons (use white logo on black background) */}
+        <link rel="icon" type="image/png" sizes="192x192" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="shortcut icon" href="/Logos/brandure-logo-new-white-b-blackbackground.png" />
+        <link rel="mask-icon" href="/Logos/brandure-logo-new-white-b-blackbackground.png" color="#000000" />
         
         {/* Viewport and Mobile Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
