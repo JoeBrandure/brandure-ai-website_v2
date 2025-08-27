@@ -553,6 +553,9 @@ html, body {
 /* Ensure AnimatedText per-letter spans inherit italics */
 .char { font-style: inherit; }
 
+/* Utility: keep 'our 3-step' on one line */
+.nowrap-our-3step { white-space: nowrap; word-break: keep-all; }
+
 /* Utility: blue divider under stats */
 .stat-divider {
   width: 100%;
