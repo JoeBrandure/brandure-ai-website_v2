@@ -2,31 +2,6 @@ import React, { useState } from 'react';
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hey! This is Joe from Brandure AI. Anything I can help with?", isBot: true }
-  ]);
-
-  const handleSendMessage = () => {
-    if (!message.trim()) return;
-    
-    // Add user message
-    const userMessage = { id: Date.now(), text: message, isBot: false };
-    setMessages(prev => [...prev, userMessage]);
-    
-    // Clear input
-    setMessage('');
-    
-    // Simulate AI response (you can replace this with actual Relevance AI integration)
-    setTimeout(() => {
-      const botResponse = { 
-        id: Date.now() + 1, 
-        text: "Thanks for your message! I'm here to help with any questions about Brandure AI.", 
-        isBot: true 
-      };
-      setMessages(prev => [...prev, botResponse]);
-    }, 1000);
-  };
 
   return (
     <div className="chat-widget-container">
@@ -41,7 +16,7 @@ export default function ChatWidget() {
         </svg>
       </button>
 
-      {/* Chat Interface */}
+      {/* Chat Interface (keeps same chrome, embeds Relevance AI chat) */}
       {isOpen && (
         <div className="chat-interface">
           <div className="chat-header">
@@ -57,38 +32,18 @@ export default function ChatWidget() {
               </svg>
             </button>
           </div>
-          
-          <div className="chat-messages">
-            {messages.map((msg) => (
-              <div key={msg.id} className={`chat-message ${msg.isBot ? 'bot' : 'user'}`}>
-                <p>{msg.text}</p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="chat-input">
-            <input
-              type="text"
-              placeholder="Type your message..."
-              className="chat-text-input"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                  handleSendMessage();
-                }
-              }}
+
+          {/* Embedded Relevance AI iframe fills the panel */}
+          <div style={{ flex: 1, display: 'flex' }}>
+            <iframe
+              src="https://app.relevanceai.com/agents/d7b62b/6271ce55f7b2-46d5-9d84-562aba385b32/ba0ee5a0-3f17-4f24-bd77-6616e27e04b5/embed-chat?starting_message_prompts=Hey%21+Is+there+anything+I+can+help+you+with%3F+&hide_tool_steps=true&hide_file_uploads=true&hide_conversation_list=true&bubble_style=icon&primary_color=%2300D9FF&bubble_icon=sparkles&input_placeholder_text=Type+your+message...&hide_logo=true&hide_description=true"
+              width="100%"
+              height="100%"
+              style={{ border: 0, flex: 1 }}
+              frameBorder={0}
+              allow="microphone"
+              title="Brandure AI Chat"
             />
-            <button 
-              className="chat-send-button"
-              onClick={handleSendMessage}
-              disabled={!message.trim()}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="22" y1="2" x2="11" y2="13" />
-                <polygon points="22,2 15,22 11,13 2,9" />
-              </svg>
-            </button>
           </div>
         </div>
       )}
