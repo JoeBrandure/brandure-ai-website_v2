@@ -558,6 +558,16 @@ export default function LoadingAnimation({ onComplete }: { onComplete: () => voi
           }}
           onClick={handleLogoClick}
         />
+        <div
+          style={{
+            color: '#C0C0C0',
+            fontSize: '0.9rem',
+            letterSpacing: '0.02em',
+            userSelect: 'none'
+          }}
+        >
+          click to enter
+        </div>
       </div>
     </div>
   );
