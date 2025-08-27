@@ -31,6 +31,9 @@ export default function Document() {
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="B8KXnHTA-6kANnwu5f01X-ATSCKHprhZ3Ybc5K8l3Co" />
       </Head>
       <body>
         <Main />
