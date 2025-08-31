@@ -1433,6 +1433,13 @@ section#contact .footer-wrapper,
     line-height: 1.4 !important;
     margin-bottom: 1rem !important;
   }
+
+  /* Desktop-only spacing for Contact heading to match Pitch/Partnership */
+  @media (min-width: 769px) {
+    section#contact .content-wrapper .section-heading {
+      margin-bottom: 30px !important;
+    }
+  }
   
   /* Ensure Contact subheading is visible */
   section#contact .content-wrapper .section-subheading {
