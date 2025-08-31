@@ -1448,6 +1448,13 @@ section#contact .footer-wrapper,
     line-height: 1.4 !important;
     margin-bottom: 1rem !important;
   }
+
+  /* Desktop-only: add top margin to subheading to ensure spacing from heading */
+  @media (min-width: 769px) {
+    section#contact .content-wrapper .section-subheading {
+      margin-top: 12px !important;
+    }
+  }
   
   /* Ensure Contact CTA button is visible and matches nav sizing on mobile */
   section#contact .content-wrapper .cta-button {
