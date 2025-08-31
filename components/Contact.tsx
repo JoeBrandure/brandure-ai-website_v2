@@ -6,9 +6,9 @@ export default function Contact({ onOpenDrawer }: { onOpenDrawer: () => void }) 
     <section id="contact" className="section-snap relative min-h-screen flex items-center">
       <div className="content-wrapper pb-24">
         {/* Heading */}
-        <h1 className="section-heading animate-text text-center">
+        <h2 className="section-heading animate-text text-center">
           Ready to <AnimatedText text="transform" /> your business?
-        </h1>
+        </h2>
 
         {/* Subheading */}
         <p className="section-subheading text-grey-white text-center">
