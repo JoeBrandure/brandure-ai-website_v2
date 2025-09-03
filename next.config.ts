@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
+          // Explicitly allow indexing for all pages (belt-and-suspenders)
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
           // Security Headers for Firewall Compliance
           {
             key: 'Strict-Transport-Security',

@@ -6,6 +6,8 @@ export default function Document() {
       <Head>
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
+        {/* Global Robots directive to ensure indexing allowed */}
+        <meta name="robots" content="index, follow" />
         
         {/* Favicon and Tab Icons */}
         <link rel="icon" type="image/png" sizes="192x192" href="/Logos/brandure-logo-new-white-b-black-background.png" />
