@@ -115,6 +115,18 @@ export default function ContactDrawer({ isOpen, onClose }: ContactDrawerProps) {
         console.log('Form submission successful, setting success status');
         setSubmitStatus('success');
         console.log('Success status set, message should be visible now');
+        // Google Ads Conversion: Submit lead form
+        try {
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'conversion', {
+              send_to: 'AW-17512432668/dMqqCM2DrpMbEJyIyp5B',
+              value: 1.0,
+              currency: 'AED',
+            });
+          }
+        } catch (e) {
+          console.warn('gtag conversion event failed to fire', e);
+        }
         
         // Reset form
         setFormData({
