@@ -168,6 +168,20 @@ const nextConfig: NextConfig = {
   
   // Ensure stable build output
   output: 'standalone',
+
+  // Canonicalize domain: redirect www -> apex
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          { type: 'host', value: 'www.brandureai.com' }
+        ],
+        destination: 'https://brandureai.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   
   // Disable source maps in production to prevent corruption
   productionBrowserSourceMaps: false,
