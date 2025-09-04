@@ -8,6 +8,18 @@ export default function Document() {
         <link rel="manifest" href="/manifest.json" />
         {/* Global Robots directive to ensure indexing allowed */}
         <meta name="robots" content="index, follow" />
+        {/* Google tag (gtag.js) - Google Ads */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17512432668"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);} 
+              gtag('js', new Date());
+              gtag('config', 'AW-17512432668');
+            `,
+          }}
+        />
         
         {/* Favicon and Tab Icons */}
         <link rel="icon" type="image/png" sizes="192x192" href="/Logos/brandure-logo-new-white-b-black-background.png" />
